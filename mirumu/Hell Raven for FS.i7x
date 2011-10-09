@@ -13,6 +13,8 @@ A person has a text called wingname. wingname is usually "";
 
 Hell Raven Queen is a person.
 
+Hell Raven Queen has a list of text called shiny things.
+
 flying is an action applying to one thing.
 understand "fly" as destinationcheck.
 understand "fly [any known fasttravel room]" or "fly to [any known fasttravel room]" as flying.
@@ -42,17 +44,17 @@ When Play begins:
 	add { "Hell Raven" } to infections of girl;
 	add { "Hell Raven" } to infections of hellspawn;
 	now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
-	now defeated entry is "[hell raven defeat]";
+	now defeated entry is "[lose to hell raven]";
 	 [ Text or say command used when Monster is defeated.]
-	now victory entry is "[hell raven attack]";
+	now victory entry is "[win against hell raven]";
 	now desc entry is "What appears at first to be a dark cloud advances towards you. As it progresses closer forms begin to emerge allowing you to recognise it as a large flock of birds. Before you have time to react they are upon you. At first you believe them to be normal ravens or crows, but as they whiz around you begin to make out human-like faces on them. For a moment out of the corner of your eye you think you notice the shadow of something large circling in the sky above.";
 	now face entry is "a pair of pure red eyes";[ Face description, format as the text "Your face is (your text)"] 
-	now body entry is "strong and muscular, streamlined for flight. Two large wings stick out of your back covered in long black feathers";[ Body Description, format as the text "Your Body is (your text)"] 
+	now body entry is "strong and muscular, streamlined for flight "; [Two large wings stick out of your back covered in long black feathers";][ Body Description, format as the text "Your Body is (your text)"] 
 	now skin entry is "black plumage covered";[ skin Description, format as the text "You have (your text) skin"] 
 	now tail entry is "You have a triangular tail made of long black feathers. ";[ Tail description, write a whole Sentence or leave blank. ]
 	now cock entry is "black with feathers around the base";[ Cock Description, format as you have a 'size' (your text) cock] 
 	now face change entry is "your nose and mouth merge into a long black beak and your eyes redden"; [ face change text. format as "Your face feels funny as (your text)" ]
-	now body change entry is "it becomes adapted for flight and muscles strengthen. Two large wings sprout out of your back covered in long black feathers"; [ body change text. format as "Your body feels funny as (your text)" ]
+	now body change entry is "it becomes adapted for flight and muscles strengthen"; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "your skin sprouts black feathers"; [ skin change text. format as "Your skin feels funny as (your text)" ]
 	now ass change entry is "it sprouts black feathers forming a triangular tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
 	now cock change entry is "black feathers sprout around the base"; [ cock change text. format as "Your cock feels funny as (your text)" ]
@@ -78,17 +80,38 @@ When Play begins:
 	now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
 	now libido entry is 10;		[ Amount player Libido will go up if defeated ]
 	now loot entry is "raspberry";		[ Loot monster drops, ]
-	now lootchance entry is 0;		[ Chance of loot dropping 0-100 ]
+	now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
 
-Section 4 - Monster Responses
+Section 4 - Monster Items
 
-to say hell raven defeat:
+raspberry is a grab object. It is temporary. It is a part of the player.
+
+Table of Game Objects(continued)
+name	desc	weight	object
+"raspberry"	"This small red berry has an ominous dark aura."	1	raspberry
+
+instead of smelling raspberry:
+	say "The small fruit has an enticing sweet smell.";
+
+
+Section 5 - Monster Responses
+
+to say lose to hell raven:
 	say "1";
 
-to say hell raven attack:
+to say win against hell raven:
 	say "2";
+	[choose row monster from the table of random critters;
+	if bodyname of the player is "Hell Raven" and skinname of player is "Hell Raven" and facename of the player is "Hell Raven" and tailname of the player is "Hell Raven":
+		if wingname of player is not "Hell Raven":
+			say " Your back [one of]tingles[or]goes flush[or]vibrates with odd pleasure[or]goes cold[or]feels oily[at random] as two large wings sprout out of your back covered in long black feathers.";
+			now wingname of player is "Hell Raven";
+			[now wing of player is wing entry;]
+			now the player is able to fly;]
 
 
-Section 5 - Debugging - Not for release
+
+
+Section 6 - Debugging - Not for release
 
 Hell Raven for FS ends here.
