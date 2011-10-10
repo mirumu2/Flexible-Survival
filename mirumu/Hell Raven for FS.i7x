@@ -13,6 +13,8 @@ A person has a text called wingname. wingname is usually "";
 
 Hell Raven Queen is a person.
 Hell Raven Encounters is a number that varies. Hell Raven Encounters is usually 0;
+Hell Raven Victories is a number that varies. Hell Raven Victories is usually 0;
+
 
 shiny things is a list of text that varies.
 
@@ -45,6 +47,15 @@ When Play begins:
 
 When Play ends:
 	say "4.";
+
+To say Raven Descr:
+	[Upon inspection you notice they have human-like faces with red eyes and a long curved black beak. ]
+	If Hell Raven Encounters is 0:
+		say "ravens ";
+	otherwise if Hell Raven Encounters is 1:
+		say "the same group of ravens ";
+	otherwise:
+		say "the red-eye'd ravens ";
 
 To enable ravens:
 	if hellspawn is not banned:
@@ -89,6 +100,40 @@ To enable ravens:
 		now loot entry is "raspberry";		[ Loot monster drops, ]
 		now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
 
+To enable raven queen:
+	if hellspawn is not banned:
+		repeat with y running from 1 to number of filled rows in table of random critters:
+			choose row y in table of random critters;
+				if name entry is "Hell Raven":
+					now attack entry is "[one of]She kicks at you with her legs, and scratching you with her claws.[or]She flaps her large wings blowing you to the ground with a sudden gust of air[at random]"; [Text used when the monster makes an Attack]
+					now defeated entry is "[lose to hell raven]";
+					 [ Text or say command used when Monster is defeated.]
+					now victory entry is "[win against hell raven]";
+					now desc entry is "hell raven queen desc here.";
+					now str entry is 25;
+					now dex entry is 30;
+					now hp entry is 100;
+					now wdam entry is 15;
+					now sta entry is 23;					
+					now per entry is 33;
+					now int entry is 33;
+					now cha entry is 25;
+					now sex entry is "Male";
+					now lev entry is 9;
+					now area entry is "Outside";
+					now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
+					now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
+					now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
+					now breasts entry is 2;		[ Number of Breasts infection will give you. ]
+					now breast size entry is 0;		[Size of breasts infection will try to attain ]
+					now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
+					now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
+					now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
+					now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
+					now libido entry is 30;		[ Amount player Libido will go up if defeated ]
+					now loot entry is "raspberry";		[ Loot monster drops, ]
+					now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+
 Section 4 - Monster Items
 
 raspberry is a grab object. It is temporary. It is a part of the player.
@@ -125,7 +170,12 @@ to say lose to hell raven:
 			break;
 
 to say win against hell raven:
-	say "2";
+	increase Hell Raven Victories by 1;
+	if Hell Raven Victories is less than 3:
+		say "2.";
+	otherwise
+		say "5.";
+
 
 Section 6 - Monster Locations
 
@@ -140,7 +190,7 @@ Scavenging Ravens is a situation.
 The sarea of Scavenging Ravens is "[battleground]";   [More likely to happen anywhere]
 
 Instead of resolving Scavenging Ravens:
-	say "While exploring, you encounter a flock of ravens picking over the remains of a corpse left behind by some larger creature. Knowing ravens are not normally carnivourus you observe safely from a distance. Upon inspection you notice they have human-like faces with red eyes and a long curved black beak. After a short time you leave as a rampaging hermaphrodite gryphon inturrupts the meal and the ravens scatter into the sky.";
+	say "While exploring, you encounter a flock of ravens picking over the remains of a corpse left behind by some larger creature. Knowing ravens are not normally carnivourus you observe safely from a distance. After a short time you leave as a rampaging hermaphrodite gryphon inturrupts the meal and the ravens scatter into the sky.";
 	increase Hell Raven Encounters by 1;
 	Now Scavenging Ravens is resolved;
 
