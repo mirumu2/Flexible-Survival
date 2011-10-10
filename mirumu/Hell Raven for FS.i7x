@@ -12,15 +12,9 @@ A person can be able to fly. A person is usually not able to fly;
 A person has a text called wingname. wingname is usually "";
 
 Hell Raven Queen is a person.
+Hell Raven Encounters is a number that varies. Hell Raven Encounters is usually 0;
 
 shiny things is a list of text that varies.
-
-Definition: A grab object (called D) is valid to steal:
-	if there is a name corresponding to a object of d in the table of game objects:
-		if the name corresponding to a object of d in the table of game objects is listed in the invent of the player:
-			if there is a name corresponding to a object of d in shiny things,
-				yes;
-	no;
 
 flying is an action applying to one thing.
 understand "fly" as destinationcheck.
@@ -47,12 +41,15 @@ Section 3 - Monster Definition
 
 When Play begins:
 	Add Scavenging Ravens to badspots of hellspawn;
+	add { "pocketknife","Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
+
+When Play ends:
+	say "4.";
 
 To enable ravens:
 	if hellspawn is not banned:
 		Choose a blank row from Table of random critters;
 		now name entry is "Hell Raven";
-		add { "Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
 		now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
 		now defeated entry is "[lose to hell raven]";
 		 [ Text or say command used when Monster is defeated.]
@@ -111,21 +108,21 @@ to say raspberry use:
 			now the player is able to fly;
 		otherwise:
 			say "Tasty!";
-			decrease hunger of the player by 5;
+			[decrease hunger of the player by 5;]
 	otherwise:
 		infect "Hell Raven";
+	decrease hunger of player by 5;
 
 Section 5 - Monster Responses
 
 to say lose to hell raven:
-	let shiny stuff be the list of valid to steal grab objects;
-	sort shiny stuff in random order;
-	repeat with shiny item running through shiny stuff:
-		if shiny item is not nothing:
-			say "You lose 1 x [printed name of shiny item]!";
-			remove printed name of shiny item from invent of the player;
-			add printed name of shiny item to the invent of Hell Raven Nest;
-	say "1";
+	let attractive items be a list of text; 
+	repeat with x running through the invent of the player:
+    		if x is listed in shiny things:
+			say "You lose 1 x [x]!";
+			remove x from the invent of the player;
+			add x to the invent of Hell Raven Nest;
+			break;
 
 to say win against hell raven:
 	say "2";
@@ -140,15 +137,45 @@ To say Hell Raven Nest scene:
 Section 7 - Situations
 
 Scavenging Ravens is a situation.
-
-The sarea of Scavenging Ravens is "Red";
+The sarea of Scavenging Ravens is "[battleground]";   [More likely to happen anywhere]
 
 Instead of resolving Scavenging Ravens:
 	say "While exploring, you encounter a flock of ravens picking over the remains of a corpse left behind by some larger creature. Knowing ravens are not normally carnivourus you observe safely from a distance. Upon inspection you notice they have human-like faces with red eyes and a long curved black beak. After a short time you leave as a rampaging hermaphrodite gryphon inturrupts the meal and the ravens scatter into the sky.";
-	enable ravens;
-	increase score by 1;
+	increase Hell Raven Encounters by 1;
 	Now Scavenging Ravens is resolved;
+
+Kidnapping Ravens is a situation.
+The sarea of Kidnapping Ravens is "High";
+
+Instead of resolving Kidnapping Ravens:
+	say "While exploring the area you see what appears to be a small animal down the end of a street. You being to approach, but before you[apostrophe]ve even gone a full step you see a flock of ravens swoop down and carry the animal off.";
+	increase Hell Raven Encounters by 1;
+	Now Kidnapping Ravens is resolved;
+
+Feeding Ravens is a situation.
+The sarea of Feeding Ravens is "Zoo";
+
+Instead of resolving Feeding Ravens:
+	say "As you explore the zoo you pass a large open giraffe enclosure. The giraffes are nowhere to be seen, but a group of ravens are busy feeding on the fruit trees.";
+	increase Hell Raven Encounters by 1;
+	Now Feeding Ravens is resolved;
+
+Cautious Ravens is a situation.
+The sarea of Cautious Ravens is "Beach";
+
+Instead of resolving Cautious Ravens:
+	say "As you explore around the beach you notice a number of ravens sitting on trees and rooftops. Rather than watching you they all seem to be motionlessly looking north at or obeyond the dilapidated sheds. ";
+	increase Hell Raven Encounters by 1;
+	Now Cautious Ravens is resolved;
 
 Section 8 - Debugging - Not for release
 
+hritemdebug is an action applying to one topic.
+understand "hrdebug" as hritemdebug.
+
+carry out hritemdebug:
+	say "[lose to hell raven]";
+	move player to Hell Raven Nest;
+	try looking;
+	
 Hell Raven for FS ends here.
