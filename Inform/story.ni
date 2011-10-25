@@ -18,7 +18,7 @@ Include Basic Help Menu by Emily Short.
 Include Version 4 of Menus by Emily Short.
 Include Basic Screen Effects by Emily Short. 
 
-The release number is 43.
+The release number is 44.
 The story creation year is 2010.
 The maximum score is 2500.
 
@@ -690,6 +690,7 @@ Include Hyena Bikers by Stripes.
 Include Wolverine Guard for FS by Stripes.
 Include Feral Wolf for FS by Shadowwolf94.
 Include Anthro Shaft Beast for FS by Dragonflayer.
+Include Feral Shaft Beast for FS by Dragonflayer.
 Include Pirate Island by Sarokcat.
 Include Little Fox by Sarokcat.
 Include Felinoid Companion by Sarokcat.
@@ -776,7 +777,12 @@ Include Hell Raven for FS by mirumu.
 Include Rabbit Pack for FS by Lago Moro.
 Include Smell by Hellerhound.
 Include Pepperspray by Stripes.
-
+Include Jaguar Orderly For Fs by Stripes.
+Include Mismatched Chimera For Fs by Stripes.
+Include Candy Striper by Stripes.
+Include Hospital For Fs by Stripes.
+Include Naughty Nurse by Stripes.
+Include Triceratops For Fs by Stripes.
 
 
 
@@ -815,7 +821,7 @@ Humorous is a flag.
 Hermaphrodite is a flag.
 Hellspawn is a flag.
 when play begins:
-	add { "Awesome Tree", "Cock Cannon" } to infections of humorous;
+	add { "Awesome tree", "Cock Cannon" } to infections of humorous;
 	add { "Slut Rat", "Panther Taur", "Hermaphrodite Gryphon", "Female Husky", "Latex Fox", "black equinoid", "Ashen Breeder", "lizard girl", "Skunk", "Shemale Smooth Collie", "Felinoid", "Bovine", "Feline", "Herm Hyena", "Bear", "Pit bull", "Painted Wolf Herm", "sewer gator", "doe", "sea otter", "Ash Drakenoid", "red kangaroo", "feral sea dragon", "German Shepherd", "Cute Chinchilla Woman", "feral sea dragoness"  } to infections of furry;
 	add { "Naga", "Latex Fox", "skunk", "Shemale Smooth Collie", "Bovine", "Tentacle Horror", "Demon Brute", "Wyvern", "Cock Cannon", "sea otter", "Ash Drakenoid", "feral sea dragon", "German Shepherd", "feline", "Felinoid" } to infections of guy;
 	add { "Ashen Breeder", "Slut Rat", "Panther Taur", "Hermaphrodite Gryphon", "Parasitic Plant", "Herm Hyena", "Painted Wolf Herm", "sewer gator", "doe", "black equinoid", "spidergirl", "Cute Chinchilla Woman", "mothgirl" } to infections of hermaphrodite;
@@ -1490,6 +1496,16 @@ To process (X - a grab object):
 			say "[usepepperspray]";
 		otherwise:
 			say "It would not be good idea to use that on yourself.  Spicy eyes!";
+	if x is a healing booster:
+		let healed be 15;
+		if "Expert Medic" is listed in the feats of the player:
+			now healed is 20;
+		increase hp of player by healed;
+		if hp of player is greater than maxhp of player:
+			decrease healed by hp of player minus maxhp of player;
+			now hp of player is maxhp of player;
+		say "Using your healing booster, you inject the mix into your body, giving a quick boost to your infected body's healing rate.  You regain [healed] hit points.";
+		delete healing booster;
 
 
 
@@ -2105,7 +2121,7 @@ To fight:
 	repeat with X running from 1 to number of rows in table of random critters:
 		choose row X from the table of random critters;
 		if there is a lev entry:
-			if lev entry is greater than level of player plus levelwindow:
+			if lev entry is greater than level of player plus levelwindow and hardmode is false:
 				next;
 		otherwise:
 			next;
@@ -2125,6 +2141,11 @@ To fight:
 			now monster is Z;
 			break;
 		choose row monster from the table of random critters;
+		if lev entry is less than level of player and hardmode is true:
+			let debit be ( level of player ) - lev entry;
+			increase lev entry by debit;
+			increase hp entry by debit * 2;
+			increase wdam entry by debit ;
 		say "You run into a [name entry]. [desc entry].";
 		now lost is 0;
 		if combat abort is 1:
@@ -2544,7 +2565,6 @@ This is the self examine rule:
 	now looknow is 1;
 	showstats player;
 	let cocktext be "";
-	follow the cock descr rule;
 	if the cocks of the player is greater than 0:
 		if the cocks of the player is greater than 1:
 			now cocktext is "have [cocks of the player] [descr] [cock length of player]-inch-long [cock of the player] [one of]cocks[or]penises[or]shafts[or]manhoods[at random]. Underneath them hang [ball size]. ";
@@ -2560,10 +2580,15 @@ This is the self examine rule:
 	say "Looking over yourself, your body is covered in [skin of the player] skin. Your face is [face of the player]. Your body is [body of the player]. [tail of the player]";
 	if cocktext is not "":
 		if cunttext is "":
+			follow the cock descr rule;
 			say "A private peek shows that you [cocktext]";
 		otherwise:
-			say "A private peek shows that you [cocktext]. Also, you[cunttext]";
+			follow the cock descr rule;
+			say "A private peek shows that you [cocktext].";
+			follow the cunt descr rule;
+			say " Also, you[cunttext]";
 	otherwise if cunttext is not "":
+		follow the cunt descr rule;
 		say " You[cunttext]";
 	follow the breast descr rule;
 	if breasts of player is greater than 0:
@@ -3185,14 +3210,14 @@ Instead of conversing the doctor matt:
 		say "'Up for another task? Good. Orthas spotted something interesting while hunting. A singular creature. You must understand, one of the standard impulses the infection seems to give on its infectees is the desire to spread the infection. To see just one is unusual. A trait I have only seen in Orthas so far. Go to the park and find this creature, bring it to me for study.'";
 		now unusual creature is unresolved;
 		now hp of doctor matt is 6;
-	if hp of doctor is 6 and unusual creature is unresolved:
+	if hp of doctor matt is 6 and unusual creature is unresolved:
 		say "'Did you forget already?' asks Matt, 'Go to the park, find the unusual creature. Bring it here. Orthas said it was intersexed, if that helps.'";
 	otherwise if hp of doctor matt is 6:
 		say "'Ah ha, yes, she is an interesting creature, is she not?' he says, looking at the deer through his face plate. 'She says her name is Susan, just so you know.'";
 		if deerconsent is 1:
 			say "'And she[apostrophe]s taken a fancy to you. This is good.";
 		say "'I was hoping you could test her for infectiousness, in a controlled situation. You don't have to if you don[apostrophe]t want to, just talk to her and decide for yourself. Don[apostrophe]t look at me that way. I can[apostrophe]t very well do it from inside this suit, now can I?";
-		now hp of doctor is 7;
+		now hp of doctor matt is 7;
 		increase score by 20;
 		extend game by 24;
 	if hp of doctor matt is 7 and deerconsent is not 2:
@@ -3208,8 +3233,76 @@ Instead of conversing the doctor matt:
 					now monster is y;
 					break;
 			now area entry is "Park";
-		now hp of doctor is 8;
+		now hp of doctor matt is 8;
+	if hp of doctor matt is 9 and hospquest < 8:
+		say "'Please continue to assist Dr Mouse.  And let me know what you find out.'  Dr Matt then turns back to his work, intent on continuing his research.";
+	if hp of doctor matt is 8 and hospquest is 8:
+		say "     You decide to tell Dr Matt about what you've been doing for Dr Mouse.  You leave out what really happened to the scientific device he gave you and he doesn't seem to notice, instead focusing on the fact that he has a competitor.  And one that you've been helping.";
+		say "     'I had been wondering what you'd been up to for the last few days in the city while I had nothing for you to do.  Idle hands, as they say.  This is quite unexpected.  You have found another person in the city searching into the mysteries of the nanite infection, but through a different avenue of research.  And using the infected as test subjected is...' he coughs as he notices the stern look you [if susan is visible]and Susan [end if]give him.  'That is, possibly using them as unwilling test subjects in such surgical experiments.  Most disturbing and unethical, even in such a crisis.'";
+		say "     'I suggest you continue to assist this Dr Mouse individual.  It will further ingratiate you to him and allow you to find out more about what's going on with his research.  Hopefully, I am wrong about my concerns and this doctor may be of help to us.  As well, we do need to know if his concerns about the nanites are valid.";
+		now hp of doctor matt is 9;
+	if hp of doctor matt is 9 and hospquest > 7 and mattcollection is 0:
+		say "     'Now, you say that Dr Mouse has been having you collect samples from the city?  And from more and more powerful creatures?  This is worrisome.  I wonder what secrets he may be uncovering.  May I see what he's asked you to collect?' he asks.";
+		if triclamped is 0 and triclampedmatt is 0:
+			let tricllfound be 0;
+			repeat with x running through invent of player:
+				if x is "lava lamp", increase tricllfound by 1;
+			if tricllfound is 0:
+				say "     Once you find a usable sample from this possible dinosaur, please bring it to me first, so that I may obtain a sample as well.";
+			if tricllfound is 1:
+				say "     Doctor Matt eyes the lava lamp suspiciously, noting the sticky film coating it.  Using several sterile swabs, he wipes a samples of the fluids from the improvised toy and sets them in a sample dish.  'Thank you for the chance to gain a sample before you turned it over to him.'";
+				increase score by 10;
+				now triclampedmatt is 1;
+		otherwise if triclamped is 1 and triclamped is 0:
+			say "     It is unfortunate that you have turned the sample over to Dr Mouse already.  Unfortunately, I don't think it would be wise to try to obtain another.";
+			now triclampedmatt is 2;
+		if sabtoothed is 0 and sabtoothedmatt is 0:
+			let sabertoothfound be 0;
+			repeat with x running through invent of player:
+				if x is "Chipped tooth", increase sabertoothfound by 1;
+			if sabertoothfound is 0:
+				say "     'I would like to ask you to obtain a sample from one of these creatures for me as well.  I know this means you may need to fight a second one, but I want to look into this matter as well.'";
+			if sabertoothfound > 0:
+				say "     I should like to keep this sample of from the sabretooth tiger, if I may.  I know this means you must obtain another for Dr Mouse, but I would like to examine this as well.  Do you give it to him? (Y/N)";
+				if the player consents:
+					delete Chipped tooth;
+					increase score by 10;
+					say "     'I appreciate the effort this represents.'  He picks up the large fang in his gloves and places it in a sample dish.";
+					now sabtoothedmatt is 1;
+				otherwise:
+					say "     'I appreciate the effort it would take to obtain another one.  Please continue to keep me appraised of Dr Mouse's activities.";
+					now sabtoothedmatt is 2;
+		otherwise if sabtoothed is 1 and sabtoothedmatt is 0:
+			let sabertoothfound be 0;
+			repeat with x running through invent of player:
+				if x is "Chipped tooth", increase sabertoothfound by 1;
+			if sabertoothfound is 0:
+				say "     'I would like to ask you to obtain a sample from one of these creatures for me as well before Dr Mouse gets too far ahead.  I know this means you may need to fight a second one, but I want to look into this matter as well.'";
+			if sabertoothfound > 0:
+				say "     'As you have already given Dr Mouse his sample, I should like to keep this sample for myself,' he says as he places the one you have into a sample dish.";
+				delete Chipped tooth;
+				increase score by 10;
+				now sabtoothedmatt is 1;
+		if nerminepackage < 5 and nerminepackagematt is 0:
+			let nermpack be 0;
+			repeat with x running through invent of player:
+				if x is "package", increase nermpack by 1;
+			if nermpack is 0:
+				say "     'I should like a chance to examine whatever object you are retrieving from this mysterious shop.  Please bring it here before delivering it to Dr Mouse.'";
+			if nermpack is 1:
+				say "     You pull out the dusty package and set it on one of tables.  Dr Matt opens it carefully, using tongs to pull the strings to untie them.  When they drop away, he lifts the flaps with his tongs.  Peeking inside, you both see a large piece of golden fur.  The doctor, relaxing a little, pulls it out and holds it up.";
+				say "     'It seems to be a very old animal hide.  Lion, I should guess.  I'm not sure why he is interested in this ratty, old thing.  But I should take a sample just in case.  Dr Matt takes a scalpel to cut a small corner from the old lionskin.  But after several tries, he's only made a small notch in it.  He grunts and pulls out a larger knife and tries again, eventually managing to slice a small corner from it.";
+				say "     He looks down at the small cutting he's placed in the sample tray.  'That was most perplexing.  From all appearances, the hide is very old and should be quite fragile.'  He turns the box around, finding the Greek writing on it.  'Nemea?  What does that... the Nemean Lion!'  Dr Matt carefully folds up the pelt and puts it back in the box, very slowly tying it back up.  'It... makes no sense.  But what else could it be?'  The poor doctor seems quite out of sorts and it appears that no further explanation will be forthcoming.";
+				now nerminepackagematt is 1;
+		if nerminepackage is 5 and nerminepackagematt is 0:
+			say "     It is regretable that you turned over the package to Dr Mouse before I had a chance to examine its contents.  Please keep me better informed of his activities going forward.";
+			now nerminepackagematt is 2;
+		if nerminepackagematt > 0 and sabtoothedmatt > 0 and triclampedmatt > 0:
+			now mattcollection is 1;
+	if mattcollection is 1:
+		say "     'I suggest you continue to assist Dr Mouse.  It will further ingratiate you to him and allow you to monitor his activities.  I want you to keep me informed on what he's receving and please bring a sample for me as well.  Nor do not wish to fall behind in my research to this little upstart.";
 	say "He looks kind of busy right now.";
+
 			
 
 To Extend game by (x - a number):
