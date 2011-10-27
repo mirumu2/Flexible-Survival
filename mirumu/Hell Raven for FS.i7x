@@ -122,7 +122,7 @@ To enable ravens:
 		now loot entry is "raspberry";		[ Loot monster drops, ]
 		now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
 
-To say Raven Queen Desc Entry:
+To say raven queen desc entry:
 	if hell raven queen encounters is 0:
 		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been defeating my minions' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be tolerated.' ";
 	otherwise:
@@ -138,19 +138,19 @@ To enable raven queen:
 				now defeated entry is "[lose to hell raven]";
 				 [ Text or say command used when Monster is defeated.]
 				now victory entry is "[win against hell raven]";
-				now desc entry is ".";
+				now desc entry is "[raven queen desc entry]";
 				now str entry is 25;
 				now dex entry is 30;
-				now hp entry is 100;
+				now hp entry is 120;
 				now wdam entry is 15;
 				now sta entry is 23;					
 				now per entry is 33;
 				now int entry is 33;
 				now cha entry is 25;
 				now sex entry is "Male";
-				now lev entry is 9;
+				now lev entry is 13;
 				now area entry is "Outside";
-				now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
+				[now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
 				now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
 				now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
 				now breasts entry is 2;		[ Number of Breasts infection will give you. ]
@@ -161,7 +161,7 @@ To enable raven queen:
 				now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
 				now libido entry is 30;		[ Amount player Libido will go up if defeated ]
 				now loot entry is "raspberry";		[ Loot monster drops, ]
-				now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+				now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]]
 
 Section 4 - Monster Items
 
@@ -189,22 +189,27 @@ to say raspberry use:
 Section 5 - Monster Responses
 
 to say lose to hell raven:
-	say "1";
-	let attractive items be a list of text; 
-	repeat with x running through the invent of the player:
-    		if x is listed in shiny things:
-			say "You lose 1 x [x]!";
-			remove x from the invent of the player;
-			add x to the invent of Hell Raven Nest;
-			break;
+	choose row monster in table of random critters;
+	if name entry is "hell raven":
+		say "You collapse defeated still trying to swipe away the ravens, but now attacking together they overpower you.";
+		let attractive items be a list of text; 
+		repeat with x running through the invent of the player:
+    			if x is listed in shiny things:
+				say "You lose 1 x [x]!";
+				remove x from the invent of the player;
+				add x to the invent of Hell Raven Nest;
+				break;
+	otherwise if name entry is "hell raven queen":
+		say "Scene 1";
 	Now player beat hell raven is false;
 
 to say win against hell raven:
 	increase Hell Raven Victories by 1;
-	if Hell Raven Victories is less than 3:
-		say "2.";
-	otherwise:
-		say "5.";
+	choose row monster in table of random critters;
+	if name entry is "hell raven":
+		say "Sensing their defeat the remaining ravens scatter, and the fallen dissolve into a black fog.";
+	otherwise if name entry is "hell raven queen":
+		say "Scene 2";
 	Now player beat hell raven is true;
 
 
@@ -213,7 +218,7 @@ Section 6 - Monster Locations
 Hell Raven Nest is a room. "[Hell Raven Nest scene]". It is unknown. It is fasttravel. It is private.
 
 To say Hell Raven Nest scene:
-	say "3";
+	say "Scene 3";
 
 Section 7 - Situations
 
@@ -267,12 +272,13 @@ Instead of resolving Stalking Ravens:
 	otherwise if battleground is "Outside":
 		say "You step outside of the library and can't help but feel you[apostrophe]re being watched. Looking around you see countless red eyes on the library eaves and nearby trees. As you prepare for an attack a Wyvern suddenly passes over the library carrying a victim in it[apostrophe]s taloned claws sending your startled attackers, a flock of [raven descr], into the skies. You decide to move on before they return. ";
 	otherwise:	
-		say "Wandering through a particularly dark area you can't help but feel you[apostrophe]re being watched. Looking around you see countless red eyes and prepare for an attack. Just then a group of latex foxes run by and your startled attackers, a flock of [raven descr], take to the skies. You decide to move on before they return. ";
+		say "Wandering through a particularly dark spot you can't help but feel you[apostrophe]re being watched. Looking around you see countless red eyes and prepare for an attack. Just then a group of latex foxes run by and your startled attackers, a flock of [raven descr], take to the skies. You decide to move on before they return. ";
 	increase Hell Raven Encounters by 1;
 	Now Stalking Ravens is resolved;
 	enable ravens;
 
-Section 8 - Debugging - Not for release
+Section 8 - Debugging 
+[- Not for release]
 
 hritemdebug is an action applying to nothing.
 understand "hrdebug" as hritemdebug.
