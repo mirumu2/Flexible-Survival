@@ -3,8 +3,7 @@ Hell Raven for FS by mirumu begins here.
 Section 1 - Monster Insertion
 
 Table of random critters (continued)
-name	attack	defeated	victory	desc	face	body	skin	tail	cock	face change	body change	skin change	ass change	cock change	str	dex	sta	per	int	cha	sex	hp	lev	wdam	area	cocks	cock length	cock width	breasts	breast size	male breast size	cunts	cunt length	cunt width	libido	loot	lootchance
---	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	--	-- 	--	--	--	--	--	--	--	--;
+with 1 blank row
 
 Section 2 - Variables, constants and commands
 
@@ -53,15 +52,18 @@ When Play begins:
 	Add Stalking Ravens to badspots of hellspawn;
 	Now Stalking Ravens is resolved;
 	add { "pocketknife","Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
-
+	[Choose a blank row from Table of random critters;
+	blank out the whole row;]
+	
 When Play ends:
 	say "4.";
 
 An everyturn rule(this is the Hell Raven Vengeance rule):
-	choose row monster from the table of random critters;
-	If name entry is "hell raven" and player beat hell raven is true and Hell Raven Victories is greater than 3:
-		enable raven queen;
-		Challenge "hell raven queen";
+	if Hell Raven Fights is greater than 0:
+		choose row monster from the table of random critters;
+		If name entry is "hell raven" and player beat hell raven is true and Hell Raven Victories is greater than 3:
+			enable raven queen;
+			Challenge "hell raven queen";
 		 
 
 This is the raven descr rule:
@@ -81,46 +83,55 @@ To say raven desc entry:
 	
 To enable ravens:
 	if hellspawn is not banned:
-		Choose a blank row from Table of random critters;
-		now name entry is "hell raven";
-		now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
-		now defeated entry is "[lose to hell raven]";
-		 [ Text or say command used when Monster is defeated.]
-		now victory entry is "[win against hell raven]";
-		now desc entry is "[raven desc entry]";
-		now face entry is "a pair of pure red eyes";[ Face description, format as the text "Your face is (your text)"] 
-		now body entry is "strong and muscular, streamlined for flight "; [Two large wings stick out of your back covered in long black feathers";][ Body Description, format as the text "Your Body is (your text)"] 
-		now skin entry is "black plumage covered";[ skin Description, format as the text "You have (your text) skin"] 
-		now tail entry is "You have a triangular tail made of long black feathers. ";[ Tail description, write a whole Sentence or leave blank. ]
-		now cock entry is "black with feathers around the base";[ Cock Description, format as you have a 'size' (your text) cock] 
-		now face change entry is "your nose and mouth merge into a long black beak and your eyes redden"; [ face change text. format as "Your face feels funny as (your text)" ]
-		now body change entry is "it becomes adapted for flight and muscles strengthen"; [ body change text. format as "Your body feels funny as (your text)" ]
-		now skin change entry is "your skin sprouts black feathers"; [ skin change text. format as "Your skin feels funny as (your text)" ]
-		now ass change entry is "it sprouts black feathers forming a triangular tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
-		now cock change entry is "black feathers sprout around the base"; [ cock change text. format as "Your cock feels funny as (your text)" ]
-		now str entry is 20;
-		now dex entry is 26;
-		now hp entry is 60;
-		now wdam entry is 10;
-		now sta entry is 21;					
-		now per entry is 30;
-		now int entry is 26;
-		now cha entry is 14;
-		now sex entry is "Male";
-		now lev entry is 7;
-		now area entry is "Outside";
-		now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
-		now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
-		now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
-		now breasts entry is 2;		[ Number of Breasts infection will give you. ]
-		now breast size entry is 0;		[Size of breasts infection will try to attain ]
-		now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
-		now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
-		now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
-		now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
-		now libido entry is 10;		[ Amount player Libido will go up if defeated ]
-		now loot entry is "raspberry";		[ Loot monster drops, ]
-		now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+		let found be 0;
+		repeat with y running from 1 to number of filled rows in table of random critters:
+			choose row y in table of random critters;
+			if name entry is "hell raven" or name entry is "hell raven queen":
+				[say "DEBUG: Ravens already enabled, ignoring.";]
+				now found is 1;
+		if found is 0:
+			[say "DEBUG: Enabling ravens.";]
+			Choose a blank row from Table of random critters;
+			now name entry is "hell raven";
+			now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
+			now defeated entry is "[win against hell raven]";
+			 [ Text or say command used when Monster is defeated.]
+			now victory entry is "[lose to hell raven]";
+			now desc entry is "[raven desc entry]";
+			now face entry is "a pair of pure red eyes";[ Face description, format as the text "Your face is (your text)"] 
+			now body entry is "strong and muscular, streamlined for flight "; [Two large wings stick out of your back covered in long black feathers";][ Body Description, format as the text "Your Body is (your text)"] 
+			now skin entry is "black plumage covered";[ skin Description, format as the text "You have (your text) skin"] 
+			now tail entry is "You have a triangular tail made of long black feathers. ";[ Tail description, write a whole Sentence or leave blank. ]
+			now cock entry is "black with feathers around the base";[ Cock Description, format as you have a 'size' (your text) cock] 
+			now face change entry is "your nose and mouth merge into a long black beak and your eyes redden"; [ face change text. format as "Your face feels funny as (your text)" ]
+			now body change entry is "it becomes adapted for flight and muscles strengthen"; [ body change text. format as "Your body feels funny as (your text)" ]
+			now skin change entry is "your skin sprouts black feathers"; [ skin change text. format as "Your skin feels funny as (your text)" ]
+			now ass change entry is "it sprouts black feathers forming a triangular tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
+			now cock change entry is "black feathers sprout around the base"; [ cock change text. format as "Your cock feels funny as (your text)" ]
+			now str entry is 20;
+			now dex entry is 26;
+			now hp entry is 60;
+			now wdam entry is 10;
+			now sta entry is 21;					
+			now per entry is 30;
+			now int entry is 26;
+			now cha entry is 14;
+			now sex entry is "Male";
+			now lev entry is 7;
+			now area entry is "Void"; [Outside";]
+			now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
+			now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
+			now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
+			now breasts entry is 2;		[ Number of Breasts infection will give you. ]
+			now breast size entry is 0;		[Size of breasts infection will try to attain ]
+			now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
+			now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
+			now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
+			now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
+			now libido entry is 10;		[ Amount player Libido will go up if defeated ]
+			now loot entry is "raspberry";		[ Loot monster drops, ]
+			now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+
 
 To say raven queen desc entry:
 	if hell raven queen encounters is 0:
@@ -135,9 +146,9 @@ To enable raven queen:
 			if name entry is "hell raven":
 				now name entry is "hell raven queen";
 				now attack entry is "[one of]She kicks at you with her legs, and scratching you with her claws.[or]She flaps her large wings blowing you to the ground with a sudden gust of air[at random]"; [Text used when the monster makes an Attack]
-				now defeated entry is "[lose to hell raven]";
+				now defeated entry is "[win against hell raven]";
 				 [ Text or say command used when Monster is defeated.]
-				now victory entry is "[win against hell raven]";
+				now victory entry is "[lose to hell raven]";
 				now desc entry is "[raven queen desc entry]";
 				now str entry is 25;
 				now dex entry is 30;
@@ -150,18 +161,6 @@ To enable raven queen:
 				now sex entry is "Male";
 				now lev entry is 13;
 				now area entry is "Outside";
-				[now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
-				now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
-				now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
-				now breasts entry is 2;		[ Number of Breasts infection will give you. ]
-				now breast size entry is 0;		[Size of breasts infection will try to attain ]
-				now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
-				now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
-				now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
-				now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
-				now libido entry is 30;		[ Amount player Libido will go up if defeated ]
-				now loot entry is "raspberry";		[ Loot monster drops, ]
-				now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]]
 
 Section 4 - Monster Items
 
@@ -266,7 +265,7 @@ The sarea of Stalking Ravens is "[battleground]";
 
 Instead of resolving Stalking Ravens:
 	follow the raven descr rule;
-	say "battleground: [battleground]";
+	say "battleground: [battleground].";
 	if battleground is "Park":
 		say "Wandering through a particularly dark part of the forest you can't help but feel you[apostrophe]re being watched. Looking around you see countless red eyes in the trees and prepare for an attack. Just then a group of black equinoids run by and your startled attackers, a flock of [raven descr], take to the skies. You decide to move on before they return. ";
 	otherwise if battleground is "Outside":
@@ -292,8 +291,17 @@ hrsitdebug is an action applying to nothing.
 understand "hrsitdebug" as hrsitdebug.
 
 carry out hrsitdebug:
-	Now Stalking Ravens is unresolved;
-	try resolving Stalking Ravens;
+	if Scavenging Ravens is unresolved:
+		try resolving Scavenging Ravens;
+	otherwise if Kidnapping Ravens is unresolved:
+		try resolving Kidnapping Ravens;
+	otherwise if Feeding Ravens is unresolved:
+		try resolving Feeding Ravens;
+	otherwise if Cautious Ravens is unresolved:
+		try resolving Cautious Ravens;
+	otherwise: [ if Stalking Ravens is unresolved:]
+		Now Stalking Ravens is unresolved;
+		try resolving Stalking Ravens;
 
 hrreset is an action applying to nothing.
 understand "hrreset" as hrreset.
@@ -310,5 +318,17 @@ carry out hrreset:
 	Now Feeding Ravens is unresolved;
 	Now Cautious Ravens is unresolved;
 	Now Stalking Ravens is unresolved;
+
+spawnraven is an action applying to nothing.
+understand "hrspawn" as spawnraven.
+
+carry out spawnraven:
+	repeat with X running from 1 to number of filled rows in table of random critters:
+		choose row X from the table of random critters;
+		if name entry is "hell raven" or name entry is "hell raven queen":
+			now monster is X;
+			now monsterhp is hp entry;
+			challenge;
+			break;
 	
 Hell Raven for FS ends here.
