@@ -16,7 +16,6 @@ Raven fights is a number that varies. Raven fights is usually 0;
 Raven victories is a number that varies. Raven victories is usually 0;
 Raven queen encounters is a number that varies. Raven queen encounters is usually 0;
 Raven queen victories is a number that varies. Raven queen victories is usually 0;
-Player beat raven is a truth state that varies. Player beat raven is false;
 
 shiny things is a list of text that varies.
 raven descr is a text that varies.
@@ -54,15 +53,7 @@ When Play begins:
 	add { "pocketknife","Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
 	
 When Play ends:
-	say "4.";
-
-An everyturn rule(this is the Raven Vengeance rule):
-	if Raven Fights is greater than 0:
-		choose row monster from the table of random critters;
-		If name entry is "raven" and player beat raven is true and Raven Victories is greater than 3:
-			enable raven queen;
-			Challenge "raven queen";
-		 
+	say "4.";	 
 
 This is the raven descr rule:
 	[Upon inspection you notice they have human-like faces with red eyes and a long curved black beak. ]
@@ -75,9 +66,9 @@ This is the raven descr rule:
 
 To say raven desc entry:
 	if Raven Fights is 0:
-		say "What appears at first to be a dark cloud advances towards you. As it progresses closer forms begin to emerge allowing you to recognise it as a large flock of birds. Before you have time to react they are upon you. At first you believe them to be normal ravens or crows, but as they whiz around you begin to make out human-like faces on them with a long curved black beak and vibrant red eyes.";
+		say "What appears at first to be a dark cloud advances towards you. As it progresses closer forms begin to emerge allowing you to recognise it as a large flock of birds. Before you have time to react they are upon you. At first you believe them to be normal ravens or crows, but as they whiz around you begin to make out human-like faces on them with a long curved black beak and vibrant red eyes";
 	otherwise:
-		say "Once again you see a flock of ravens advancing towards you with their red eyes aglow, and screeching wildly. Despite the human characteristics in their faces they appear to be normal birds with a long black curved beak, but from your previous encounter[if Raven Fights is greater than 1]s[end if] you know them to be ferocious fighters. Before you have time to react they descend upon you. ";
+		say "Once again you see a flock of ravens advancing towards you with their red eyes aglow, and screeching wildly. Despite the human characteristics in their faces they appear to be normal birds with a long black curved beak, but from your previous encounter[if Raven Fights is greater than 1]s[end if] you know them to be ferocious fighters. Before you have time to react they descend upon you";
 	
 To enable ravens:
 	if hellspawn is not banned:
@@ -188,9 +179,10 @@ to say raspberry use:
 Section 5 - Monster Responses
 
 to say lose to raven:
+	increase raven fights by 1;
 	choose row monster in table of random critters;
 	if name entry is "raven":
-		say "You collapse defeated still trying to swipe away the ravens, but now attacking together they overpower you.";
+		say "You collapse defeated still trying to swipe away the ravens, but now attacking together they overpower you. ";
 		let attractive items be a list of text; 
 		repeat with x running through the invent of the player:
     			if x is listed in shiny things:
@@ -200,16 +192,18 @@ to say lose to raven:
 				break;
 	otherwise if name entry is "raven queen":
 		say "Scene 1";
-	Now player beat raven is false;
 
 to say win against raven:
+	increase raven fights by 1;
 	increase Raven Victories by 1;
 	choose row monster in table of random critters;
 	if name entry is "raven":
 		say "Sensing their defeat the remaining ravens scatter, and the fallen dissolve into a black fog.";
 	otherwise if name entry is "raven queen":
 		say "Scene 2";
-	Now player beat raven is true;
+	if raven victories is greater than 3:
+		enable raven queen;
+		challenge "raven queen";
 
 
 Section 6 - Monster Locations
@@ -312,7 +306,6 @@ carry out rreset:
 	Now Raven victories is 0;
 	Now Raven queen encounters is 0;
 	Now Raven queen victories is 0;
-	Now Player beat raven is false;
 	Now Scavenging Ravens is unresolved;
 	Now Kidnapping Ravens is unresolved;
 	Now Feeding Ravens is unresolved;
@@ -330,6 +323,13 @@ carry out spawnraven:
 			now monsterhp is hp entry;
 			challenge;
 			break;
+
+raveninfo is an action applying to nothing.
+understand "rinfo" as raveninfo.
+
+carry out raveninfo:
+	say "Raven Fights: [raven fights].";
+	say "Raven Victories: [Raven Victories].";
 
 include cheats for fs by mirumu.
 	
