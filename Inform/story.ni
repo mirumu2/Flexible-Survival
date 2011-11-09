@@ -774,7 +774,7 @@ Include Sarah by Sarokcat&Hellerhound.
 Include Addiction by Hellerhound.
 Include Hermaphrodite Latex Vixen for FS by Tentabear.
 Include Butterfly for FS by mirumu.
-Include Hell Raven for FS by mirumu.
+Include Raven for FS by mirumu.
 Include Rabbit Pack for FS by Lago Moro.
 Include Smell by Hellerhound.
 Include Pepperspray by Stripes.
@@ -1840,6 +1840,7 @@ To Infect:
 		if breasts of player is not breasts entry and "One Pair" is not listed in feats of player:
 			decrease breast size of player by 2;
 			follow the breast descr rule;
+			say "DEBUG: breast size of player=[breast size of player], breasts entry=[breasts entry].";
 			if breasts entry is greater than breasts of player:
 				increase breasts of player by 2;
 				say " Your chest tingles intensely as two new sensitive points form up, announcing the arrival of two new [descr] breasts, pressing out of your [skin of player] hide.";

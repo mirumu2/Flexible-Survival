@@ -76,10 +76,8 @@ To enable ravens:
 		repeat with y running from 1 to number of filled rows in table of random critters:
 			choose row y in table of random critters;
 			if name entry is "raven" or name entry is "raven queen":
-				[say "DEBUG: Ravens already enabled, ignoring.";]
 				now found is 1;
 		if found is 0:
-			[say "DEBUG: Enabling ravens.";]
 			Choose a blank row from Table of random critters;
 			now name entry is "raven";
 			now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
@@ -125,9 +123,32 @@ To enable ravens:
 
 To say raven queen desc entry:
 	if raven queen encounters is 0:
-		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been defeating my minions' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be tolerated.' ";
+		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been causing trouble for my minions' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be allowed.' ";
 	otherwise:
 		say "The raven queen descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything. ";
+
+To say raven queen attack entry:
+	let player hp percent be (hp of the player times 100) divided by maxhp of the player;
+	let raven hp percent be ( monsterhp times 100 ) divided by 120;
+	if raven hp percent is less than 30 and player hp percent is greater than 60 and a random chance of 1 in 3 succeeds:
+		let critical hit be false;
+		say "With a loud caw the enemy summons her raven servants who suddenly attack you pecking and clawing at your body. ";
+		choose row monster in table of random critters;
+		let dam be ( wdam entry times a random number from 80 to 120 ) divided by 100;
+		if hardmode is true and a random chance of 1 in 5 succeeds:
+			now dam is (dam * 150) divided by 100;
+			now critical hit is true;
+			say "As you[apostrophe]re busy fighting off her minions the raven queen darts into the air rapidly building speed, and then swoops down slamming into you with her full body weight. - Critical Hit![line break]";
+		say "You take [dam] damage!";
+		let absorb be 0;
+		if "Toughened" is listed in feats of player:
+			increase absorb by dam divided by 5;
+			decrease hp of the player by dam;
+			increase hp of player by absorb;
+		if absorb > 0:
+			say "You prevent [absorb] damage!";
+	otherwise:	
+		say "[one of]She kicks at you with her legs, and scratching you with her claws.[or]She flaps her large wings blowing you to the ground with a sudden gust of air[at random]";
 
 To enable raven queen:
 	if hellspawn is not banned and girl is not banned:
@@ -135,7 +156,7 @@ To enable raven queen:
 			choose row y in table of random critters;
 			if name entry is "raven":
 				now name entry is "raven queen";
-				now attack entry is "[one of]She kicks at you with her legs, and scratching you with her claws.[or]She flaps her large wings blowing you to the ground with a sudden gust of air[at random]"; [Text used when the monster makes an Attack]
+				now attack entry is "[raven queen attack entry]"; [Text used when the monster makes an Attack]
 				now defeated entry is "[win against raven]";
 				 [ Text or say command used when Monster is defeated.]
 				now victory entry is "[lose to raven]";
@@ -170,6 +191,7 @@ to say raspberry use:
 			say " Your back [one of]tingles[or]goes flush[or]vibrates with odd pleasure[or]goes cold[or]feels oily[at random] as two large wings sprout out covered in long black feathers.";
 			now wingname of player is "Raven";
 			now the player is able to fly;
+			now Raven Nest is known;
 		otherwise:
 			say "Tasty!";
 	otherwise:
@@ -182,28 +204,55 @@ to say lose to raven:
 	increase raven fights by 1;
 	choose row monster in table of random critters;
 	if name entry is "raven":
-		say "You collapse defeated still trying to swipe away the ravens, but now attacking together they overpower you. ";
+		say "You collapse defeated still trying to swipe away the ravens, but attacking together as a group they overpower you and rummage through your backpack. ";
 		let attractive items be a list of text; 
 		repeat with x running through the invent of the player:
-    			if x is listed in shiny things:
+    			if x is listed in shiny things and a random chance of 1 in 2 succeeds:
 				say "You lose 1 x [x]!";
 				remove x from the invent of the player;
 				add x to the invent of Raven Nest;
 				break;
 	otherwise if name entry is "raven queen":
-		say "Scene 1";
+		say "[raven queen loss]";
+
+to say raven queen loss:
+	let cocktext be "";
+	if cock of player is not "":
+		now cocktext is "[cock size desc of player] [cock of player] ";
+	otherwise:
+		now cocktext is "[cock size desc of player] ";
+	if cocks of player is greater than 0:
+		say "Forced m/f sex.";
+	otherwise if cunts of the player is greater than 0:
+		say "Forced f/f sex.";
+	otherwise:
+		say "Forced a/f sex.";
 
 to say win against raven:
 	increase raven fights by 1;
 	increase Raven Victories by 1;
 	choose row monster in table of random critters;
 	if name entry is "raven":
-		say "Sensing their defeat the remaining ravens scatter, and the fallen dissolve into a black fog.";
+		say "Sensing their defeat the remaining ravens scatter, and the bodies of the fallen vanish into a black mist.";
 	otherwise if name entry is "raven queen":
-		say "Scene 2";
+		say "[raven queen victory]";
 	if raven victories is greater than 3:
 		enable raven queen;
 		challenge "raven queen";
+
+to say raven queen victory:
+	let cocktext be "";
+	if cock of player is not "":
+		now cocktext is "[cock size desc of player] [cock of player] ";
+	otherwise:
+		now cocktext is "[cock size desc of player] ";
+	if a random number from 1 to 100 is less than the libido of the player:
+		if cocks of player is greater than 0:
+			say "semi-optional m/f sex.";
+		otherwise if cunts of player is greater than 0:
+			say "semi-optional f/f sex.";
+		otherwise:
+			say "semi-optional a/f sex.";
 
 
 Section 6 - Monster Locations
@@ -211,7 +260,14 @@ Section 6 - Monster Locations
 Raven Nest is a room. "[Raven Nest scene]". It is unknown. It is fasttravel. It is private.
 
 To say Raven Nest scene:
+	say "A large spacious nest made of straw, twigs, branches, and pieces of wood scavenged from nearby buildings."; 
 	say "Scene 3";
+	[if cocks of player is greater than 0:
+		say "semi-optional m/f sex.";
+	otherwise if cunts of player is greater than 0:
+		say "semi-optional f/f sex.";
+	otherwise:
+		say "semi-optional a/f sex.";]
 
 Section 7 - Situations
 
