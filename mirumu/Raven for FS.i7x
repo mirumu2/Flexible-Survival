@@ -19,6 +19,7 @@ Raven queen victories is a number that varies. Raven queen victories is usually 
 
 shiny things is a list of text that varies.
 raven descr is a text that varies.
+raven fight location is a text that varies.
 
 flying is an action applying to one thing.
 understand "fly" as destinationcheck.
@@ -44,11 +45,11 @@ carry out flying:
 Section 3 - Monster Definition
 
 When Play begins:
-	Add Scavenging Ravens to badspots of hellspawn;
+	[Add Scavenging Ravens to badspots of hellspawn;
 	Add Kidnapping Ravens to badspots of hellspawn;
 	Add Feeding Ravens to badspots of hellspawn;
 	Add Cautious Ravens to badspots of hellspawn;
-	Add Stalking Ravens to badspots of hellspawn;
+	Add Stalking Ravens to badspots of hellspawn;]
 	Now Stalking Ravens is resolved;
 	add { "pocketknife","Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
 	
@@ -70,60 +71,67 @@ To say raven desc entry:
 	otherwise:
 		say "Once again you see a flock of ravens advancing towards you with their red eyes aglow, and screeching wildly. Despite the human characteristics in their faces they appear to be normal birds with a long black curved beak, but from your previous encounter[if Raven Fights is greater than 1]s[end if] you know them to be ferocious fighters. Before you have time to react they descend upon you";
 	
+To say raven area entry:
+	if battleground is "Sky":
+		now raven fight location is "Sky";
+		say "Sky";
+	otherwise:
+		now raven fight location is "Junkyard";
+		say "Junkyard";
+
 To enable ravens:
-	if hellspawn is not banned:
-		let found be 0;
-		repeat with y running from 1 to number of filled rows in table of random critters:
-			choose row y in table of random critters;
-			if name entry is "raven" or name entry is "raven queen":
-				now found is 1;
-		if found is 0:
-			Choose a blank row from Table of random critters;
-			now name entry is "raven";
-			now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
-			now defeated entry is "[win against raven]";
-			 [ Text or say command used when Monster is defeated.]
-			now victory entry is "[lose to raven]";
-			now desc entry is "[raven desc entry]";
-			now face entry is "a pair of pure red eyes";[ Face description, format as the text "Your face is (your text)"] 
-			now body entry is "strong and muscular, streamlined for flight "; [Two large wings stick out of your back covered in long black feathers";][ Body Description, format as the text "Your Body is (your text)"] 
-			now skin entry is "black plumage covered";[ skin Description, format as the text "You have (your text) skin"] 
-			now tail entry is "You have a triangular tail made of long black feathers. ";[ Tail description, write a whole Sentence or leave blank. ]
-			now cock entry is "black with feathers around the base";[ Cock Description, format as you have a 'size' (your text) cock] 
-			now face change entry is "your nose and mouth merge into a long black beak and your eyes redden"; [ face change text. format as "Your face feels funny as (your text)" ]
-			now body change entry is "it becomes adapted for flight and muscles strengthen"; [ body change text. format as "Your body feels funny as (your text)" ]
-			now skin change entry is "your skin sprouts black feathers"; [ skin change text. format as "Your skin feels funny as (your text)" ]
-			now ass change entry is "it sprouts black feathers forming a triangular tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
-			now cock change entry is "black feathers sprout around the base"; [ cock change text. format as "Your cock feels funny as (your text)" ]
-			now str entry is 20;
-			now dex entry is 26;
-			now hp entry is 60;
-			now wdam entry is 10;
-			now sta entry is 21;					
-			now per entry is 30;
-			now int entry is 26;
-			now cha entry is 14;
-			now sex entry is "Male";
-			now lev entry is 7;
-			[now area entry is "Outside";]
-			now area entry is "Junkyard"; [Void";] [Outside";]
-			now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
-			now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
-			now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
-			now breasts entry is 2;		[ Number of Breasts infection will give you. ]
-			now breast size entry is 0;		[Size of breasts infection will try to attain ]
-			now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
-			now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
-			now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
-			now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
-			now libido entry is 10;		[ Amount player Libido will go up if defeated ]
-			now loot entry is "raspberry";		[ Loot monster drops, ]
-			now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+	let found be 0;
+	repeat with y running from 1 to number of filled rows in table of random critters:
+		choose row y in table of random critters;
+		if name entry is "raven" or name entry is "raven queen":
+			now found is 1;
+	if found is 0:
+		Choose a blank row from Table of random critters;
+		now name entry is "raven";
+		now attack entry is "[one of]A bird in the swarm darts out at you, scratching you with it[apostrophe]s claws.[or]A bird in the swarm darts out at you, pecking you with it[apostrophe]s beak. [at random]"; [Text used when the monster makes an Attack]
+		now defeated entry is "[win against raven]";
+		 [ Text or say command used when Monster is defeated.]
+		now victory entry is "[lose to raven]";
+		now desc entry is "[raven desc entry]";
+		now face entry is "a pair of pure red eyes";[ Face description, format as the text "Your face is (your text)"] 
+		now body entry is "strong and muscular, streamlined for flight "; [Two large wings stick out of your back covered in long black feathers";][ Body Description, format as the text "Your Body is (your text)"] 
+		now skin entry is "black plumage covered";[ skin Description, format as the text "You have (your text) skin"] 
+		now tail entry is "You have a triangular tail made of long black feathers. ";[ Tail description, write a whole Sentence or leave blank. ]
+		now cock entry is "black with feathers around the base";[ Cock Description, format as you have a 'size' (your text) cock] 
+		now face change entry is "your nose and mouth merge into a long black beak and your eyes redden"; [ face change text. format as "Your face feels funny as (your text)" ]
+		now body change entry is "it becomes adapted for flight and muscles strengthen"; [ body change text. format as "Your body feels funny as (your text)" ]
+		now skin change entry is "your skin sprouts black feathers"; [ skin change text. format as "Your skin feels funny as (your text)" ]
+		now ass change entry is "it sprouts black feathers forming a triangular tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
+		now cock change entry is "black feathers sprout around the base"; [ cock change text. format as "Your cock feels funny as (your text)" ]
+		now str entry is 20;
+		now dex entry is 26;
+		now hp entry is 60;
+		now wdam entry is 10;
+		now sta entry is 21;					
+		now per entry is 30;
+		now int entry is 26;
+		now cha entry is 14;
+		now sex entry is "Male";
+		now lev entry is 7;
+		[now area entry is "Outside";]
+		now area entry is "[raven area entry]";
+		now cocks entry is 0;		[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
+		now cock length entry is 10;		[ Length infection will make cock grow to if cocks]
+		now cock width entry is 3;		[ Size of balls apparently ;) sneaky Nuku]
+		now breasts entry is 2;		[ Number of Breasts infection will give you. ]
+		now breast size entry is 0;		[Size of breasts infection will try to attain ]
+		now male breast size entry is 0;	[ Breast size for if Sex="Male", usually zero. ]
+		now cunts entry is 0;			[ if sex = "Female or both", indicates the number of female sexes infection will grant you.]
+		now cunt length entry is 10;		[ Length of female sex  infection will attempt to give you. ]
+		now cunt width entry is 3;		[ Width of female sex  infection will try and give you ] 
+		now libido entry is 10;		[ Amount player Libido will go up if defeated ]
+		now loot entry is "raspberry";		[ Loot monster drops, ]
+		now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
 
 
 To say raven queen desc entry:
 	if raven queen encounters is 0:
-		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been causing trouble for my minions' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be allowed.' ";
+		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been causing trouble for my flock' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be allowed.' ";
 	otherwise:
 		say "The raven queen descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything. ";
 
@@ -151,7 +159,7 @@ To say raven queen attack entry:
 		say "[one of]She kicks at you with her legs, and scratching you with her claws.[or]She flaps her large wings blowing you to the ground with a sudden gust of air[at random]";
 
 To enable raven queen:
-	if hellspawn is not banned and girl is not banned:
+	if girl is not banned:
 		repeat with y running from 1 to number of filled rows in table of random critters:
 			choose row y in table of random critters;
 			if name entry is "raven":
@@ -172,7 +180,7 @@ To enable raven queen:
 				now sex entry is "Male";
 				now lev entry is 13;
 				[now area entry is "Outside";]
-				now area entry is "Junkyard";
+				now area entry is "[raven area entry]";
 
 Section 4 - Monster Items
 
@@ -257,10 +265,35 @@ to say raven queen victory:
 
 Section 6 - Monster Locations
 
-Raven Nest is a room. "[Raven Nest scene]". It is unknown. It is fasttravel. It is private.
+Scrap Heap is south of the Junkyard Entrance. "Before you spraws a large fenced off yard filled with old rusted cars, trucks and railway cars. ".
+
+The Car Crusher is fixed in place in the Scrap Heap. "Near the back fence you can see a car crushing machine that[apostrophe]s been rendered useless due to leaking hydraulic fluid. ".
+The Tower Crane is fixed in place in the Scrap Heap. "In the middle of the yard stands a tall tower crane with a long horizontal jib and counter-balance.".
+
+[Instead of examining the Car Crusher:
+	say "You see nothing special."]
+
+Instead of smelling the Car Crusher:
+	say "The car crusher gives off a foul smell of rust mixed with the expelled fluids of many crushed vehicles.";
+
+Instead of examining the Tower Crane:
+	say "Looking up at the crane you can see what looks to be a series of bird[apostrophe]s nests woven in amongst the boxed steel framing. One appears to be much larger scale than the others. You can vaguely make out some birds perched along the jib in various places along with some others circling in the sky.";
+
+craneclimbing is an action applying to one visible thing.
+Understand "crane" as the Tower Crane.
+
+Understand "climb [Tower Crane]" as craneclimbing.
+
+Instead of going up from the Scrap Heap:
+	try craneclimbing;
+
+carry out craneclimbing:
+	say "You attempt to climb the crane, but rapidly find the great height overwhelming so you carefully climb back down.";
+
+Raven Nest is above the Scrap Heap. "[Raven Nest scene]". It is unknown. It is fasttravel. It is private.
 
 To say Raven Nest scene:
-	say "A large spacious nest made of straw, twigs, branches, and pieces of wood scavenged from nearby buildings."; 
+	say "A large spacious nest perched on top of the rusty tower crane. It[apostrophe]s constructed from straw, twigs, branches, and pieces of masonary scavenged from the nearby junkyard."; 
 	say "Scene 3";
 	[if cocks of player is greater than 0:
 		say "semi-optional m/f sex.";
@@ -276,7 +309,7 @@ The sarea of Scavenging Ravens is "[battleground]";   [More likely to happen any
 
 Instead of resolving Scavenging Ravens:
 	follow the raven descr rule;
-	say "While exploring, you encounter a flock of [raven descr] picking over the remains of a corpse left behind by some larger creature. Knowing ravens are not normally carnivourus you observe safely from a distance. After a short time you leave as a rampaging hermaphrodite gryphon inturrupts the meal and the ravens scatter into the sky.";
+	say "While exploring, you encounter a flock of [raven descr] picking over the remains of a corpse left behind by some larger creature. You observe safely from a distance and after a short time you leave as a rampaging hermaphrodite gryphon inturrupts the meal and the ravens scatter into the sky.";
 	increase Raven Encounters by 1;
 	Now Scavenging Ravens is resolved;
 	Now Stalking Ravens is unresolved;
@@ -286,7 +319,7 @@ The sarea of Kidnapping Ravens is "High";
 
 Instead of resolving Kidnapping Ravens:
 	follow the raven descr rule;
-	say "While exploring the area you see what appears to be a small animal down the end of a street. You being to approach, but before you[apostrophe]ve even gone a full step you see a flock of [raven descr] swoop down and carry the animal off.";
+	say "While exploring the area you see what appears to be a small animal down the end of a street. You begin to approach, but before you[apostrophe]ve even gone a full step you see a flock of [raven descr] swoop down and carry the animal off whole.";
 	increase Raven Encounters by 1;
 	Now Kidnapping Ravens is resolved;
 	Now Stalking Ravens is unresolved;
