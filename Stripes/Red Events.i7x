@@ -53,7 +53,7 @@ Instead of resolving a Raided Corner Store:
 	say "     You come across a small corner store.  While it has been raided, you can see that it[apostrophe]s not been as badly damaged as others and may still hold something of interest.  You slip inside and glance around, but the shelves, coolers and displays have been emptied of anything useful.  The cash register is empty as well.  You head to check the back and find that the entrance to the back is locked.  Perhaps there is something worthwhile in there.  You start by knocking as asking if anyone[apostrophe]s still safe in there, but get no response.  Do you try to break in?";
 	if player consents:
 		say "     You kick and slam at the door several times, with growing frustration as you fail to have any effect.  The door is quite sturdy, and would have to be to have survived any previous scavengers.  After giving it one last kick, you turn away in frustration, only to see the commotion has attracted others.  There are now a pair of hyenas between you and the exit.[line break]";
-		if hyg is 3:
+		if hyg is 4:
 			if the bodyname of player is "Herm Hyena" or facename of player is "Hyena Herm":
 				say "     As one of the pair is about to step forward to deal with you, the other grabs hir shoulder, holding them back.  The second steps forward, looking you over more carefully.  'Hey, I think I heard about you from Gina.  You certainly smell like you[apostrophe]ve met her.  Could you use some help there?'  You nod and the hyenas join you by the door.  One has some lockpicks and they soon get the door open.  Little of the stores inside are usable, most having been eaten or damaged already.  Presumably the owner was holed up in here. Before they succumbed to the infection and presumably left to the wilds of the city, that is.  But there is still some the usable loot.  You split your find with the hyenas, taking a couple of drinks and snacks each before you and they go your separate ways.[line break]";
 				say "     You obtain two snacks and two soft drinks.";
@@ -136,13 +136,14 @@ Instead of resolving a Flooded Street:
 	say "     You come across a small lake of cum blocking your path.  This section of street is literally flooded with cum.  Wading through musky pond are several of those giant walking cocks.  At the far side of the cum flood, a pair of them are pleasuring one another, releasing more spurts into the sea of semen.  You certainly cannot cross here and expect to remain intact and so start to back away slowly.";
 	wait for any key;
 	if a random chance of 1 in 3 succeeds:
-		say "You are spotted by one of the ambulatory cock creatures and its rush towards you alerts the others.";
+		say "     You are spotted by one of the ambulatory cock creatures and its rush towards you alerts the others.";
+		say "[line break]";
 		challenge "Cock Cannon";
 		challenge "Cock Cannon";
 		challenge "Cock Cannon";
-		say "Those disturbing creatures finally dealt with, you make good your escape before others turn up.";
+		say "     Those disturbing creatures finally dealt with, you make good your escape before others turn up.";
 	otherwise:
-		say "You quietly make your escape.";
+		say "     You quietly make your escape.";
 		increase score by 1;
 	Now Flooded Street is resolved;
 
@@ -166,7 +167,7 @@ Instead of resolving a Strip Bar:
 			say "     You go off, deciding to find a safer place to search.";
 			increase score by 1;
 		now stripbarcounter is 2;
-	if stripbarcounter is 2:
+	otherwise if stripbarcounter is 2:
 		say "     You come to a third strip bar tucked into secluded part of this seedy part of town.  It seems to have faired relatively well, with only minor damage.  After a cautious glance inside, you don[apostrophe]t see any signs of trouble.  Do you enter?";
 		if player consents:
 			say "[stripbarsearch]";
@@ -246,7 +247,7 @@ when play begins:
 
 Instead of resolving a Evangelist:
 	say "     While trying to cross between stopped cars at a large intersection, you are stopped by the sound of someone climbing onto a car.  Still hunkered down, you see a unchanged human.  Unshaven for several days and dressed in dirty clothes, he smells strongly of alcohol.  He is wild-eyed and waves a bible around as he start yelling at no one.  He goes on incoherently about sinners, Babylon, bedding down with animals, damnation and so forth.  You try to calm him down, but he will have none of it.  Clearly overwrought by witnessing the transforming populous from his hiding spot, he[apostrophe]s gone off the deep end.  From some of his rambling, you gather he[apostrophe]s always been upset by the lascivious nature of the neighbourhood around his home.";
-	say "     Before you can get him to be quiet long enough to talk, it[apostrophe]s too late.  Drawn by the ruckus, the nearby monsters have taken notice and approach the intersection.  Seeing an unchanged human, they go ballistic and charge forward.  With you between them, you are forced to stuggle against the maddened tide of lustful monsters.[line break]";
+	say "     Before you can get him to be quiet long enough to talk, it[apostrophe]s too late.  Drawn by the ruckus, the nearby monsters have taken notice and approach the intersection from all sides.  Seeing an unchanged human, they go ballistic and charge forward.  With you between them, you are forced to stuggle against the maddened tide of lustful monsters.[line break]";
 	fight;
 	say "     Looking up during a brief moment of respite, you see the would-be evangelist swinging his hardcover bible like a club, still screaming incessantly about the corruption of the flesh.  Madness has given him strength and he manages to keep the monsters from climbing onto the car roof.  The fact that many of the second ring of monsters around him are trying to mate those closer help him as well.  Before you can consider whether to push forward to help him or try to make your escape, you are drawn into another fight.[line break]";
 	fight;
@@ -292,15 +293,16 @@ to say orgyoutcome:
 		now libido of player is 0;
 	sort table of random critters in random order;
 	now monster is 1;
+	choose row monster from the table of random critters;
 	infect;
-	sort table of random critters in random order;
-	now monster is 1;
+	now monster is 2;
+	choose row monster from the table of random critters;
 	infect;
-	sort table of random critters in random order;
-	now monster is 1;
+	now monster is 3;
+	choose row monster from the table of random critters;
 	infect;
-	sort table of random critters in random order;
-	now monster is 1;
+	now monster is 4;
+	choose row monster from the table of random critters;
 	infect;
 
 

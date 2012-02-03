@@ -65,11 +65,11 @@ to say beatthewolverine:
 to say wolverinedesc:
 	if lbfight is 0:
 		say "[wolverinelocation]";
-		say "[line break]     As you travel through the streets, you are spotted by a large, muscled beast.  Were he not so tall, you would call him stocky, nearly as wide as he is tall, but all muscle.  He has a battered security company [one of]jacket on his animalistic body[or]hat on his animalistic head[at random].  He is covered in dark fur with a few lighter patches.  His face narrows into a dark muzzle with lighter fur above his brow and at his shoulders.  He growls angrily as he watches you.  You spot the company logo on his clothing - Wolverine Security.";
+		say "     As you travel through the streets, you are spotted by a large, muscled beast.  Were he not so tall, you would call him stocky, nearly as wide as he is tall, but all muscle.  He has a battered security company [one of]jacket on his animalistic body[or]hat on his animalistic head[at random].  He is covered in dark fur with a few lighter patches.  His face narrows into a dark muzzle with lighter fur above his brow and at his shoulders.  He growls angrily as he watches you.  You spot the company logo on his clothing - Wolverine Security.";
 		say "     He is prowling around a [wolvloc], his instincts having locked him into aggressively guarding it.  You seem to have come too close and set him off.  Before you can back away, he charges at you aggressively, powerful paws raised to strike.";
 	otherwise if lbfight is 1:
-		say "[line break]     You find yourself facing off with a large, muscled beast.  Were he not so tall, you would call him stocky, nearly as wide as he is tall, but all muscle.  He has a battered security company jacket on his animalistic body.  He is covered in dark fur with a few lighter patches.  His face narrows into a dark muzzle with lighter fur above his brow and at his shoulders.  He growls angrily as he watches you.  You spot the company logo on his clothing - Wolverine Security.";
-		say "     He has moved himself between you and the boat and is approaching to expel the intruder, his instincts having locked him into aggressively guarding his post.  Stepping over the ropes into the display area seems to have set him off.  Before you can back away, he charges at you aggressively, powerful paws raised to strike.";
+		say "     You find yourself facing off with a large, muscled beast.  Were he not so tall, you would call him stocky, nearly as wide as he is tall, but all muscle.  He has a battered security company jacket on his animalistic body.  He is covered in dark fur with a few lighter patches.  His face narrows into a dark muzzle with lighter fur above his brow and at his shoulders.  He growls angrily as he watches you.  You spot the company logo on his clothing - Wolverine Security.";
+		say "     He has moved himself between you and the boat and is approaching to expel the intruder, his instincts having locked him into aggressively guarding his post at the museum.  Stepping over the ropes into the display area seems to have set him off.  Before you can back away, he charges at you aggressively, powerful paws raised to strike.";
 
 to say wolverinelocation:							[sets random location for the wolverine]
 	let T be a random number between 1 and 16;
@@ -120,15 +120,15 @@ When Play begins:
    now defeated entry is "[beatthewolverine]"; [ Text or say command used when Monster is defeated.]
    now victory entry is "[losetowolverine]"; [Text used when monster wins, can be directly entered like combat text or description. or if more complex it can be linked to a 'To Say' block as the demonstration text shows.]
    now desc entry is "[wolverinedesc]";[ Description of the creature when you encounter it.]
-   now face entry is "wolverine's head, with a strong muzzle.  Aside from the lighter patches above your brows, you dark brown fur covers your";[ Face description, format as the text "You have a (your text) face."]
-   now body entry is "stocky and muscled, coiled and itching for a fight";[ Body Description, format as the text "Your Body is (your text)"]
-   now skin entry is "dark brown fur with lighter patches at your sides, flanks and rear to cover your";[ skin Description, format as the text "You have (your text) skin"]
+   now face entry is "now wolverine's head, with a strong muzzle.  Aside from the lighter patches above your brows, you dark brown fur covers your face";[ Face description, format as the text "Your face is (your text)."]
+   now body entry is "stocky and muscled, coiled and itching for a fight";[ Body Description, format as the text "Your body is (your text)."]
+   now skin entry is "dark brown fur with lighter patches at your sides, flanks and rear to cover your";[ skin Description, format as the text "You have (your text) skin."]
    now tail entry is "You have a short, thickly furred tail hanging from your rear.";[ Tail description, write a whole Sentence or leave blank. ] 
    now cock entry is "brown";[ Cock Description, format as you have a 'size' (your text) cock]
-   now face change entry is "it shifts and changes, forming a short muzzle.  Your new nose and muzzle twitch as your whiskers grow in.  Coarse, dark fur starts to spread over it, giving you a wolverine's head"; [ face change text. format as "Your face feels funny as (your text)" ]
+   now face change entry is "it shifts and changes, forming a short muzzle.  Your new nose and muzzle twitch as your whiskers grow in.  Coarse, dark fur starts to spread over it, giving you a wolverine's head"; [ face change text. format as "Your face feels funny as (your text)." ]
    now body change entry is "it grows tougher, becoming tall, yet stocky in build.  You have wide shoulders and a large body that is all coiled muscle.  Your hands and feet become paw-like, with black claws at the ends of your digits.  You become aware of your own growing scent, strong and mustelid in odor.  You feel yourself filling with aggressive power, as well as an urge to protect... something"; [ body change text. format as "Your body feels funny as (your text)." ]
    now skin change entry is "coarse fur spreads across your body.  It is a dark brown with some lighter patches forming along your sides, flanks and rear"; [ skin change text. format as "Your skin feels funny as (your text)." ]
-   now ass change entry is " you start to shift, gaining a short, thickly furred tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)." ]
+   now ass change entry is "you start to shift, gaining a short, thickly furred tail"; [ ass/tail change text. format as "Your ass feels funny as (your text)." ]
    now cock change entry is "it becomes brown in colour, but otherwise human-like in appearance.  As you watch, your new shaft is bundled up in a coarse-furred sheath which spreads down to cover your ballsac as well"; [ cock change text. format as "Your cock feels funny as (your text)." ]
    now str entry is 16;
    now dex entry is 14;
@@ -159,8 +159,10 @@ when play ends:
 	if bodyname of player is "Wolverine Guard":
 		if humanity of player is less than 10:
 			say "     You find your growing urge to protect and defend your post increasing.  Cutting short your wandering, you head back to the bunker at the Abbey to clear your head.  Once there, you decide to scout around from top to bottom, making sure it[apostrophe]s secure before you relax.  You find nothing, but still remain on edge, and patrol on guard for any disturbances.  You keep at your post, staying on watch without rest, protecting it from the monsters of the city and the soldiers who later arrive.  You keep it, and its contents, safe from interlopers day after day.";
-		otherwise:
+		otherwise if hp of doctor matt <= 100:
 			say "     You hold out until the rescue comes and you are taken in by the military.  You wait impatiently for your release, always on edge and feeling that there[apostrophe]s something you should be doing.  You are eventually moved into the care of Dr. Matt, who has you alternate with Orthas as his personal guard at the research station the military sets him up at to combat the spreading infection.  While on duty, you are tireless in your vigil, protecting your post and feeling a sense of fulfillment from doing so.";
+		otherwise:
+			say "     You hold out until the rescue comes and you are taken in by the military.  With your false identity never questioned, you wait impatiently for your release, always on edge and feeling that there[apostrophe]s something you should be doing.  One day, you are released and are quickly picked up by a large van.  You are quietly taken to where Dr Mouse is hiding, apparently having funnelled some bribes through a third party to gain custody of you.  He takes you on as his private security guard, watching over him as he conducts his secret research.  He works for a variety of foreign countries and infected factions[if susan is in hidden lab].  Susan continues to accompagny him as an assistant and a lover for you when off duty[end if].  While on duty, you are tireless in your vigil, protecting your post and feeling a sense of fulfillment from doing so.";
 
 [ Edit this to have the correct Name as well]
 Wolverine Guard For FS ends here.

@@ -21,8 +21,9 @@ to say ursine attack:
 	otherwise if a random chance of 2 in 3 succeeds: 
 		if cunts of player > 0:
 			say "She towers over your stricken form. You can see her shaggy thighs are already damp with her massive arousal.  Her long hard nipples peek through her fur. 'I feel naughty. Help me.'  For a moment she pauses before straddling your face.  The warm juices of arousal splatter on your face before your whole world grows dark and your vision is filled with drooing bear snatch.  With surprising delicacy she squats over your head and begins to grind your face into her pussy. It gets hard to breathe.[line break][line break]  Unable to struggle you drive your tongue deep into her addictively sweet cleft in the hope you can make her cum and let you go.   After a few desperate breathless minutes of tongue aching exercise, you  feel her shuddering orgasm drench you and with one last irresistable thrust she lets you go.   Rolling free you run off, disturbed not least by the way you find yourself repeatedly licking your lips, terribly aroused and unable to forget the honey taste of her.";
-		increase cunt width of player by 2; 
-		increase breast size of player by 2; 
+		if "Microwaved" is not listed in feats of player and "Male Preferred" is not listed in feats of player:
+			increase cunt width of player by 2; 
+			increase breast size of player by 2; 
 		Now ursinedefeat is 2;
 	otherwise	if a random chance of 1 in 5 succeeds:
 		say "That last blow was a doozy. You feel your limp self picked up bodily and find yourself helplessly carried to the shade.  The bear watches over you with an odd mixture of concern and barely restrained lust. 'It's hard some times.' she says absently and pats you on the head affectionately. Despite the way her huge paw jars your aching head, you cannot help but feel warmly towards the bear before passing out.  You awaken to find the tattered remains of your clothes feeling odd.  With a start you realise they have been washed and ironed.  Of all the messed up things in the world, that small gesture affects you deeply.";
@@ -85,11 +86,11 @@ When Play begins:
 	now lootchance entry is 30;		[ Chance of loot dropping 0-100 ]
 
 when play ends:
-	if bodyname is "Brown Bear":
+	if bodyname is "Bear":
 		if humanity of player is less than 10:
 			say "You amble off into the parkland, only occasionally to reappearing to scare the hell out of anyone still foolish enough to try camping.  Occasionally you leave signs of your passing in the form of rifles twisted into pretzels and tales from horrified hunters that have been both attacked and abused.  Seeing you are no threat unless threatened, you are left to your own devices.";
 		otherwise:
-			say "Your body shape strongly inclines you to seek an outdoor life.  Your resourcefullness, hardiness and aptitude are noted and your kind are soon recognised as excellent park warden material. Despite often being posted to wildeness areas you are seldom left completely alone for long as bears begin to build an increasing fan base amongst both the infected and the more [one of] adventurous[or] deviant[at random] uninfected.";
+			say "Your body shape strongly inclines you to seek an outdoor life.  Your resourcefullness, hardiness and aptitude are noted and your kind are soon recognised as excellent park warden material. Despite often being posted to wildeness areas you are seldom left completely alone for long as bears begin to build an increasing fan base amongst both the infected and the more [one of]adventurous[or]deviant[at random] uninfected.";
 			
  Table of Game Objects(continued)
 name	desc	weight	object

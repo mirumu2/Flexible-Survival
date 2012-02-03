@@ -7,8 +7,8 @@ Deer by Nuku Valente begins here.
 Section 1 - Monster Responses
 
 [ Use To say for overlong behaviours that would make the table difficult to read and understand. Typically needed if there are alot of cock/species/cunt checks. ] 
-deerdefeat is a number that varies.
 deerconsent is a number that varies.
+deerhappy is a number that varies.
 
 Susan is a person. "Susan, a bipedal deer.". The description of susan is "A bipedal deer with soft brown fur and creamy off-white belly and undertail. Her nose, eartips and hands are dark hues. She has large cream covered breasts capped with thick black teats. She has a hungry, lustful look in her eyes, one hand usually straying to her cock, stroking it almost absentmindedly. It is disturbingly human in appearance, ebon-black fleshed with a cream sheath at the base. She has large plum sized balls contained in a creamy colored softly furred sac. Despite her animalistic appearances, she has hair like a human, running down to a little past her shoulders, a little darker than the brown fur of the majority of her form.".
 unusual creature is a situation. It is resolved.
@@ -134,6 +134,8 @@ when play ends:
 		if humanity of player is less than 10:
 			if susan is in primary lab:
 				say "Fear grips your heart and you take off running like the wind until you reach Susan's arms, leaping into them and curling up against her a moment. She calms you and pets you. Despite your loss of humanity, she remains clear, and cares for you as a mother, even if she likes playing with you like a lover. When rescue does come, she escorts you to society and continues to care for you to the end of your days, never leaving you wanting for company, or anything else.";
+			otherwise if susan is in hidden lab:
+				say "Fear grips your heart and you take off running like the wind until you reach Susan's arms, leaping into them and curling up against her a moment. She calms you and pets you. Despite your loss of humanity, she remains clear, and cares for you as a mother, even if she likes playing with you like a lover. When Dr Mouse leaves the city, she goes with him and takes you into hiding with them.  As the doctor continues his work in the shadows, the deer continues to care for you to the end of your days, never leaving you wanting for company, or anything else.";
 			otherwise:
 				say "You can feel your humanity drifting away from you and flee to where your instincts urge you. You find the herd of deer, led by that magnificent stag. On seeing you, Susan steps forward and welcomes you into her arms, holding your shivering form tight to herself, 'Now you see?' she whispers, then lays you down, rutting you to the cheers of the others, many of whom stroke their black cocks over your coupling bodies, spraying you and her with hot strings of seed even as she fills your belly and officially claims you as her own.[line break][line break]When she is done, she rises from you, and one of your pack sisters takes her place, rutting you just as eagerly. She rolls over, putting you on top[if cunts of player is greater than 0] and leaving the way open for another sister to come up and claim your ass, sandwhiching you between as you're fucked by[otherwise] fucking you wildly before passing you along to[end if] each sister in turn, passed around twice through the entire circle of adoring deer. By the time it is done, you are sore but satisfied, and begin your life as a member of the herd.";
 		otherwise:
@@ -141,8 +143,37 @@ when play ends:
 				say "When the rescue comes, you return to Susan and leave the city hand in hand. Despite any other loves or friends you pick up, she remains your favored. Her belly is swollen round often with the fruit of your couplings, and she accompanies you almost everywhere, tending to your every whim. You are both happy with the arrangement, and remain together, loving, for the rest of your long lives, eventually tended to by the children you sired and raised so well.";
 				if orthasstart is 4:
 					say "Susan remains your loving and loyal doe, bearing twin foals from your union.  Your new family convinces you to settle down with them in a life that, though perhaps unplanned, you still find rewarding.  Her work assisting Dr. Matt's research continues to yield fascinating discoveries.[line break][line break]Your two relationships cause some friction at first, but eventually Susan and Orthas learn to live with, and even rely on and care for each other in times of trouble.  Your children grow up together, well-protected and cared for.  Dr. Matt's exposure to your family causes him to reconsider some of his less ethical approaches to science.";
+			otherwise if susan is in hidden lab:
+				say "When the rescue comes, you return to Susan and leave the city hand in hand, using your false identities as cover. Despite any other loves or friends you pick up, she remains your favored. Her belly is swollen round often with the fruit of your couplings, and she accompanies you almost everywhere, tending to your every whim. You are both happy with the arrangement, and remain together, loving, for the rest of your long lives, eventually tended to by the children you sired and raised so well.";
 			otherwise:
 				say "Your sleek lines attract many. You easily secure a job as a secretary, but live for the weekends, when you'd hit the clubs and dance the night away to the gawkings of others. Though some humans remain fearful on basis of your being mutated at all, more than a few approach you openly, seeing your attention and affection. You show them a good time, on the dance floor, or the bedroom floor, depending on how much you like them. Man, woman, you find yourself not caring as much between the two.";
+	if bodyname of player is "Reindeer":
+		if humanity of player is less than 10:
+			if susan is in primary lab:
+				say "     Drawn to it by some fading memory, you fly to Trevor Labs, spreading holiday cheer in your wake.  A rather angry looking dragon comes out, shaking its fist at you and yelling about having to shovel snow now.  You start to laugh, but a fiery blast sends you banking off.  But then there is a joyous yell as a doe runs out and pushes the dragon aside, right into a snowbank.  Feeling a connection to this lovely creature, that fading memory, you zip down and scoop her up into your arms.  You fly off with her as the scaly Scrooge yells 'Good riddance, you pests.'  The doe clutches you tightly, kissing you again and again, saying how she knew you'd come back and how you have a lovely body.  Soon you are mating in the air and she's becoming more and more a holiday-infused reindeer like yourself, joining the herd.  When she start to fly on her own, your lovemaking gets even more acrobatic and the snowfall increases, spreading more holiday cheer over the infected city.";
+			otherwise if susan is in Hidden Lab:
+				say "     Drawn to it by some fading memory, you fly the City Hospital, spreading holiday cheer in your wake.  Some angry jaguars come out, yelling and shaking their fists at you.  But when several silvery vixens come out and start playing in the snow nude, they seem to get in the spirit of things and join the girls in the fun.  Several mismatched creatures, which your mind interprets as mismatched toys, come out as well to make a snow fort.  You hear a joyous yell or surprise and see an elated doe bouncing up and down at one of the upper story windows, yelling and waving her arms wildly to get your attention.  When she sees you've noticed her, she motions for you to wait, dashes to the stairs and comes running out.  As she climbs down the steps, a mouse in a lab coat grabs her by the wrist, trying to hold her back.";
+				say "     Angry that this little Scrooge would try to keep her from enjoying your winter wonderland, you zoom down to them.  You land and shove the mouse to the snowy ground all in one smooth motion.  But when you do, all sound of merriment around you stops.  There is a collective gasp and all eyes are locked on you.  The doe clutches you tightly and whispers fearfully for you to escape.  Wrapping your arms around her, you do just that as the hospital hordes start to charge.  As you fly off with your doe, you can see the mouse stomping about as he berates the others, all cringing fearfully before his ire, slinking back into the gloomy hospital.";
+				say "     Having rescued your doe from the grinchy mouse, you soar across the city with her in your arms.  She clutches you tightly, kissing you again and again, saying how she knew you'd come back and how you have a lovely body.  Soon you are mating in the air and she's becoming more and more a holiday-infused reindeer like yourself, joining the herd.  When she start to fly on her own, your lovemaking gets even more acrobatic and the snowfall increases, spreading more holiday cheer over the infected city.";
+		otherwise:
+			if susan is in primary lab:
+				say "     Susan happily joins you when you move north, sharing your home.  At first, she's a merely tolerates your collection of holiday kitsch.  But she loves you deeply all the same, and you her";
+				if cocks of player is 0 and "Sterile" is not listed in feats of player:
+					say ".  She's a reluctant buck at first, but is soon rutting you every night, much to your delight.  Every year, come Christmas Day, you give birth to a new fawn";
+				otherwise if cocks of player is 0:
+					say ".  She's a reluctant buck at first, but is soon rutting you every night, much to your delight.";
+				otherwise:
+					say ".  You rut her often and she ends up giving you a new fawn every year for Christmas.";
+				say "     As the holiday season starts to come around, she begins to get more and more into the spirit of things, helping you decorate and even adding to your collection.  Subtly at first, but more quickly as that special day gets nearer and nearer, she grows more beautiful and caribou-like.  Soon enough, she's helping you 'make' the egg nog for the office Christmas party with a sexy Mrs. Claus outfit on her fully reindeer body[if cocks of player > 0] while you rut her from behind[end if].";
+			if susan is in Hidden Lab:
+				say "     Susan happily joins you when you move north, sharing your home.  Dr Mouse is a little upset about losing his assistant, but you find him a bit grinchy and always keep your dealings with him brief.  At first, she a merely tolerates your collection of holiday kitsch.  But she loves you deeply all the same, and you her";
+				if cocks of player is 0 and "Sterile" is not listed in feats of player:
+					say ".  She's a reluctant buck at first, but is soon rutting you every night, much to your delight.  Every year, come Christmas day, you give birth to a new fawn";
+				otherwise if cocks of player is 0:
+					say ".  She's a reluctant buck at first, but is soon rutting you every night, much to your delight.";
+				otherwise:
+					say ".  You rut her often and she ends up giving you a new fawn every year for Christmas.";
+				say "     As the holiday season starts to come around, she begins to get more and more into the spirit of things, helping you decorate and even adding to your collection.  Subtly at first, but more quickly as that special day gets nearer and nearer, she grows more beautiful and caribou-like.  Soon enough, she's helping you 'make' the egg nog for the office Christmas party with a sexy Mrs. Claus outfit on her fully reindeer body[if cocks of player > 0] while you rut her from behind[end if].";
 
 to deerfy:
 	repeat with y running from 1 to number of rows in table of random critters:
@@ -152,6 +183,9 @@ to deerfy:
 			break;
 	infect;
 	follow the sex change rule;
+	
+instead of fucking the susan:
+	try conversing the susan;
 			
 instead of conversing the susan:
 	if deerconsent is 0:
@@ -237,7 +271,7 @@ to say deer den scene:
 		move the player to Grey Abbey Library;
 		follow the turnpass rule;
 		stop the action;
-	if bodyname of player is "sewer deer":
+	if bodyname of player is "doe":
 		say "'You are still looking mighty fine. Come over here and let me give you a kiss,' she beckons. As you slip up onto the bed to join her, she wraps her arms around you, pressing her soft warm scales to your [skin of player] front, grinding gently as she presses her snout to you and gives a slow kiss, quiet for long moments as her hands wander across your back eagerly. Your body grows warm, responding to her desire for a mate, changing to be more like her ideal catch.";
 	otherwise:
 		say "'You are still missing a little something,' she chastises gently, patting the bed for you. When you slip up beside her, she slips in against you, one hand reaching between your legs, rubbing slowly as she begins to nuzzle across your neck and cheek, nipping carefully with those large teeth. As she cuddles in closer, your body grows warm, nanites rushing to modify you towards her ideal lover.";
