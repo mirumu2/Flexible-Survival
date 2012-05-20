@@ -16,6 +16,9 @@ Raven fights is a number that varies. Raven fights is usually 0;
 Raven victories is a number that varies. Raven victories is usually 0;
 Raven queen encounters is a number that varies. Raven queen encounters is usually 0;
 Raven queen victories is a number that varies. Raven queen victories is usually 0;
+Raven queen eggs laid is a truth state that varies. Raven queen eggs laid is usually false;
+Raven queen eggs is a list of people that varies.
+Raven chick is a person. 
 
 shiny things is a list of text that varies.
 raven descr is a text that varies.
@@ -182,6 +185,43 @@ To enable raven queen:
 				[now area entry is "Outside";]
 				now area entry is "[raven area entry]";
 
+To fertilize raven queen eggs:
+	let infection be "";
+	let fertilized eggs be 0;
+	if a random chance of 1 in 10 succeeds:
+		now fertilized eggs is 3;
+	otherwise if a random chance of 1 in 3 succeeds:
+		now fertilized eggs is 2;
+	otherwise:
+		now fertilized eggs is 1;
+	repeat with N running from 1 to fertilized eggs:
+		if a random number from 1 to 100 is greater than 50 and "They Have Your Eyes" is not listed in feats of player:
+			now infection is "Raven";
+		otherwise:
+			now infection is skinname of player;
+		now skinname of raven chick is infection;
+		if a random number from 1 to 100 is greater than 50 and "They Have Your Eyes" is not listed in feats of player:
+			now infection is "Raven";
+		otherwise:
+			now infection is bodyname of player;
+		now bodyname of raven chick is infection;
+		if a random number from 1 to 100 is greater than 50 and "They Have Your Eyes" is not listed in feats of player:
+			now infection is "Raven";
+		otherwise:
+			now infection is tailname of player;
+		now tailname of raven chick is infection;
+		if a random number from 1 to 100 is greater than 50 and "They Have Your Eyes" is not listed in feats of player:
+			now infection is "Raven";
+		otherwise:
+			now infection is facename of player;
+		now facename of raven chick is infection;
+		if wingname of the player is "" or (a random number from 1 to 100 is greater than 50 and "They Have Your Eyes" is not listed in feats of player):
+			now infection is "Raven";
+		otherwise:
+			now infection is facename of player;
+		now wingname of raven chick is infection;
+		add raven chick to raven queen eggs;
+
 Section 4 - Monster Items
 
 raspberry is a grab object. It is temporary. It is a part of the player.
@@ -209,6 +249,7 @@ to say raspberry use:
 Section 5 - Monster Responses
 
 to say lose to raven:
+	let items stolen be 0;
 	increase raven fights by 1;
 	choose row monster in table of random critters;
 	if name entry is "raven":
@@ -219,7 +260,12 @@ to say lose to raven:
 				say "You lose 1 x [x]!";
 				remove x from the invent of the player;
 				add x to the invent of Raven Nest;
+				increase items stolen by 1;
 				break;
+		if items stolen is equal to 0:
+			say "Finding nothing of interest they quickly leave.";
+		otherwise:
+			say "Something in your backpack catches their eye, and before you can react it's a small sparkle rapidly disappearing in the distance.";
 	otherwise if name entry is "raven queen":
 		say "[raven queen loss]";
 
@@ -265,7 +311,7 @@ to say raven queen victory:
 
 Section 6 - Monster Locations
 
-Scrap Heap is south of the Junkyard Entrance. "Before you spraws a large fenced off yard filled with old rusted cars, trucks and railway cars. ".
+Scrap Heap is south of the Junkyard Entrance. "Before you spraws a large fenced off yard filled with old rusted cars, trucks and twisted railway cars. ".
 
 The Car Crusher is fixed in place in the Scrap Heap. "Near the back fence you can see a car crushing machine that[apostrophe]s been rendered useless due to leaking hydraulic fluid. ".
 The Tower Crane is fixed in place in the Scrap Heap. "In the middle of the yard stands a tall tower crane with a long horizontal jib and counter-balance.".
@@ -293,8 +339,10 @@ carry out craneclimbing:
 Raven Nest is above the Scrap Heap. "[Raven Nest scene]". It is unknown. It is fasttravel. It is private.
 
 To say Raven Nest scene:
-	say "A large spacious nest perched on top of the rusty tower crane. It[apostrophe]s constructed from straw, twigs, branches, and pieces of masonary scavenged from the nearby junkyard."; 
+	say "A large spacious nest perched on top of the rusty tower crane. It[apostrophe]s constructed from straw, twigs, branches, torn cloth, and pieces of masonary scavenged from the nearby junkyard."; 
 	say "Scene 3";
+	if raven queen eggs laid is true:
+		say "Scene 4";
 	[if cocks of player is greater than 0:
 		say "semi-optional m/f sex.";
 	otherwise if cunts of player is greater than 0:
