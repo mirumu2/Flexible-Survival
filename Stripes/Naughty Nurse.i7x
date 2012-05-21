@@ -1,5 +1,5 @@
 Version 2 of Naughty Nurse by Stripes begins here.
-[Version 2 - Victory Sex and Endings added]
+[Version 2.2 - Special ending]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 "Adds a Naughty Nurse Vixen creature to Flexible Survivals Wandering Monsters table"
 [Description text for this Extension.]
@@ -30,10 +30,7 @@ to say losetovixennurse:
 			say "     Having nicely seeded your ass, she pulls out and wipes her shaft clean on your rear end before getting up and leaving you there, slowly leaking out her plentiful cum onto the floor.";
 	[value reset]
 	choose row monster from the table of random critters;
-	now hp entry is 36;
 	now lev entry is 4;
-	now wdam entry is 5;
-	now dex entry is 14;
 
 to say beatthevixennurse:
 	if libido of player > 33:
@@ -56,14 +53,12 @@ to say beatthevixennurse:
 		say "     Your last blow to the nurse sends her staggering back.  She waves her clipboard intently at you.  'Oh, you are in big trouble now.  I'm going to have to send the orderlies down here to deal with you.'  With that, she turns and runs away.";
 	[value reset]
 	choose row monster from the table of random critters;
-	now hp entry is 36;
 	now lev entry is 4;
-	now wdam entry is 5;
-	now dex entry is 14;
 
 
 to say vixennursedesc:
 	choose row monster from the table of random critters;
+	let debit be 0;
 	now vixgender is 0;
 	if hermaphrodite is banned:			[always female if herm banned]
 		now vixgender is 0;
@@ -72,19 +67,24 @@ to say vixennursedesc:
 			now vixgender is 1;		[now a herm]
 	if vixgender is 0:
 		say "     You find yourself face to face with a sensually curved vixen in a tight, little nurse's outfit.  She has a short cut, white apron with a black top under it.  There's even a traditional, white nurse's cap with a red cross on it on the vixen's head.  She has lustrous, gray fur, indicating that her infection originated from a silver fox.  Glancing down those long, slender legs you see they end in digitigrade paws.  To her ample chest, she holds a large clipboard.  You can still see the bumps that the perky nipples on her four breasts make in the fabric, unblocked by the clipboard.  She looks you over quickly and tut-tuts, saying '[one of]It looks like one patient[']s gotten out of bed[or]Bend over, sweety.  It[']s time to take your temperature[or]You look like you need a little TLC[or]Please return to the waiting area.  The doctor will see you shortly.  Until then, let me take care of you[at random].'  She raises her clipboard, seemingly intent on clubbing you with it.";
-		now hp entry is 36;
-		now monsterhp is 36;
-		now lev entry is 4;
-		now wdam entry is 5;
-		now dex entry is 14;
+		if hardmode is true and level of player > 4, let debit be level of player - 4;
+		now hp entry is 36 + ( debit * 4 );
+		now monsterhp is 36 + ( debit * 4 );
+		now lev entry is 4 + debit;
+		now wdam entry is 5 + ( debit / 3 );
+		now dex entry is 14 + ( lev entry / 5 );
 	otherwise:
 		say "     You find yourself face to face with one of those sensually curved vixen in the tight, little nurse's outfit.  She has lustrous, gray fur, indicating that her infection originated from a silver fox.  She has a traditional, white nurse's cap with a red cross on it on the vixen's head.  She is wearing a short cut, white apron with a black top under it.";
-		say "     And there your eyes stop, finding that something is amiss with this naughty nurse.  Her tight dress has a rather sizeable bulge in it and it is growing larger as you watch.  It's a trap!  Grinning, she rubs the firm lump and says, '[one of]It looks like one patient[']s gotten out of bed.  I'll tuck you in good and tight[or]Bend over, sweety.  Mmm... I want to take your temperature[or]You look like you a dose of my medicine[or]Let me give you a thorough examination, my pretty patient[at random].'  She rubs her four breasts and moans lustfully before charging at you.";
-		now hp entry is 72;
-		now monsterhp is 72;
-		now lev entry is 7;
-		now wdam entry is 8;
-		now dex entry is 18;
+		say "     And there your eyes stop, finding that something is amiss with this naughty nurse.  Her tight dress has a rather sizeable bulge in it and it is growing larger as you watch.  It's a trap!  Grinning, she rubs the firm lump and says, '[one of]It looks like one patient[']s gotten out of bed.  I'll tuck you in good and tight[or]Bend over, sweety.  Mmm... I want to take your temperature[or]You look like you need a dose of my medicine[or]Let me give you a thorough examination, my pretty patient[at random].'  She rubs her four breasts and moans lustfully before charging at you.";
+		if hardmode is true and level of player > 6, let debit be level of player - 6;
+		now hp entry is 72 + ( debit * 4 );
+		now monsterhp is 72 + ( debit * 4 );
+		if hardmode is true and debit > 0:
+			now lev entry is 6 + debit;
+		otherwise:
+			now lev entry is 7;
+		now wdam entry is 8 + ( debit / 3 );
+		now dex entry is 18 + ( ( lev entry - 7 ) / 5 );
 
 Section 2 - Monster Insertion
 
@@ -141,6 +141,8 @@ name	desc	weight	object
 
 healing booster is a grab object. It is a part of the player. It is fast. It is not temporary.
 
+instead of sniffing the healing booster:
+	say "The healing booster smells of chemicals and medicine.";
 
 when play ends:
 	if bodyname of player is "Vixen Nurse":
@@ -169,8 +171,13 @@ when play ends:
 				say ".";
 			otherwise if hospquest is 13 and hp of doctor mouse is 2:
 				say "     The hospital is in disarray when you arrive, more like a stirred up hornets nest than the orderly bee hive you feel it should be.  The various factions strike out at each other at times, but cooperate at others.  The maternity ward still runs, but the cafeteria is often host to in-fighting over mates.";
-				say "     It is only with the coming of the military that control is restored.  The united threat of military action unites the factions, at least temporarily.  And you would see that unity remain and enact a plan that percolates in the back of your mind.  Feeling the need to have someone in charge, you break from the defence and slip past the military lines.  You find a small veterinarian hospital and spot some activity inside.  Armed with a syringe filled with tranquilizers and a need to to what must be done for the good of the hospital, you slip in and attack the panther taur vet.  Unprepared for the injection, she moved in close, letting you knock her out with it.";
-				say "     You relay your success over the radio to the hospital, but it takes them some time to get a team past the military and out to you.  Thankfully the veterinary clinic still have supplies and you're able to keep her under until you can get her back to the hospital.  One of the female jaguars is allowed to welcome the panther herm to the hospital, bonding her into the staff as your new leader.  The taur doctor fills her position well, maintaining unity of the hospital staff after the military is repulsed.  The hospital's medical work slacks off, but several of the staff are sent out to capture many animal creatures from the city.  These are converted into more staff for an expanding new wing for sexual veterinary medicine.";
+				if intelligence of player >= 20 and charisma of player >= 15 and "Expert Medic" is listed in feats of player:
+					say "     It is only with the coming of the military that control is restored.  The united threat of military action unifies the factions, at least temporarily.  And you would see that order remain and start taking charge of the groups.  Feeling the need to have someone in charge, the other groups begin to respond to your commands, beginning to rely on you to fill that void.  Your familiarity and experience in the city helps counter the military incursion.  You use your knowledge of the safe paths through the city and its havens to hide to command the medical staff into position over the radio.  Using medical and anatomical terminology for your code, the staff understand it intrinsically and can act upon it instantly while the military codebreakers labour over it.  The strikes are made with surgical precision, excising key elements from the military supply and support chain within the city until the point that they're driven back from the hospital.  With the hospital left alone and a new collection of test subjects, you leave the remaining military forces largely alone.";
+					say "     Taking over as the head of the hospital from that point comes naturally.  The groups fall into line and order is restored to you hospital.  While lacking the extensive medical training and experience Dr. Mouse had, you learn quickly by studying the numerous medical books and journals throughout the hospital.  You even start up some experiments of your own, enjoying converting the captured soldiers into more staff or using them for perverse, sexual cross-breeding with sample creatures.  While perhaps not as ambitious as the mouse's experiments, you also have no urge to leave the hospital like he did, content with your orderly medical center and your collection of cross-breed test subjects to satisfy your myriad sexual hungers.";
+					increase score by 50;
+				otherwise:
+					say "     It is only with the coming of the military that control is restored.  The united threat of military action unites the factions, at least temporarily.  And you would see that unity remain and enact a plan that percolates in the back of your mind.  Feeling the need to have someone in charge, you break from the defence and slip past the military lines.  You find a small veterinarian hospital and spot some activity inside.  Armed with a syringe filled with tranquilizers and a need to to what must be done for the good of the hospital, you slip in and attack the panther taur vet.  Unprepared for the injection, she moved in close, letting you knock her out with it.";
+					say "     You relay your success over the radio to the hospital, but it takes them some time to get a team past the military and out to you.  Thankfully the veterinary clinic still has supplies and you're able to keep her under until you can get her back to the hospital.  One of the female jaguars is allowed to welcome the panther herm to the hospital, bonding her into the staff as your new leader.  The taur doctor fills her position well, maintaining the unity of the hospital staff after the military is repulsed.  The hospital's medical work slacks off, but several of the staff are sent out to capture many animal creatures from the city.  These are converted into more staff for an expanding new wing for sexual veterinary medicine.";
 			otherwise:
 				say "     Drawn by your instincts as a member of the hospital staff, you report back to Dr Mouse.  While you only vaguely remember him, he greets you with a smile and happily adds you to his hospital's staff.  He puts you in charge of monitoring his test subjects with a pair of jaguars to act as your muscle.  Obediently, you follow the mad doctor's orders, watching his [']volunteers['] and often using them as playtoys when he's done with them before sending them downstairs to the hospital proper to be assimilated into the staff[if susan is in hidden lab].  Susan, as his assistant, is there with him to help you and reward you with lustful sex[end if].";
 				say "     When the time comes to leave the city, Dr Mouse takes you[if susan is in hidden lab], Susan[end if] and several other of the staff to escape through the service tunnels under the hospital.  Meanwhile the main body of the staff hold the hospital against the army with the helicopter running as an added diversion.  You all escape out of the city and Dr Mouse sets up a new lab in secret.  He begins selling off the fruits of his research to foreign powers and the growing factions of transformed creatures that form.  He has you continue to monitor his test subjects for his ongoing experiments";
@@ -181,9 +188,9 @@ when play ends:
 				say ".";
 		otherwise:
 			if hospquest > 13:
-				say "     When you are rescued from the infected city by the military, they take you to a base they've set up for the testing and processing of the infected.  While you are being examined, you have to resist your urges to play with doctor's like the naughty nurse you are.  You can't afford to draw too much attention to yourself.  Using your innate medical knowledge and your sensual body, you avoid receiving the treatment to render you non-infectious and fudge the results.  When cleared, you travel to a new city and insinuate yourself into a small clinic, infecting the staff there and setting up a nice little den of silver foxes to be your mates.";
+				say "     When you are rescued from the infected city by the military, they take you to a base they've set up for the testing and processing of the infected.  While you are being examined, you have to resist your urges to play with doctors like the naughty nurse you are.  You can't afford to draw too much attention to yourself.  Using your innate medical knowledge and your sensual body, you avoid receiving the treatment to render you non-infectious and fudge the results.  When cleared, you travel to a new city and insinuate yourself into a small clinic, infecting the staff there and setting up a nice little den of silver foxes to be your mates.";
 			otherwise:
-				say "     When you are rescued from the infected city by the military, they take you to a base they've set up for testing and processing of the infected.  While you are being examined, you chat up the doctors.  At first, they are clinical and unresponsive to your playful antics, but eventually begin to warm up to you as you prove clever and knowledgable about their medical examinations.  At your behest, one of them gets a nurse's outfit for you and join their staff.  Receiving the treatment to render you non-infectious, they also start giving in to your playful banter and sneaking off with you for a little fun to help relieve their stress after a particularly alluring patient gets them riled up.";
+				say "     When you are rescued from the infected city by the military, they take you to a base they've set up for testing and processing of the infected.  While you are being examined, you chat up the doctors.  At first, they are clinical and unresponsive to your playful antics, but eventually begin to warm up to you as you prove clever and knowledgeable about their medical examinations.  At your behest, one of them gets a nurse's outfit for you and join their staff.  Receiving the treatment to render you non-infectious, they also start giving in to your playful banter and sneaking off with you for a little fun to help relieve their stress after a particularly alluring patient gets them riled up.";
 
 
 [ Edit this to have the correct Name as well]

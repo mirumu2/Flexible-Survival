@@ -1,5 +1,5 @@
-Bear for FS by Nuku Valente begins here. 
-[ Really v1.01 of Bear for FS by Illpill from Nuku Valente's Equine extension as it were, but who likes a pedant?]
+Version 2 of Bear for FS by Nuku Valente begins here. 
+[ Version 2 - New critter table entries added and Alt Combat enabled ]
 
 "Adds a Bear to Flexible Survivals Wandering Monsters table."
 [Description text for this Extension.]
@@ -20,7 +20,7 @@ to say ursine attack:
 		now ursinedefeat is 1;
 	otherwise if a random chance of 2 in 3 succeeds: 
 		if cunts of player > 0:
-			say "She towers over your stricken form. You can see her shaggy thighs are already damp with her massive arousal.  Her long hard nipples peek through her fur. 'I feel naughty. Help me.'  For a moment she pauses before straddling your face.  The warm juices of arousal splatter on your face before your whole world grows dark and your vision is filled with drooing bear snatch.  With surprising delicacy she squats over your head and begins to grind your face into her pussy. It gets hard to breathe.[line break][line break]  Unable to struggle you drive your tongue deep into her addictively sweet cleft in the hope you can make her cum and let you go.   After a few desperate breathless minutes of tongue aching exercise, you  feel her shuddering orgasm drench you and with one last irresistable thrust she lets you go.   Rolling free you run off, disturbed not least by the way you find yourself repeatedly licking your lips, terribly aroused and unable to forget the honey taste of her.";
+			say "She towers over your stricken form. You can see her shaggy thighs are already damp with her massive arousal.  Her long hard nipples peek through her fur. 'I feel naughty. Help me.'  For a moment she pauses before straddling your face.  The warm juices of arousal splatter on your face before your whole world grows dark and your vision is filled with dripping bear snatch.  With surprising delicacy she squats over your head and begins to grind your face into her pussy. It gets hard to breathe.[line break][line break]  Unable to struggle you drive your tongue deep into her addictive, sweet cleft in the hope you can make her cum and let you go.   After a few desperate breathless minutes of tongue aching exercise, you  feel her shuddering orgasm drench you and with one last irresistible thrust she lets you go.   Rolling free you run off, disturbed not least by the way you find yourself repeatedly licking your lips, terribly aroused and unable to forget the honey taste of her.";
 		if "Microwaved" is not listed in feats of player and "Male Preferred" is not listed in feats of player:
 			increase cunt width of player by 2; 
 			increase breast size of player by 2; 
@@ -47,11 +47,11 @@ name	attack	defeated	victory	desc	face	body	skin	tail	cock	face change	body chan
 When Play begins:
 	Choose a blank row from Table of random critters;
 	now name entry is "Bear"; [Name of your new Monster]
-	now attack entry is "[one of] She slams you with one of her great clawed hands. As you are sent flying you wonder where she gets her red nail polish.[or]With terrifying ease she picks you up and throws you into a pile of rubbish.[or] With a great sweep of her fur covered arm she knocks you flying.[or]She squeezes you, only letting go when you bite at her coarse furred chest.[or] Teeth that can shear your head off close around your neck, before being withdrawn.  She smiles embarrassed, 'sorry!' before punching the wind out of you.'[or] As she flattens you again you wonder if your plan needs changing. [at random]"; [Text used when the monster makes an Attack]
+	now attack entry is "[one of]She slams you with one of her great clawed hands. As you are sent flying you wonder where she gets her red nail polish.[or]With terrifying ease she picks you up and throws you into a pile of rubbish.[or]With a great sweep of her fur covered arm she knocks you flying.[or]Teeth that can shear your head off close around your neck, before being withdrawn.  She smiles embarrassed, 'sorry!' before punching the wind out of you.'[or]As she flattens you again you wonder if your plan needs changing. [at random]"; [Text used when the monster makes an Attack]
 	now defeated entry is "[one of]The beaten bear comes back to her senses. 'Oh.  That's better.' and then slumps over, apparently peacefully asleep.[or] You find yourself watching the motion of her big furry backside as the defeated bear hurriedly ambles off.[at random]. "; [ Text or say command used when Monster is defeated.]
 	now victory entry is  "[ursine attack]"; [ Text used when monster wins, can be directly entered like combat text or description. or if more complex it can be linked to a 'To Say' block as the demonstration text shows.] 
 	now desc entry is "A huge towering figure comes into view.  At first you see a wild bear on its hind legs but on closer inspection you realise that it's legs are somewhat long and its black claws are painted with nail polish, and she is absently rubbing herself... another infected citizen of this crazy world.  It must be the influence of the infection on you, but the longer you watch the more you see she is quite attractive in a uniquely bear kind of way. She has bright [one of]brown[or]blue[or]green[at random] eyes and behind what might be a smile a  row of terrifying huge pointed teeth. She is naked but covered in dense shaggy fur that covers her tall and wide body completely. . Her muscular chest is padded with three rows of flattish breasts and long nipples peek through her fur.  On seeing you, she speaks and exposes more of those teeth, '[one of]Run! I don't want to break another one![or]Not now, you dummy![or] Are you stalking me?[at random],'";[ Description of the creature when you encounter it.]
-	now face entry is "bearlike face, with an elongated snout and big bear teeth set in what is definately not a teddy bear";[ Face description, format as the text "Your have a (your text) face."] 
+	now face entry is "bearlike face, with an elongated snout and big bear teeth set in what is definitely not a teddy bear";[ Face description, format as the text "Your have a (your text) face."] 
 	now body entry is "tall and broad, with heavy shoulders and an undeniable presence that reeks sheer strength.";[ Body Description, format as the text "Your Body is (your text)"] 
 	now skin entry is "[one of]shaggy furred[or]coarsely furred[or]honey-scented furry[at random]";[ skin Description, format as the text "You have (your text) skin"] 
 	now tail entry is "You have a short black tail hidden mostly by the sheer size of you. ";[ Tail description, write a whole Sentence or leave blank. ] 
@@ -60,7 +60,7 @@ When Play begins:
 	now body change entry is "you swell with the sudden appearance of more muscles and height, growing taller and heavier by the moment."; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "coarse shaggy, dark brown,  fur spreads rapidly over your form."; [ skin change text. format as "Your skin feels funny as (your text)" ]
 	now ass change entry is "the forming of your stubby tail almost goes unnoticed.."; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
-	now cock change entry is "your cock is surrounded by a wooly sheath ."; [ cock change text. format as "Your cock feels funny as (your text)" ]
+	now cock change entry is "your cock is surrounded by a woolly sheath ."; [ cock change text. format as "Your cock feels funny as (your text)" ]
 	now str entry is 25;   [a big strong bear]
 	now dex entry is 8;   [not so limber]
 	now sta entry is 11;  [not too much stamina  -a lot of bear to lug about.] 				
@@ -84,13 +84,22 @@ When Play begins:
 	now libido entry is 20;			[ Amount player Libido will go up if defeated ]
 	now loot entry is "Honeycomb";			[ Loot monster drops, ]
 	now lootchance entry is 30;		[ Chance of loot dropping 0-100 ]
+	[ These represent the new additions to the table ]
+	now scale entry is 4;				[ Number 1-5, rough approx of infected PC body size/height.  1=small, 3=avg, 5=huge ]
+	now body descriptor entry is "burly";	[ one-word adjective descriptor of monster/infected PC's body for use in scenes ]
+	now type entry is "ursine";			[ one-word creature type. Ex: feline, bovine, robotic, cyborg, lupine, canine, human... ]
+	now magic entry is false;			[ Is this a magic creature? true/false ]
+	now resbypass entry is false;			[ Bypasses Researcher bonus? True/False (should almost invariably be false) ]
+	now non-infectious entry is false;		[ Is this a non-infectious, non-shiftable creature? True/False ]
+	blank out the nocturnal entry;		[ True=Nocturnal (night encounters only), False=Diurnal (day encounters only), blank for both. ]
+	now altcombat entry is "bearhugger";	[ Uses the 'bearhugger' entry from the Table of Critter Combat ]
 
 when play ends:
 	if bodyname is "Bear":
 		if humanity of player is less than 10:
 			say "You amble off into the parkland, only occasionally to reappearing to scare the hell out of anyone still foolish enough to try camping.  Occasionally you leave signs of your passing in the form of rifles twisted into pretzels and tales from horrified hunters that have been both attacked and abused.  Seeing you are no threat unless threatened, you are left to your own devices.";
 		otherwise:
-			say "Your body shape strongly inclines you to seek an outdoor life.  Your resourcefullness, hardiness and aptitude are noted and your kind are soon recognised as excellent park warden material. Despite often being posted to wildeness areas you are seldom left completely alone for long as bears begin to build an increasing fan base amongst both the infected and the more [one of]adventurous[or]deviant[at random] uninfected.";
+			say "Your body shape strongly inclines you to seek an outdoor life.  Your resourcefulness, hardiness and aptitude are noted and your kind are soon recognised as excellent park warden material. Despite often being posted to wilderness areas you are seldom left completely alone for long as bears begin to build an increasing fan base amongst both the infected and the more [one of]adventurous[or]deviant[at random] uninfected.";
 			
  Table of Game Objects(continued)
 name	desc	weight	object
@@ -103,6 +112,9 @@ the usedesc of Honeycomb is "[Honeycomb use]";
 to say Honeycomb use:
 	say " You just are overcome with the need for sweetness. The sticky goodness of the honeycomb makes you drool as you shove it into your suddenly hungry mouth. ";
 	decrease the hunger of the player by 6;
-	[reduce hunger by 6; increase thirst by 1;]
+	increase thirst of player by 1;
+
+instead of sniffing honeycomb:
+	say "The small piece of honeycomb smells like a sweet smackerel of honey.  You don't notice anything unusual or infected about its odor.";
 
 Bear For FS ends here.

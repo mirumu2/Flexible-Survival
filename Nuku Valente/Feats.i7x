@@ -24,6 +24,9 @@ Check featgetting:
 		if doctor mouse is not visible, say "You should see Dr Mouse about that." instead;
 
 carry out featgetting:
+	featget;
+
+[
 	blank out the whole of table of gainable feats;
 	repeat with x running through functional featsets:
 		try addfeating x;
@@ -33,7 +36,11 @@ carry out featgetting:
 	otherwise:
 		change the current menu to table of Gainable Feats;
 		carry out the displaying activity;
+]
 
+Featqualified is a number that varies.
+Featqualified is usually 0.
+ 
 To Featget:
 	blank out the whole of table of gainable feats;
 	repeat with x running through functional featsets:
@@ -42,9 +49,39 @@ To Featget:
 		say "There are no feats to gain!";
 		wait for any key;
 	otherwise:
-		change the current menu to table of Gainable Feats;
-		carry out the displaying activity;
+		[change the current menu to table of Gainable Feats;
+		carry out the displaying activity;]
+		now featqualified is 1;
+		while 1 is 1:
+			repeat with y running from 1 to number of filled rows in table of gainable feats:
+				choose row y from the table of gainable feats;
+				say "[link][y] - [title entry][as][y][end link][line break]";
+			say "[link]0 - ABORT[as]0[end link][line break]";
+			say "Type the number corresponding to the feat you want> [run paragraph on]";
+			get a number;
+			if calcnumber > 0 and calcnumber <= the number of filled rows in table of gainable feats:
+				now current menu selection is calcnumber;
+				follow the gainfeat rule;
+				if featqualified is 0, break;
+			otherwise if playerinput matches "0":	[do not use calcnumber, as non-numbers will return 0]
+				say "Selection aborted.";
+				continue the action;
+			otherwise:
+				say "Invalid Feat.";
 
+featgrabbing is an action applying to one topic.
+
+understand "featgrab [text]" as featgrabbing.
+ 
+ Check featgrabbing:
+	if featqualified is 0:
+		say "You are not ready to learn a new feat." instead;
+
+Carry out featgrabbing:
+	say "I think you are trying to grab the feat of [topic understood in lower case].";
+
+
+[
 To FunFeatget:
 	blank out the whole of table of gainable feats;
 	repeat with x running through not functional featsets:
@@ -56,6 +93,36 @@ To FunFeatget:
 		change the current menu to table of Gainable Feats;
 		carry out the displaying activity;
 	decrease featgained of player by 1;
+]
+
+ To FunFeatget:
+	blank out the whole of table of gainable feats;
+	repeat with x running through not functional featsets:
+		try addfeating x;
+	if there is no title in row 1 of table of gainable feats:
+		say "There are no feats to gain!";
+		wait for any key;
+	otherwise:
+		[change the current menu to table of Gainable Feats;
+		carry out the displaying activity;]
+		now featqualified is 1;
+		while 1 is 1:
+			repeat with y running from 1 to number of filled rows in table of gainable feats:
+				choose row y from the table of gainable feats;
+				say "[link][y] - [title entry][as][y][end link][line break]";
+			say "[link]0 - ABORT[as]0[end link][line break]";
+			say "Type the number corresponding to the feat you want> [run paragraph on]";
+			get a number;
+			if calcnumber > 0 and calcnumber <= the number of filled rows in table of gainable feats:
+				now current menu selection is calcnumber;
+				follow the gainfeat rule;
+				decrease featgained of player by 1;
+				if featqualified is 0, break;
+			otherwise if playerinput matches "0":	[do not use calcnumber, as non-numbers will return 0]
+				say "Selection aborted.";
+				continue the action;
+			otherwise:
+				say "Invalid Feat.";
 
 Addfeating is an action applying to one thing.
 
@@ -75,16 +142,28 @@ instead of addfeating the fun feats:
 		addfeat "Male Preferred" with "You will reject female mutation";
 	if "Male Preferred" is not listed in feats of player and "Herm Preferred" is not listed in feats of player:
 		addfeat "Female Preferred" with "You will reject male mutation";
+	if "Male Preferred" is listed in feats of player:
+		if "Flat Chested" is not listed in feats of player, addfeat "Breasts" with "Despite being all male, you still grow breasts, curious.";
+	otherwise:
+		if "Breasts" is not listed in feats of player, addfeat "Flat Chested" with "Your chest tends to remain flat.";
+	if "Female Preferred" is not listed in feats of player and "Herm Preferred" is not listed in feats of player and "Male Preferred" is not listed in feats of player:
+		addfeat "Single Sexed" with "You can be male, or female, but not both.";
 	if "Female Preferred" is not listed in feats of player and "Male Preferred" is not listed in feats of player:
 		addfeat "Herm Preferred" with "You more easily stay in the wonderful world of dual gendership";
 	if "Modest Organs" is not listed in feats of player or "Passing Grade Chest" is not listed in feats of player:
-		addfeat "One Way" with "You can only grow larger, not smaller, sexually, barring specific effects.";
+		addfeat "One Way" with "You can only grow larger, not smaller, sexually - barring specific effects.";
 	if "One Way" is not listed in feats of player or "Passing Grade Chest" is not listed in feats of player:
 		addfeat "Modest Organs" with "Your growth is restricted, preventing wildly overgrown bits, barring specific effects.";
-	if "Modest Organs" is not listed in feats of player or "One Way" is not listed in feats of player:
+	if ("Modest Organs" is not listed in feats of player or "One Way" is not listed in feats of player ) and "Flat Chested" is not listed in feats of player:
 		addfeat "Passing Grade Chest" with "Your breasts will never fail a test, and will remain D cupped or smaller, barring specific effects. If they do become too large, they will shrink rapidly back into line.";
-	addfeat "Just One" with "You will only grow one cock, and only one cunt, never more. Possibly less.";
-	addfeat "One Pair" with "You will not grow more than two breasts.";
+	if "All The Things" is not listed in feats of player:
+		addfeat "Just One" with "You will only grow one cock, and only one cunt, never more. Possibly less.";
+	if "Bouncy Bouncy" is not listed in feats of player:
+		addfeat "One Pair" with "You will not grow more than two breasts.";
+	if "Just One" is not listed in feats of player or "One Way" is listed in feats of player:
+		addfeat "All The Things" with "Your groin seems to believe [']the more the merrier['].  Outside of a gender change, you will keep any [']extras['] you pick up.";
+	if "One Pair" is not listed in feats of player:
+		addfeat "Bouncy Bouncy" with "It seems that your body likes breasts a lot.  You won't be loosing any that you might gain.";
 	addfeat "Singular" with "You are not one to go in half way. Whatever form your torso takes, the rest tends to follow.";
 	addfeat "Like Attracts Like" with "You will attract more monsters similar to yourself.";
 	addfeat "Bad Luck" with "You may end up in back-to-back fights occasionally.";
@@ -99,7 +178,8 @@ instead of addfeating the fun feats:
 		addfeat "Selective Mother" with "You can decide if you want to become pregnant.";
 	addfeat "Curious" with "You enjoy poking around everywhere, increasing your chance of finding stuff while exploring or hunting... including trouble.";
 	addfeat "Kinky" with "Submitting to crazy beasts is right up your alley, and you gain morale when you do so. Being beat up still lowers it.";
-	addfeat "Submissive" with "Gain extra XP for submitting to monsters.";
+	addfeat "Submissive" with "Gain extra XP for submitting to monsters.  You may find submitting so much fun you do it spontaneously from time to time.";
+	addfeat "Instinctive Combat" with "With all the changes, you've gained new instincts on how to fight.  You may choose [bold type]auto attack normal/berserk/pass/coward/submit[roman type].";[put next to submissive because that seemed logical.  move elsewhere if so desired.]
 	if featunlock is 1:	[available after hospital quest]
 		addfeat "Perky" with "You are of positive spirits, regaining morale gradually and +20% max morale.";
 	if "Pure" is not listed in feats of player, addfeat "Corrupt" with "You have a weaker grip on your humanity.";
@@ -128,6 +208,8 @@ instead of addfeating the basic feats:
 		if charisma of player is greater than 14 and intelligence of player > 12:
 			if "Good Teacher" is listed in feats of player:
 				addfeat "Ringmaster" with "You will gain full xp while training your pets.";
+		if charisma of player is greater than 16 and number of entries in list of tamed pets > 2:
+			addfeat "The Horde" with "Your pets will sometimes organize a full-on counterstrike.";
 		if charisma of player > 11:
 			addfeat "Flash" with "Your skin/fur/scales will occasionally flash bright light, reducing your foe's chance to hit.";
 		if charisma of player > 13:
@@ -139,15 +221,18 @@ instead of addfeating the basic feats:
 		addfeat "Rapid Healing" with "Increased healing during recovery time and minor increase to healing items.";
 		if stamina of player > 16 and "Rapid Healing" is listed in feats of player:
 			addfeat "Regeneration" with "Further increased healing based on level and from healing items.";
-	if stamina of player is greater than 14:
+	if stamina of player is greater than 14 and "Automatic Survival" is not listed in feats of player:
 		addfeat "Spartan Diet" with "You don't need 2 liters of water and great feasts to keep you going! You become thirsty and hungry slower.";
+	if stamina of player is greater than 14:
 		addfeat "Iron Stomach" with "Your belly has nano resistance! Eating or drinking infectious items fails to change you.";
 		addfeat "Toughened" with "You take less damage than others(-20% damage)";
+	if scenario is "Researcher" and ( intelligence of player > 14 or level of player >= 9 ):
+		addfeat "Expert Researcher" with "Your expert skills allow you a second opportunity to get an infection vial.";
 	if intelligence of player is greater than 14:
 		addfeat "Fast Learner" with "You assimilate new information rapidly. -20% xp needed to level.";
 		addfeat "Expert Medic" with "You are especially good at using medkits, +25% hitpoints restored per use, and a 20% chance of saving a kit when it should be lost.";
 	if intelligence of player is greater than 12 and ( bodyname of player is not "human" or facename of player is not "human" ):
-		addfeat "Know Thyself" with "By thinking like an enemy that has infected you, you know better how to deal with them and gain a +0 to +2 bonus to hit matching enemies each round.  Thingking with your other head gradually gets your infected loins more excited as well.  You gain more xp from these fights as well.";
+		addfeat "Know Thyself" with "By thinking like an enemy that has infected you, you know better how to deal with them and gain a +0 to +2 bonus to hit matching enemies each round.  Thinking with your other head gradually gets your infected loins more excited as well.  You gain more xp from these fights as well.";
 	if intelligence of player > 15 and level of player > 5:
 		addfeat "Weaponsmaster" with "Your experience and knowledge allow you to assess a weapon's worth and wield it better.";
 	addfeat "Wary Watcher" with "Always on guard, creatures won't gain first strike on you.";
@@ -159,14 +244,22 @@ instead of addfeating the basic feats:
 	if dexterity of player is greater than 14:
 		if "Stealthy" is listed in feats of player or "Wary Watcher" is listed in feats of player or perception of player > 14:
 			addfeat "Experienced Scout" with "You have a chance of avoiding a random fight altogether if you so wish it.";
+	if dexterity of player is greater than 14:
 		addfeat "Stealthy" with "Your chance of running into a monster is decreased while you are scavenging or exploring.";
 		addfeat "Martial Artist" with "You have basic martial arts training, increasing the damage you cause when you have no weapon.";
 		if "Martial Artist" is listed in feats of player:
 			addfeat "Black Belt" with "Your martial artistry is amazing. Your damage increases further while unarmed, and you have a small (10%) chance of avoiding hits that would otherwise have landed.";
 			addfeat "Natural Armaments" with "You gain additional power based on the mutation of your body, borrowing the natural weapons of your infection.";
+	if dexterity of player > 11:
+		if cock length of player >= 12:
+			addfeat "Cock Slap" with "Smack around your foes with your oversized meat to show them who's boss.";
+		if cock width of player >= 16:
+			addfeat "Ball Crush" with "Slam your heavy ballsac down onto your enemy to show them who's a real man.";
+		if breast size of player > 2 and ( breast size of player + ( breasts of player / 2 ) ) >= 7:
+			addfeat "Boob Smother" with "Smother your foes in your pillowy rack.";
 	if featunlock is 1:	[available after hospital quest]
 		if dexterity of player > 14:
-			addfeat "Tail Strike" with "If available, you may randomply score an additional hit with your monstrous tail.";
+			addfeat "Tail Strike" with "If available, you may randomly score an additional hit with your monstrous tail.";
 		if strength of player > 14:
 			addfeat "Powerful" with "Boosts your potential damage by up to 25%.";
 		if dexterity of player > 16 and "Powerful" is listed in feats of player:
@@ -174,7 +267,7 @@ instead of addfeating the basic feats:
 	if strength of player is greater than 14:
 		addfeat "Strong Back" with "You can carry impressive amounts of stuff. +50 lb tolerance.";
 	if level of player is greater than 1:
-		addfeat "More Time" with "You have some more precious time. Though who'd want to stay around here longer? Wierdo!";
+		addfeat "More Time" with "You have some more precious time. Though who'd want to stay around here longer? Weirdo!";
 	addfeat "Automatic Survival" with "You forage a little here, a little there. This is a mildly cheating feat, taking it will impact your score negatively, but will remove food and water as a concern.";
 	if hp of doctor matt is greater than 4:
 		addfeat "Microwaved" with "Thanks to the good advice, you have a great idea! If you can clean water, why not yourself? Genius. Gives you a very potent resistance to species reassignment.";
@@ -183,7 +276,7 @@ instead of addfeating the basic feats:
 			addfeat "Resistant" with "You are more resistant to random physical changes from infection.";
 		if "Resistant" is not listed in feats of player:
 			addfeat "Mutable" with "You are more prone to physical changes from mutation.";
-		addfeat "Mighty Mutation" with "More resistant to decreasing stats from random mutation.";
+		addfeat "Mighty Mutation" with "You can gain(and lose) stats from mutants.";
 		if "Mighty Mutation" is listed in feats of player:
 			addfeat "Bestial Power" with "Your body will no longer drop in stats from random mutation.";
 
@@ -195,11 +288,11 @@ This is the gainfeat rule:
 	if player consents:
 		add nam to feats of player;
 		say "You have gained '[nam]'!";
-		wait for any key;
-		decrease menu depth by 1;
+[		decrease menu depth by 1;			]
 		increase featgained of player by 1;
 		if nam is "Automatic Survival", decrease score by 600;
 		if nam is "More Time", extend game by 24;
+		now Featqualified is 0;
 		if nam is "Hardy":
 			increase maxhp of player by 8;
 			increase hp of player by 8;
@@ -211,13 +304,15 @@ This is the gainfeat rule:
 			now City Hospital is known;			
 			Now State fair is known;
 			Now Approaching the Capitol Building is known;
+[			Now Government Assistance is resolved;	[removes the random event for discovering the Capitol Bldg]	]
 			Now Plant Overview is known;
 			now Ravaged Power Plant is resolved;	[removes the random event for discovering the power plant]
 			Now Entrance to the Red Light District is known;
 			Now Entrance to the High Rise District is known;
 			Now Zoo entrance is known;
-			Now Dry Plain is known;
+			Now Dry Plains is known;
 			Now Museum Foyer is known;
-
+	wait for any key;
+	clear the screen and hyperlink list;
 
 Feats ends here.

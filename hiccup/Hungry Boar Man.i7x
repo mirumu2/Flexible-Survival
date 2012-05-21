@@ -7,11 +7,46 @@ Section 1 - The Situation
 
 Hungry Piggy is a situation.
 
+After resolving a hungry piggy, try looking;
+
+Instead of Resolving a Hungry Piggy:
+	if hbmr is 0:
+		say "While exploring the city, you stumble upon an odd sight in the basement of one of the buildings. A water pipe must have burst at some point, because the floor of the entire room is covered in mud. What[apostrophe]s even stranger is that it looks like someone is living down here despite all the mud.[line break][line break]You spot a strange boar man rolling in the mud on the floor. He[apostrophe]s enjoying himself so much that it takes him awhile to realize that someone is in the room. When he finally does, he stares at you with his beady pig eyes for a moment. Not knowing if he[apostrophe]s friendly or not, you mentally brace yourself for a fight.[line break][line break]You relax a little when he smiles and says, 'Hello there! My name is Philip. Don[apostrophe]t worry, I[apostrophe]m not like those other creatures that are roaming the streets, humping everything in sight. I am really hungry though, could you please FEED me?'";
+		increase hbmr by 1;
+		move the player to Pig Pen;
+		now the pig pen is known;
+		increase the score by 1;
+		now Hungry Piggy is Resolved;
+
+
+Section 2 - Pig Pen
+
+Pig Pen is a room. It is fasttravel. It is private.
+
+The description of Pig Pen is "Not a literal pig pen, a basement actually. The floor is covered in a thick layer of mud. It seems whomever lives here is well stocked with small bottles of water, but there is no food anywhere, just a bunch of empty wrappers. There is a foul odor in the air.";
+
+instead of sniffing Pig Pen:
+	say "This place smells like a sty.  Oh... wait... yeah.";
+
+
+Section 3 - Philip the Piggy
+
 HBMR is a number that varies.
 Lastpigfed is a number that varies. Lastpigfed is usually 800.
 Pigfed is a number that varies. Pigfed is usually 0.
 Pigfucked is a number that varies. Pigfucked is usually 0.
 lastPhilipfucked is a number that varies.  lastPhilipfucked is usually 800.
+
+Philip is a man.
+The description of Philip is "This creature is almost a complete pig, the only thing human about it is the fact that it is standing on two legs that end in hoofs instead of feet. He is extremely fat with a bald head, floppy ears, and an upturned nose. Flies are constantly buzzing around him, enticed by his foul odor. He has a huge, flabby gut that hangs half way over his crotch, but not far enough to hide a pig cock that is the size of your forearm. Past his cock is a pair of large swollen balls. He seems to take great delight in rolling around in the mud on the floor[if Philip is in Bunker].  He's made a mudhole of his own in one corner of the bunker by breaking a whole in the wall and cracking a pipe.  He and spends much of his time lounging in it[end if].";
+Philip is in Pig Pen.
+The conversation of Philip is { "Hello, oink!", "Snort!", "Do you think the people who come to rescue us will have lots of food?", "How did I end up like this? Some jerk zapped me with a strange ray gun that turned me into this.", "I love the feeling of mud against my skin."};
+
+instead of sniffing Philip:
+	say "Philip has the strong scent of a male hog[if pigfucked > 3].  You've become quite used to his musky scent and find it quite arousing now[end if].";
+
+
+Section 4 - Feeding the Piggy
 
 Pigfeeding is an action applying to nothing.
 
@@ -42,6 +77,10 @@ To pigfeed:
 		say "As you approach Philip, you accidentally step in some mud. Your feet begin to itch as they once more transform into pig hooves while your body plumps back up to piggy proportions.[line break][line break]";
 		now bodyname of player is "Piggy";
 		now body of player is "You have a big, fat body and you have pig hooves instead of feet. ";
+		now scalevalue of player is 3;
+		now bodydesc of player is "[one of]fat[or]overweight[or]plump[at random]";
+		now bodytype of player is "[one of]porcine[or]piggish[at random]";
+		now the daycycle of player is 0;
 	if lastpigfed - turns is less than 8:
 		if pigfed is 3:
 			say "'That's okay, I finally figured out how to scavenge safely on my own. You don't have to get food for me any more.' He oinks.";
@@ -75,7 +114,7 @@ To pigfeed:
 		say "'I[apostrophe]m still digesting the food you gave me before. However, I did find some other food a few minutes ago. You fed me, so I want to pay you back by feeding you. You can eat it if you want.' He says as he holds out a strange box.[line break][line break]You take a look at the box and notice that it is different from all the other packages of food that you've found. There is a picture of a cartoon pig on the front. The name of the product is too faded for you to read.";
 		say "Will you accept his offer and eat the food?";
 		if player consents:
-			say "'Here you go,' He oinks as he hands you the box, then he rolls over and promptly falls asleep in the mud.[line break][line break]You open the box and start chowing down on the food inside. As soon as you finish eating, you notice that the food didn't dull your hunger at all. That's when your entire head begins to feel strange. All the hair on your head falls out as your ears stretch out then flop downwards. Your nose aches for a second as the tip bends upwards until you're left with the nose of a pig. Your cheaks and face plump up with fat, making you look like you have beady little eyes and making it a little harder for you to see.";
+			say "'Here you go,' He oinks as he hands you the box, then he rolls over and promptly falls asleep in the mud.[line break][line break]You open the box and start chowing down on the food inside. As soon as you finish eating, you notice that the food didn't dull your hunger at all. That's when your entire head begins to feel strange. All the hair on your head falls out as your ears stretch out then flop downwards. Your nose aches for a second as the tip bends upwards until you're left with the nose of a pig. Your cheeks and face plump up with fat, making you look like you have beady little eyes and making it a little harder for you to see.";
 			now face of player is "has porcine with big and plump cheeks surrounding your upturned pig nose.  Your head is bald with big, floppy pig ears atop it.  Your face is rather hog-like now, with the occasional piggish snort to go along with it";
 			now facename of player is "Piggy";
 			increase stamina of player by 1;
@@ -102,6 +141,10 @@ To pigfeed:
 				say "Thank you,' He shouts as he snatches the food from you and starts to gobble it down.[line break][line break]The boar man goes into a feeding frenzy. He barely chews as he stuffs the food into his mouth and swallows it down. He almost seems to get a little bit fatter before your eyes as he eats. Stray flecks of saliva fly from his mouth and once again splash on you. Your body immediately begins to feel strange. Your body plumps up and your feet ache for a moment as they harden into pig hooves.[line break][line break]When he finishes eating, he eyes you appreciatively, then says, 'You seem to know how to find food. Can I come with you?'";
 				now bodyname of player is "Piggy";
 				now body of player is "big and fat and you have pig hooves instead of feet";
+				now scalevalue of player is 3;
+				now bodydesc of player is "[one of]fat[or]overweight[or]plump[at random]";
+				now bodytype of player is "[one of]porcine[or]piggish[at random]";
+				now the daycycle of player is 0;
 				say "Do you let him?";
 				if player consents:
 					add "water bottle" to invent of bunker;
@@ -116,7 +159,7 @@ To pigfeed:
 				otherwise:
 					say "'Well... alright, I'll stay here for now,' He oinks.";							
 			otherwise:
-				say "'You don't have any food,' he oinks saddly.";
+				say "'You don't have any food,' he oinks sadly.";
 				now lastpigfed is 250;
 				stop the action;
 		otherwise:
@@ -130,6 +173,9 @@ To pigfeed:
 		otherwise:
 			say "He groans and rubs his gut, 'I'm still digesting the food you gave me earlier. Come back later.'";
 			stop the action;
+
+
+Section 5 - Sexxxing the Piggy
 
 instead of fucking the philip:
 	if Philip is not visible:
@@ -154,6 +200,10 @@ instead of fucking the philip:
 		say "As you approach Philip, you accidentally step in some mud. Your feet begin to itch as they once more transform into pig hooves while your body plumps back up to piggy proportions.[line break][line break]";
 		now bodyname of player is "Piggy";
 		now body of player is "You have a big, fat body and you have pig hooves instead of feet. ";
+		now scalevalue of player is 3;
+		now bodydesc of player is "[one of]fat[or]overweight[or]plump[at random]";
+		now bodytype of player is "[one of]porcine[or]piggish[at random]";
+		now the daycycle of player is 0;
 	if cunts of player > 0:
 		say "Philip takes you by the hand and gently lays you down on the ground. He massages your tits as he positions his bulk on top of you. His huge gut rests on top of you, pinning you down. When he finally has his huge boar cock in position, he takes a moment to rub the tip against the puffy and moist lips of your pussy. Then, without warning, he thrusts his tool past your [cunt size desc of player] nether lips and deep into your pussy. You gasp in surprise and pleasure as he begins to gyrate his chubby hips, sending his cock in and out of you. You can feel his huge balls slapping against your inner thighs with each thrust. Philip oinks and squeals as he ruts you and soon you join in. Finally you experience a thundering orgasm and Philip lets out one loud, long squeal then thrusts his cock as far into you as he can, as he spews his hot pig seed into you.";
 		let baby be 0;
@@ -200,24 +250,7 @@ instead of fucking the philip:
 	now lastPhilipfucked is turns;
 
 
-After resolving a hungry piggy, try looking;
-
-Instead of Resolving a Hungry Piggy:
-	if hbmr is 0:	
-		say "While exploring the city, you stumble upon an odd sight in the basement of one of the buildings. A water pipe must have burst at some point, because the floor of the entire room is covered in mud. What[apostrophe]s even stranger is that it looks like someone is living down here despite all the mud.[line break][line break]You spot a strange boar man rolling in the mud on the floor. He[apostrophe]s enjoying himself so much that it takes him awhile to realize that someone is in the room. When he finally does, he stares at you with his beady pig eyes for a moment. Not knowing if he[apostrophe]s friendly or not, you mentally brace yourself for a fight.[line break][line break]You relax a little when he smiles and says, 'Hello there! My name is Philip. Don[apostrophe]t worry, I[apostrophe]m not like those other creatures that are roaming the streets, humping everything in sight. I am really hungry though, could you please FEED me?'";
-		increase hbmr by 1;
-		move the player to Pig Pen;
-		now the pig pen is known;
-		increase the score by 1;
-		now Hungry Piggy is Resolved;
-									
-Pig Pen is a room. It is fasttravel. It is private.
-
-The description of Pig Pen is "Not a literal pig pen, a basement actually. The floor is covered in a thick layer of mud. It seems whomever lives here is well stocked with small bottles of water, but there is no food anywhere, just a bunch of empty wrappers. There is a foul odor in the air.";
-Philip is a man.
-The description of Philip is "This creature is almost a complete pig, the only thing human about it is the fact that it is standing on two legs that end in hoofs instead of feet. He is extremely fat with a bald head, floppy ears, and an upturned nose. Flies are constantly buzzing around him, enticed by his foul odor. He has a huge, flabby gut that hangs half way over his crotch, but not far enough to hide a pig cock that is the size of your forearm. Past his cock is a pair of large swollen balls. He seems to take great delight in rolling around in the mud on the floor[if Philip is in Bunker].  He's made a mudhole of his own in one corner of the bunker by breaking a whole in the wall and cracking a pipe.  He and spends much of his time lounging in it[end if].";
-Philip is in Pig Pen.
-The conversation of Philip is { "Hello, oink!", "Snort!", "Do you think the people who come to rescue us will have lots of food?", "How did I end up like this? Some Jerk zapped me with a strange ray gun that turned me into this.", "I love the feeling of mud against my skin."};
+Section 6 - Ending the Piggy
 
 When play ends:
 	if bodyname of player is not "Messy Pig" and bodyname of player is not "Piggy":

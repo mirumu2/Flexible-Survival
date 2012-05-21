@@ -1,5 +1,5 @@
 Version 2 of Jaguar Orderly for FS by Stripes begins here.
-[Version 2 - Losing Sex and Endings adding]
+[Version 2.2 - Special ending]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 "Adds a Jaguar Orderly creature to Flexible Survivals Wandering Monsters table with impreg chance"
 [Description text for this Extension.]
@@ -28,7 +28,7 @@ to say losetojaguar:
 		if a random chance of 1 in 4 succeeds:
 			say "     The brutish, feline orderly growls and shoves you down, getting ready to continue wailing on you, but as a swipe of one clawed paw uncovers your rear end, he grins a gets other ideas.  Growling, he climbs atop you, pinning you down with one paw while the other removes any remaining clothes between him and his prize, that tight back door of yours.  You can feel his large shaft as it rubs against your rear.  It is quite large, perhaps a rather thick 9 inches of feline meat.  His precum leaks onto your ass as he moves to get lined up, then thrusts into you.";
 			say "     You release a very feline yowl as the strong male drives his big cock into you, making your arch your rear up further despite your own wishes.  Your mind grows more and more hazy as the feline mates you, pounding away at you like the wild jungle beast he resembles.  His hot breath blows across your neck as he licks and nips at it, as if resisting the urge to take the nape of your neck in a mating bite.";
-			say "     The orderly rumbles with heavy purrrs as he fucks you, the sound filling your ears and soothing you, making you want to listen to give in to it and be his fucktoy so you can listen to it forever.  You are filled with a joyful heat deep inside as he drives his cock deep inside you and unleashes his hot load, pumping his sperm into your bowels.  With that warmth filling you, you are driven over the edge into your own orgasm, shooting your seed onto the tiled floor.";
+			say "     The orderly rumbles with heavy purrrs as he fucks you, the sound filling your ears and soothing you, making you want to give in to it and be his big fucktoy so you can listen to it forever.  You are filled with a joyful heat deep inside as he drives his cock deep inside you and unleashes his hot load, pumping his sperm into your bowels.  With that warmth filling you, you are driven over the edge into your own orgasm, shooting your seed onto the tiled floor.";
 			say "     His load spent, the big male withdraws his cock slowly from you, licks your cheek a few times and gets back up.  He picks you up gently and lays you atop a nearby gurney to rest and recover from the powerful mating session.  You can't help but smile up at him as he drapes a blanket over you and nuzzles you with a soft purr before leaving you as you drift off for a nap after the romp.  The feel of the wild beastman's hot seed inside you fills you with a blissful warmth.";
 		otherwise:
 			say "     You are battered by the brutish, feline orderly and left in a heap to recover.";
@@ -42,21 +42,28 @@ to say beatthejaguar:
 
 to say jaguardesc:
 	choose row monster from the table of random critters;
+	let debit be 0;
+	now hp entry is 80;
+	now lev entry is 8;
+	now wdam entry is 10;
+	now int entry is 10;
+	if lev entry is less than level of player and hardmode is true:
+		now debit is ( level of player ) - lev entry;
+		increase lev entry by debit;
+		increase hp entry by debit * 4;
+		increase wdam entry by ( debit / 3 );
 	if sabtoothed is 1:		[permanent upgrade]
 		say "     Before you is a large, muscled figure in the light blue-green uniform of a hospital orderly.  But no man, this is a large jaguar creature.  But unlike the ones you've seen earlier at the hospital, this one is bigger and has large, sabretoothed fangs protruding from its upper jaw.  The devolved jaguarman growls and reaches to grab you with its powerful paws.";
-		now hp entry is 95;
-		now monsterhp is 95;
-		now lev entry is 9;
-		now wdam entry is 12;
+		increase hp entry by 15;
+		increase lev entry by 1;
+		increase wdam entry by ( square root of lev entry ) - 1;		[minor increasing bonus]
 		now int entry is 8;
 	otherwise:
 		say "     Before you is a large, muscled figure in the light blue-green uniform of a hospital orderly.  But no man, this is a large jaguar creature.  He looks you over angrily and reaches to grab you, obviously feeling you are somewhere you don't belong.";
-		now hp entry is 80;
-		now monsterhp is 80;
 	if triclamped is 1:		[permanent upgrade]
 		say "     Getting a closer look at the creature as it charges towards you, you can see traces of toughened scales at the top of its neck and there are three small horns on its head, one at the end of its muzzle and two over its brow.  These poke just a little out from his fur.";
-		increase hp entry by 15;
-		increase monsterhp by 15;
+		increase hp entry by 15 + debit;
+	now monsterhp is hp entry;
 
 Section 2 - Monster Insertion
 
@@ -126,19 +133,24 @@ when play ends:
 				say ".  You do all this for him gladly, though never understanding why he is so mean to you, his loyal follower.";
 			otherwise if hospquest is 13 and hp of doctor mouse is 2:
 				say "     The hospital is in disarray when you arrive, like an ant hive where the queen has been killed.  The various factions strike out at each other at times, but cooperate at others.  The various labs remain a no man's land, but the cafeteria is often host to in-fighting over mates.";
-				say "     It is only with the coming of the military that control is restored.  The united threat of military action unites the factions, at least temporarily.  And you would see that order remain and enact a plan that grows in the back of your mind.  Feeling the need to have someone in charge, you break from the defence and slip into the military lines, striking a small field hospital.  You incapacitate the staff and mate with them, making more jaguars out of them, but drag back the main doctor back to the hospital unchanged.";
-				say "     Confining him, you bring a canine from the collection of remaining test subjects, letting her mate with him until he becomes a canine doctor.  As you feel the call to follow him growing within you, you prevent him from becoming completely mindless and separate them.  The canine doctor fills his position well, taking charge of the hospital and its forces with military discipline.  When the military finally leave the city, you have a new leader to keep the medical facility in order.";
+				if intelligence of player >= 20 and charisma of player >= 15 and "Expert Medic" is listed in feats of player:
+					say "     It is only with the coming of the military that control is restored.  The united threat of military action unifies the factions, at least temporarily.  And you would see that order remain and start taking charge of the groups.  Feeling the need to have someone in charge, the other groups begin to respond to your commands, beginning to rely on you to fill that void.  Your familiarity and experience in the city helps counter the military incursion into the hospital by personally leading several strikes against the soldiers.  By attacking their squads and the field camps they've set up in the city using the experience you gained and your familiarity with its streets and its safe routes, you are able to put their lines into disarray.  This soon forces them to back off from the hospital and continue their search for survivors elsewhere before pulling out of the city.";
+					say "     Taking over as the head of the hospital from that point comes naturally.  The groups fall into line and order is restored to you hospital.  While lacking the extensive medical training and experience Dr. Mouse had, you learn quickly by studying the numerous medical books and journals throughout the hospital.  You even start up some experiments of your own, adding more staff to your hospital as you do.  While your experiments are not as ambitious as the mouse's, you don't feel an urge to leave the hospital like he did, content with your orderly medical center and your sexual testing into the nanite infection to add more amusing variety to the staff of hospital creatures for you to enjoy.";
+					increase score by 50;
+				otherwise:
+					say "     It is only with the coming of the military that control is restored.  The united threat of military action unifies the factions, at least temporarily.  And you would see that order remain and enact a plan that grows in the back of your mind.  Feeling the need to have someone in charge, you break from the defence and slip into the military lines, striking a small field hospital.  You incapacitate the staff and mate with them, making more jaguars out of them, but drag back the main doctor back to the hospital unchanged.";
+					say "     Confining him, you bring a canine from the collection of remaining test subjects, letting her mate with him until he becomes a canine doctor.  As you feel the call to follow him growing within you, you prevent him from becoming completely mindless and separate them.  The canine doctor fills his position well, taking charge of the hospital and its forces with military discipline.  When the military finally leave the city, you have a new leader to keep the medical facility in order.";
 			otherwise:
 				say "     Driven by your new instincts, you report back to Dr Mouse, though only vaguely remembering the experiences that lead you to know him.  He somehow recognizes you readily and happily welcomes you to his staff.  He has you join one of his exploratory teams, collecting samples and test subjects for the doctor's research.  Having had much experience, your team is quite successful, always bringing in the test subjects the mouse doctor requires for his increasingly twisted and perverse experiments[if susan is in hidden lab].  Susan, as his assistant, is there with him to greet you each time you return and reward you with lustful sex[end if].";
 				say "     When the military action finally begins in earnest, you, [if susan is in hidden lab]Susan, [end if]several other hand-picked staff and Dr Mouse escape through the underground tunnels while the helicopter and the hospital defenders act as a distraction.  You all escape out of the city and Dr Mouse sets up a new lab in secret.  He begins selling off the fruits of his research to foreign powers and the growing factions of transformed creatures that form.  You continue to act as his agent in the world, attacking and capturing test subjects when he sends you out for more.";
 		otherwise:
-			say "     After being released by the military forces after rescue, you are aimless in your life for a time.  Your brutish body is offputting to many, making it difficult for others to accept you.  But then, one day while at a clinic with a feline flu, there is a commotion.  A bull man, who probably never properly reintegrated, snaps and goes on a rampage.  Reacting instinctively, you signal to a doctor and nurse your intent, then grab his arm in a hold from behind.  You are firm, but gentle as you press his chest down onto the counter while the pair sedate him.";
+			say "     After being released by the military forces after rescue, you are aimless in your life for a time.  Your brutish body is off-putting to many, making it difficult for others to accept you.  But then, one day while at a clinic with a feline flu, there is a commotion.  A bull man, who probably never properly reintegrated, snaps and goes on a rampage.  Reacting instinctively, you signal to a doctor and nurse your intent, then grab his arm in a hold from behind.  You are firm, but gentle as you press his chest down onto the counter while the pair sedate him.";
 			say "     While the nurse is fully human, the doctor has multifaceted eyes and a pair of antennae.  They thank you for your help and take you in for treatment next in way of thanks.  Getting to talking with them, you start to become friends and a week later, you are hired on as an orderly at the clinic.  Working there, you are given a sense of fulfillment that is worth more to you than your pay.";
 			if cocks of player > 0:
-				say "     One day while on break, your nurse friend comes up to you and asks for you to give her a hand with something.  Following her off to an unused room, she locks the door and kisses you.  Working at a clinic for transformed medicine, she is used to seeing animal bodies, but has never had sex with a transformee.  And you are quite happy to help her with that problem.  Your romp lasts through your whole break and beyond, a quiet but energetic pounding that leaves you both panting for breath.  From that day on, your dalliances on break are frequent but discrete, though everyone at the clinic comes to know of them and make no objections about it.  And why should they, for most of them have such partners of their own.";
+				say "     One day while on break, your nurse friend comes up to you and asks for you to give her a hand with something.  Following her off to an unused room, she locks the door and kisses you.  Working at a clinic for transformed medicine, she is used to seeing animal bodies and enlarged organs, but has never had sex with a transformee.  And you are quite happy to help her with that problem.  Your romp lasts through your whole break and beyond, a quiet but energetic pounding that leaves you both panting for breath.  From that day on, your dalliances on break are frequent but discrete, though everyone at the clinic comes to know of them and make no objections about it.  And why should they, for most of them have such partners of their own.";
 				say "     The woman remains untransformed, even after becoming your loving mate.  She bears you many jaguar cubs over the years.  You find the sight of the lovely, human woman nursing her spotted cubs quite beautiful and arousing.";
 			otherwise:
-				say "     One day while on break, your doctor friend comes up to you and asks for you to give him a hand with something.  Following her off to an unused room, he locks the door and runs his hands over you.  You kiss passionately, moaning softly before you stiffle it to keep the noise down.  Having insectile eyes, he can understand the treatment you receive based on your appearance, but he can see past that.  Despite his standing as a doctor at a clinic for transformed medicine, he's been without sex since his transformation.  And you are quite happy to help him with that problem.  Your romp lasts through your whole break and beyond, a quiet but energetic pounding that leaves you both panting for breath.  From that day on, your dalliances on break are frequent but discrete, though everyone at the clinic comes to know of them and make no objections about it.  And why should they, for most of them have such partners of their own.";
+				say "     One day while on break, your doctor friend comes up to you and asks for you to give him a hand with something.  Following him off to an unused room, he locks the door and runs his hands over you.  You kiss passionately, moaning softly before you stifle it to keep the noise down.  Having insectile eyes, he can understand the treatment you receive based on your appearance, but he can see past that.  Despite his standing as a doctor at a clinic for transformed medicine, he's been without sex since his transformation.  And you are quite happy to help him with that problem.  Your romp lasts through your whole break and beyond, a quiet but energetic pounding that leaves you both panting for breath.  From that day on, your dalliances on break are frequent but discrete, though everyone at the clinic comes to know of them and make no objections about it.  And why should they, for most of them have such partners of their own.";
 				if "Sterile" is not listed in feats of player:
 					say "     You and the doctor become frequent lovers and then mates.  His first time with you, having been so pent up, fills you with his seed and you gain a plump belly of cubs over the next few months.  You give birth to several jaguar cubs with shining, multifaceted eyes, antennae and gossamer wings.  Taking care of rambunctious cubs that can flit around on fairy-like wings is not easy, but you both are happy and oh so proud of them.  And always eager to give them more siblings.";
 				otherwise:

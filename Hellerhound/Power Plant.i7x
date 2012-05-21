@@ -2,7 +2,7 @@ Power Plant by Hellerhound begins here.
 
 Include Computers by Hellerhound.
 
-[nuku: to add, make sure you delete the line taht adds a library computer to the Grey Abbey Library, or there will be interference]
+[nuku: to add, make sure you delete the line that adds a library computer to the Grey Abbey Library, or there will be interference]
 
 
 
@@ -16,7 +16,7 @@ instead of resolving a Ravaged Power Plant:
 
 foundparts is a number that varies.
 
-Generator Parts  is a situation.
+Generator Parts is a situation.
 
 instead of resolving a Generator Parts:
 	if foundparts is 0:
@@ -28,8 +28,18 @@ instead of resolving a Generator Parts:
 		now foundparts is 2;
 		now fixedgens is 1;
 
+[Scents of rooms]
+instead of sniffing Plant Lobby:
+	say "The power plant lobby smells of smoke, ash and cum.";
 
+instead of sniffing Control Room:
+	say "The control room smells of burnt electronics and ozone along with the harsh, sulfurous scents from the magma.";
 
+instead of sniffing Plant Overview:
+	say "There is a faint scent of smoke coming from the power plant.";
+
+instead of sniffing Cat Walk:
+	say "The sulfurous scent of the lava rises up to mix with the scent of ozone and machinery up here.";
 
 
 broken fence is a door. "The flattened fence to the east allows access from the city.".
@@ -66,7 +76,8 @@ Table of Game Objects(continued)
 name	desc	weight	object
 "Cat Key"	"A key with a picture of a cat attached to it. Odd. What does this unlock?"	1	Cat key
 
-
+instead of sniffing pocketknife:
+	say "There is a faint scent of ozone lingering to the key fob.";
 
 the invent of Red Light District is {"Cat Key"}.
 
@@ -82,13 +93,13 @@ West of Catwalk Door is Cat Walk.
 to say catwalkstuff:
 	if fixedgens is 1:
 		say "The parts you found match this generator perfectly. You fix the generator, and the malfunction light on the generator turns green to show the generator could work. You wait with bated breath for it to work.";
-		wait for any key;
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		now fixedgens is 2;
 		if findwires is 2:
 			say "The generator begins to hum, and the green lights indicating that power is flowing begin to flash. Hooray!";
 			increase score by 200;
 		otherwise:
-			say "The generator is not running, so maybe there is nothing for it to power? Maybe you should check the contrl panels.";
+			say "The generator is not running, so maybe there is nothing for it to power? Maybe you should check the control panels.";
 	otherwise if fixedgens is 2:
 		say "The hum of the fixed generator sounds like music to your ears.";
 	otherwise:
@@ -114,13 +125,13 @@ carry out activating:
 	if findwires is 2 and fixedgens is 2:
 		say "The power light for the library is on! Yay! Maybe the computers work?";
 	otherwise if fixedgens is 0:
-		say "The power light is still off, and a malfunction light for the genrator is on. Looks like you will have to fix it.";
+		say "The power light is still off, and a malfunction light for the generator is on. Looks like you will have to fix it.";
 	otherwise if fixedgens is 1:
 		say "The malfunction light is on, and you have the missing parts. You'll have to go out on the catwalk to fix it.";
 		
 
 
-Power Lines is a room. "A large power line tower stands here[if findwires is not 2], but the top is broken off and on the ground. The surrounding fence is melted and charred, like something spat magma at it, and the bottom of the tower is scorched, but it still looks serviceable. You remember how this tower was constructed to give power to the library. You could probably try to [bold type]fix[roman type] it.[otherwise]. The perimeter fence is melted and the ground is blackened, but the top is on and a green light is blinking above.[end if]".
+Power Lines is a room. "A large power line tower stands here[if findwires is not 2], but the top is broken off and on the ground. The surrounding fence is melted and charred, like something spat magma at it, and the bottom of the tower is scorched, but it still looks serviceable. You remember how this tower was constructed to give power to the library. You could probably try to [bold type]fix[roman type] it.[otherwise if fixedgens is 2]. The perimeter fence is melted and the ground is blackened, but the top is on and a green light is blinking above.[otherwise].  The perimeter fence is melted and the ground is blackened, but the top is on and the amber light is blinking, awaiting power.[end if]".
 Power Lines is fasttravel.
 
 
@@ -144,8 +155,11 @@ carry out towerfixing:
 	if a random number between one and 20 is greater than the strength of the player:
 		say "The tower top slips, and falls. Maybe you could try to fix it again?";
 	otherwise:
-		say "The tower top slides into place, and the stress on the wires is released. A green light begins blinking on top of the tower.";
-		now findwires is 2;
+		say "The tower top slides into place, and the stress on the wires is released. An amber light begins blinking on top of the tower.";
+		if fixedgens is 2:
+			say "The blinking light flashes a few times, then turns green, indicating power is up and running. Hooray!";
+			increase score by 200;
+			now findwires is 2;
 		activatecomputers;
 
 computeron is a number that varies.

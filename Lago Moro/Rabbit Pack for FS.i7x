@@ -6,6 +6,11 @@ Version 1 of Rabbit Pack For FS by Lago Moro begins here.
 
 Section 1 - Monster Responses
 
+when play begins:
+	add { "rabbit pack" } to infections of girl;
+	add { "rabbit pack" } to infections of guy;
+	add { "rabbit pack" } to infections of furry;
+
 [ Use To say for overlong behaviours that would make the table difficult to read and understand. Typically needed if there are alot of cock/species/cunt checks. ] 
 
 to say rabpackdesc:
@@ -15,14 +20,14 @@ to say rabpackdesc:
 	otherwise if "Just One" is listed in feats of player:
 		say "However, something in your scent sends the critter away from you. (They won't attack you if you have the Just One feat.)[combat abort]";
 	otherwise:
-		say "However, the creature is not alone. In an istant you are surrounded by about ten rabbit-like creatures, some females, other males, all wanting YOU!";
+		say "However, the creature is not alone. In an instant, you are surrounded by about ten rabbit-like creatures, some females, other males, all wanting YOU!";
 
 
 to say rabpackvictory:
 	if bodyname of player is "rabbit pack":
-		say "The rabbit creatures take all of you into a nearby abandoned building. They...no, it has plans for you, and it doesn[apostrophe]t wants unwanted guests.[line break] After laying you to the ground, they step back, sitting or crouching around you. Instinctually, you group together all of your copies, for how your injures can afford. One of them slowly creeps closer, making a noise, an attempt to tranquilize you. [one of]He[or]She[at random] hugs you, kissing tenderly your forehead until you calm down. The other part soon join in...";
-		wait for any key;
-		say "It[apostrophe]s so slow...not lazy or sluggish, but costantly building up your pleasure, a tiny bit at a time. Couples and groups changes constantly, without a pattern, and you weakly realize that a few of your own copies are making out with each other. Even your thoughts are interweaving with...well...hir, and you find your consciousness passing from male to female in a pinkish blur...either by you or to you, cocks are [one of]jerked[or]sucked[or]inserted[at random], breasts[one of]massaged[or]milked[at random], asses[one of]groped[or]prodded[at random], cunts[one of]licked[or]fingered[or]filled[at random]...every often a [one of]sweet[or]warm[or]lovely[at random] kiss...";
+		say "The rabbit creatures take all of you into a nearby abandoned building. They...no, it has plans for you, and it doesn[apostrophe]t wants unwanted guests.[line break] After laying you to the ground, they step back, sitting or crouching around you. Instinctively, you group together all of your copies, for how your injures can afford. One of them slowly creeps closer, making a noise, an attempt to tranquilize you. [one of]He[or]She[at random] hugs you, kissing tenderly your forehead until you calm down. The other part soon join in...";
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
+		say "It[apostrophe]s so slow...not lazy or sluggish, but constantly building up your pleasure, a tiny bit at a time. Couples and groups changes constantly, without a pattern, and you weakly realize that a few of your own copies are making out with each other. Even your thoughts are interweaving with...well...hir, and you find your consciousness passing from male to female in a pinkish blur...either by you or to you, cocks are [one of]jerked[or]sucked[or]inserted[at random], breasts[one of]massaged[or]milked[at random], asses[one of]groped[or]prodded[at random], cunts[one of]licked[or]fingered[or]filled[at random]...every often a [one of]sweet[or]warm[or]lovely[at random] kiss...";
 		say "After at least hours, it finally ends. After a little rest, they escort you back to where they ambushed you, worn-out but satisfied.";
 		decrease libido of player by 50;
 	otherwise:
@@ -33,7 +38,7 @@ to say rabpacka:
 	if breast size of player > 6:
 		say "They immediately eye your generous bosom; two of them, one for side, kneel down and begin sucking and fondling your [breast size of player] breasts.";
 	otherwise:
-		say "You feel a weigth on your chest as one of them sits on it, smiling happily at you. [one of]She then slides closer, putting her pussy right in front of you. You comply, licking it while she sighs and moans[or]He leans closer and kisses you lovingly, while you can feel a small pressure as his cock slides out on is own, a little spot of pre already matting your skin[at random].";
+		say "You feel a weight on your chest as one of them sits on it, smiling happily at you. [one of]She then slides closer, putting her pussy right in front of you. You comply, licking it while she sighs and moans[or]He leans closer and kisses you lovingly, while you can feel a small pressure as his cock slides out on is own, a little spot of pre already matting your skin[at random].";
 
 to say rabpackb:
 	if cocks of player > 0:
@@ -49,7 +54,7 @@ to say rabpackc:
 		if cunt width of player > 7:
 			say "At the same time you feel at least a pair of tongues licking your feminine folds. You can't see what exactly is going on, but the increasing moistness of your groin is a sure indication...";
 		otherwise:
-			say "At the same time you feel someone gently licking your feminine folds. It[apostrophe]s not invasive, but costant and agonizily slow, just like everything else they are doing to you...";
+			say "At the same time you feel someone gently licking your feminine folds. It[apostrophe]s not invasive, but constant and agonizingly slow, just like everything else they are doing to you...";
 	otherwise:
 		say "";
 
@@ -65,7 +70,7 @@ When Play begins:
 	Choose a blank row from Table of random critters;
 	now name entry is "rabbit pack"; [Name of your new Monster]
 	now attack entry is "[one of]They pounce on you all at the same time![or]One of them crawls on your back and hits you in the head. More than once.[or]You lose your balance and fall on the ground! They try to pin you down![or]One of them manages to flank you and attack by surprise.[at random]"; [Text used when the monster makes an Attack]
-	now defeated entry is "You finall manage to incapacitate most of them. You go away while those still conscious are dragging their comrades to safety."; [ Text or say command used when Monster is defeated.]
+	now defeated entry is "You finally manage to incapacitate most of them. You go away while those still conscious are dragging their comrades to safety."; [ Text or say command used when Monster is defeated.]
 	now victory entry is  "[rabpackvictory]"; [ Text used when monster wins, can be directly entered like combat text or description. or if more complex it can be linked to a 'To Say' block as the demonstration text shows.] 
 	now desc entry is "[rabpackdesc]";[ Description of the creature when you encounter it.]
 	now face entry is "rabbit ears sprouting from the top of your head and flopping around the sides of your";[ Face description, format as the text "Your have a (your text) face."] 
@@ -74,7 +79,7 @@ When Play begins:
 	now tail entry is "You have a [one of]short[or]fluffy[or]twitchy[at random] rabbit tail.";[ Tail description, write a whole Sentence or leave blank. ] 
 	now cock entry is "humanlike";[ Cock Description, format as you have a 'size' (your text) cock] 
 	now face change entry is "floppy bunny ears sprout from the top of your head and hang on the sides of your face."; [ face change text. format as "Your face feels funny as (your text)" ]
-	now body change entry is "you feel your head spin and lose consciousness. When you wake up, you open your eyes...your multiple pair of eyes. To your horror, you see that you have been splitted into many smaller copies of your previous form! Luckily, you retained your personality and mental sanity... but for how long?"; [ body change text. format as "Your body feels funny as (your text)" ]
+	now body change entry is "you feel your head spin and lose consciousness. When you wake up, you open your eyes...your multiple pair of eyes. To your horror, you see that you have been split into many smaller copies of your previous form! Luckily, you retained your personality and mental sanity... but for how long?"; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "a little coating of fur covers you from head to toe. Feels almost like velvet.."; [ skin change text. format as "Your skin feels funny as (your text)" ]
 	now ass change entry is "A little tail sprouts, waggling."; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
 	now cock change entry is "it becomes humanlike, covered with foreskin. A pair of soft balls descends as well."; [ cock change text. format as "Your cock feels funny as (your text)" ]
@@ -123,11 +128,11 @@ Choose a blank row from Table of infection heat;
 now infect name entry is "rabbit pack"; [ This should be exactly the same as your monster name in the main table]
 now heat cycle entry is 1; [ This is the number of days a heat "cycle" lasts, usualy 7 ]
 now heat duration entry is 1; [ This is how many days of the cycle you are actualy in heat. default is 1, set it to the same as cycle for permanently in heat.]
-now trigger text entry is "This is probably the strangest situation you have ever been into. Instinctually you know what exactly is going on, but in pratice you are scared and confused. Let[apostrophe]s see...you can have female or male 'bodies', but not herms... you have a 'body' for every cock or pussy you had... and what else..."; [ This is the text that is written to the screen when the player comes into heat]
+now trigger text entry is "This is probably the strangest situation you have ever been into. Instinctively you know what exactly is going on, but in practice you are scared and confused. Let[apostrophe]s see...you can have female or male 'bodies', but not herms... you have a 'body' for every cock or pussy you had... and what else..."; [ This is the text that is written to the screen when the player comes into heat]
 now inheat entry is "[rabpackinheat]"; [this final say block is triggered every 3 hours the player is in heat. you can use defaultheat or write your own. defaultheat riaises libido value by 5 every 3 hours. ]
 
 to say rabpackinheat:
-	say "[one of]Repeat: there is only a me. A single me. A single consciousness. There is no 'we', only 'I'. I can[apostrophe]t go insane now.[or]Maybe is the infection, but you find yourself calling a male body a 'cock', and a female one a 'pussy', or similar... what the hell...[or]Even if your individual bodies are weaker, you can coordinate them with ease. And two pair of eyes are better than just one, for example.[or]You realize one of your copies is acting affectionately towards another one, on its own. You can[apostrophe]t help it: it[apostrophe]s like a tic.[or]How was it? A female copy for every cunt and a male one for every penis? So waht would happen if you were to lose both?[or]Note to self: talking and generally do things in perfect synchrony tends to unnerve people.[or]It is a bit odd to define the whole bunch of your copies [apostrophe]your body[apostrophe]. You still want to cling to how much sanity you have left, though.[at random]";
+	say "[one of]Repeat: there is only a me. A single me. A single consciousness. There is no 'we', only 'I'. I can[apostrophe]t go insane now.[or]Maybe is the infection, but you find yourself calling a male body a 'cock', and a female one a 'pussy', or similar... what the hell...[or]Even if your individual bodies are weaker, you can coordinate them with ease. And two pair of eyes are better than just one, for example.[or]You realize one of your copies is acting affectionately towards another one, on its own. You can[apostrophe]t help it: it[apostrophe]s like a tic.[or]How was it? A female copy for every cunt and a male one for every penis? So what would happen if you were to lose both?[or]Note to self: talking and generally do things in perfect synchrony tends to unnerve people.[or]It is a bit odd to define the whole bunch of your copies [apostrophe]your body[apostrophe]. You still want to cling to how much sanity you have left, though.[at random]";
 	increase libido of player by 1;
 	decrease humanity of player by 1;
 [ +++++ ] 

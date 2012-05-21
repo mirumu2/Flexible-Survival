@@ -1,5 +1,5 @@
 Version 2 of Red Events by Stripes begins here.
-[version 2.1 - exclusions added]
+[version 2.2 - Aussie Pub moved to Down Under Pub file]
 
 "Adds a series of random events to Flexible Survival located at or focusing on the Red Light District."
 
@@ -12,7 +12,6 @@ when play begins:
 	add Leather Wolves to badspots of girl;
 	add Leather Wolves to badspots of guy;
 	add Leather Wolves to badspots of furry;
-	add Leather Wolves to badspots of humorous;
 
 Instead of resolving a Leather Wolves:
 	say "     Some noise up ahead attracts your attention and you creep closer.  Hunkering down behind a pair of cars, you look at the small pack of wolfmen gathered in front of a leather store.  At some point, several of the mannequins have been stripped of their outfits and the wolves seem to be wearing them.  Somehow they leather gear is shaped to cover large parts of their lupine faces and transformed bodies.  A pair of them are indulging in sex on the leather harness they[apostrophe]ve hung from a building-side flagpole.  Others are stroking themselves off or fingering their pussies while they watch.  As you study the pack more closely, you come to realize that they are not merely wearing the leather, but that it is part of them at the same time.";
@@ -39,11 +38,12 @@ name	desc	weight	object
 
 riding crop is an armament. It is part of the player. It has a weapon "[one of]your riding crop[or]your crop[or]your leather crop[or]your disciplinary tool[at random]". The weapon damage of riding crop is 4. The weapon type of riding crop is "Melee". It is not temporary.
 
-
+instead of sniffing the riding crop:
+	say "The riding crop smells of leather and discipline.";
 
 Section 3- Raided Corner Store
 
-Raided Corner Store is a situation.
+Raided Corner Store is a situation.  The level of Raided Corner Store is 3.
 The sarea of Raided Corner Store is "Red";
 when play begins:
 	add Raided Corner Store to badspots of hermaphrodite;
@@ -78,55 +78,11 @@ Instead of resolving a Raided Corner Store:
 
 Section 4- Aussie Pub
 
-Aussie Pub is a situation.
-The sarea of Aussie Pub is "Red";
-when play begins:
-	add Aussie Pub to badspots of girl;
-	add Aussie Pub to badspots of guy;
-	add Aussie Pub to badspots of hermaphrodite;
-	add Aussie Pub to badspots of furry;
-
-Instead of resolving a Aussie Pub:
-	say "     While exploring the area, you come across an Australian themed pub previously called 'Down Under'.  Some bright blue paint has been used to add 'TAKE ME' to the front of its name.  Through the windows, you can see there are lots of carousing and arousing kangaroos in the pub.  You can see them eating, drinking and/or fucking with uproarious enjoyment inside.";
-	if the bodyname of player is "red kangaroo":
-		say "     You feel a longing to join them.  Do you enter? (Y/N)";
-		if player consents:
-			say "     Giving into the urge, you step over to the door and go in.  There is a brief lull in the sound at your entrance, but it quickly picks up again.  You are one of them and welcome.  Some beer and food are put in front of you by a sexy kangaroo doe in a tight top.  Seeming eager to greet the newcomer, she[apostrophe]s soon under the table and lapping at your groin.";
-			if cocks of player > 0:				[ MALE/HERM! ]	
-				say "     After a long bout of teasing while you enjoy the meal you[apostrophe]ve been given, you pull the doe up to sit in your lap, driving your cock into her and plowing her good and hard.  You run your hands over each other[apostrophe]s body while she bounces on your cock, using her strong roo legs.  You play with her breasts and suck her nipples while she moans lustily.  The other patrons near you slap your back in encouragement, joking about how she likes to break in every newcomer.  From what you can gather, seeing how your focus is always drawn back to the buxom doe in your lap, is that you[apostrophe]re managing to last longer than most.  You do eventually pop off, blasting your hot seed into her gripping tunnel.";
-			otherwise:						[ FEMALE! ]
-				say "     After a long bout of teasing while you enjoy the meal you[apostrophe]ve been given, you pull the doe up into your arms.  You run your hands over each other[apostrophe]s body, playing with her breasts and sucking her nipples.  She calls over to the bartender for something she calls her 'double-duty', which turns out to be a double-ended dildo that she[apostrophe]s soon sharing with you, much to the enjoyment of the crowd.  The other patrons near you slap your back in encouragement, joking about how she likes to break in every newcomer.  From what you can gather, seeing how your focus is always drawn back to the buxom doe in your lap, is that you[apostrophe]re managing to last longer than most.  You are eventually struck by a thunderous orgasm that leaves you spinning for a few minutes.";
-			say "     Once she[apostrophe]s done with you, she gives you a kiss and heads off to deal with the other patrons, who seem to be happy to trade a delay in service for her usual sex show.  You[apostrophe]re informed by a friendly joey in the next booth that they have a generator hooked up for power and they[apostrophe]ve syphoned gas from the nearby station to run it.  'Just like Mad Max', he says with a laugh.  You carouse with them for hours, a romp of drinking, sinking and sex.";
-			say "     The main attraction comes as you[apostrophe]re finishing up a fulfilling fuck under a strong, masculine boomer who plows you good and hard. From somewhere in the back, probably having been locked in a store room, a dog-eared man is dragged out.  He[apostrophe]s got a collar and leash on and nothing else.  He[apostrophe]s spread across a table and held down, with many of the roos taking turns to fuck him, changing him more and more into another kangaroo like yourselves.  Once the buck atop you has filled you with his cream, you[apostrophe]re off like a shot to screw the increasingly willing hybrid, caught up in the moment with the lascivious roos.";
-			if cocks of player > 0:				[ MALE/HERM! ]	
-				say "     You get lucky, getting there just as he gets a new pussy, which you quickly fill with your cock.  You lick and kiss the rising breasts on the new jill[apostrophe]s chest, taking perverse satisfaction in helping to change the mostly human-male into a herm doe for you and the others to fuck.  Eventually, after you and many others have filled her with your seed, shi[apostrophe]s released from the table.  Shi eagerly joins the first buck who took hir in his booth, showing hir appreciation by sucking him off.";
-			otherwise:						[ FEMALE! ]
-				say "     Having just finished with the boomer, you bring you messy pussy above the playtoy[apostrophe]s lips, letting it drip down onto him.  He has his tongue up in your pussy almost immediately, seeking that thick, virile taste.  He licks and teases your pussy aggressively as he seeks out every drop of roo cum he can get.  From your vantage point above him, you get to watch as a new, wet slit forms under his balls, wet and dripping with need.  You lick and finger hir in return, taking perverse satisfaction in helping to change the mostly-human male into a herm doe for you and the others to enjoy.  Eventually, after you and many others have finished playing with hir, shi[apostrophe]s released from the table. Shi eagerly joins the first buck who took hir in his booth, showing hir appreciation by sucking him off.";
-			say "     Eventually, the party winds down, appetites (both carnal and more mundane) are sated and you head off with several of the others.  Part of you feels quite drawn to the rambunctious roos and you look forward to finding more to have fun with in the future.";
-			infect "red kangaroo";
-			infect "red kangaroo";
-			decrease humanity of player by 18;
-			decrease thirst of player by 30;
-			decrease hunger of player by 12;
-			increase score by 25;
-			if hunger of player is less than 0:
-				now hunger of player is 0;
-			if thirst of player < 0:
-				now thirst of player is 0;
-		otherwise:
-			say "You resist the temptation and head off with a little more resolve.";
-			increase score by 1;
-			increase humanity of player by 5;
-	otherwise:
-		say "You decide it[apostrophe]d probably be best to head for sneak away before you[apostrophe]re noticed.";
-		increase score by 1;
-	Now Aussie Pub is resolved;
-
-
+[ Moved to Down Under Pub ]
 
 Section 5- Flooded Street
 
-Flooded Street is a situation.
+Flooded Street is a situation.  The level of Flooded Street is 3.
 The sarea of Flooded Street is "Red";
 when play begins:
 	add Flooded Street to badspots of guy;
@@ -134,7 +90,7 @@ when play begins:
 
 Instead of resolving a Flooded Street:
 	say "     You come across a small lake of cum blocking your path.  This section of street is literally flooded with cum.  Wading through musky pond are several of those giant walking cocks.  At the far side of the cum flood, a pair of them are pleasuring one another, releasing more spurts into the sea of semen.  You certainly cannot cross here and expect to remain intact and so start to back away slowly.";
-	wait for any key;
+	if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 	if a random chance of 1 in 3 succeeds:
 		say "     You are spotted by one of the ambulatory cock creatures and its rush towards you alerts the others.";
 		say "[line break]";
@@ -168,7 +124,7 @@ Instead of resolving a Strip Bar:
 			increase score by 1;
 		now stripbarcounter is 2;
 	otherwise if stripbarcounter is 2:
-		say "     You come to a third strip bar tucked into secluded part of this seedy part of town.  It seems to have faired relatively well, with only minor damage.  After a cautious glance inside, you don[apostrophe]t see any signs of trouble.  Do you enter?";
+		say "     You come to a third strip bar tucked into secluded part of this seedy part of town.  It seems to have fared relatively well, with only minor damage.  After a cautious glance inside, you don[apostrophe]t see any signs of trouble.  Do you enter?";
 		if player consents:
 			say "[stripbarsearch]";
 		otherwise:
@@ -247,12 +203,18 @@ when play begins:
 
 Instead of resolving a Evangelist:
 	say "     While trying to cross between stopped cars at a large intersection, you are stopped by the sound of someone climbing onto a car.  Still hunkered down, you see a unchanged human.  Unshaven for several days and dressed in dirty clothes, he smells strongly of alcohol.  He is wild-eyed and waves a bible around as he start yelling at no one.  He goes on incoherently about sinners, Babylon, bedding down with animals, damnation and so forth.  You try to calm him down, but he will have none of it.  Clearly overwrought by witnessing the transforming populous from his hiding spot, he[apostrophe]s gone off the deep end.  From some of his rambling, you gather he[apostrophe]s always been upset by the lascivious nature of the neighbourhood around his home.";
-	say "     Before you can get him to be quiet long enough to talk, it[apostrophe]s too late.  Drawn by the ruckus, the nearby monsters have taken notice and approach the intersection from all sides.  Seeing an unchanged human, they go ballistic and charge forward.  With you between them, you are forced to stuggle against the maddened tide of lustful monsters.[line break]";
+	say "     Before you can get him to be quiet long enough to talk, it[apostrophe]s too late.  Drawn by the ruckus, the nearby monsters have taken notice and approach the intersection from all sides.  Seeing an unchanged human, they go ballistic and charge forward.  With you between them, you are forced to struggle against the maddened tide of lustful monsters.[line break]";
+	if a random chance of 1 in 3 succeeds, now battleground is "Outside";
 	fight;
+	now battleground is "Red";
 	say "     Looking up during a brief moment of respite, you see the would-be evangelist swinging his hardcover bible like a club, still screaming incessantly about the corruption of the flesh.  Madness has given him strength and he manages to keep the monsters from climbing onto the car roof.  The fact that many of the second ring of monsters around him are trying to mate those closer help him as well.  Before you can consider whether to push forward to help him or try to make your escape, you are drawn into another fight.[line break]";
+	if a random chance of 1 in 3 succeeds, now battleground is "High";
 	fight;
+	now battleground is "Red";
 	say "     Having dealt with the next, you look over just in time to see the man get blasted across the face by a large splatter of cum.  Turning to the side, you see a trio of leather-clad wolves with their arms around the body of one of the large, cock-shaped creatures.  They stroke and tease it again, this time one mounting it from behind as the others aim.  Another volley is shot, striking the man in the chest.  He[apostrophe]s already begun to transform, face taking the smooth shape of a giant glans and torso reshaping into a giant cock.  The press of fur and flesh around you brings another monster to press against you, trying to bear you down to take its pleasure.[line break]";
+	if a random chance of 1 in 3 succeeds, now battleground is "Outside";
 	fight;
+	now battleground is "Red";
 	say "     Taking a quick breath, you look back to what remains of the man, but find him but another piece of the writhing mass of orgiastic sex.  Only the tattered remains of his clothes let you spot him, he is shifting almost constantly as he is spit-roasted by a leopard guy at the front and a raccoon herm at the rear.  Several others stroke their cocks, spraying cum all over him, and he seems to be loving it.  Lost in the release of his long pent-up inhibitions, he has joined the mindlessly infected.";
 	if libido of player > 39:
 		say "     The sights, sounds and scents around you are becoming more and more cloying.  You look around, seeing so many attractive pairings and trios of lustful animals.  You are tempted to join them - to simply give into the lustful mass and join the orgy.";
@@ -266,7 +228,7 @@ Instead of resolving a Evangelist:
 			increase score by 50;
 			Now Evangelist is resolved;
 			stop the action;
-	say "     You resist the urge to give in and join the orgy that has formed after the battle and scan around the sea of fur and flesh surrounding you.  You notice the leather wolves are still at it with the cock cannon and one of them points towards you, trying to get the attention of his lustful breathren.  You need to get out of here soon.  Finding a path between several mating pairs, you try to dash to safety before things cascade further.  You run, making it most of the way out of the crowd before being blocked by another monster.[line break]";
+	say "     You resist the urge to give in and join the orgy that has formed after the battle and scan around the sea of fur and flesh surrounding you.  You notice the leather wolves are still at it with the cock cannon and one of them points towards you, trying to get the attention of his lustful brethren.  You need to get out of here soon.  Finding a path between several mating pairs, you try to dash to safety before things cascade further.  You run, making it most of the way out of the crowd before being blocked by another monster.[line break]";
 	fight;
 	say "     Pushing your way free, you move to the relative safety of a nearby alcove, panting to catch your breath and to recover you energy.  You look back at the top of the car, seeing that the leopard has prevailed against the other prospective lovers and is now plowing into the newly corrupted leopardess beneath him.  They both yowl in feline ecstacy as he pumps his heavy load into her womb, seeking to breed his new mate.";
 	increase score by 50;
@@ -279,7 +241,7 @@ to say orgyoutcome:
 	say "     After getting a bellyfull of tasty lionseed and the sated fox[apostrophe]s knot shrinks enough to pop free, you look over to the cause of this wonderful sexcapade you[apostrophe]ve found yourself in.  Seeing that the leopard has prevailed against the other prospective lovers, you lick your lips as you watch him plowing into the newly corrupted leopardess beneath him.  They both yowl in feline ecstacy as he pumps his heavy load into her womb, seeking to breed his new mate.  You consider heading over to join them, but spot the herm raccoon who was there earlier.  Being much closer and currently unoccupied, you give hir a kiss, taking hir hard cock in hand.  Shi moans in pleasure and wraps hir arms around you, returning the lustful kiss by sliding hir tongue between your lips.";
 	if cunts of player > 0 and cocks of player > 0:				[ HERM! ]
 		say "     Deciding it[apostrophe]s high time you tend to your cock, you guide the raccoon onto all fours and slide your cock into hir dripping pussy.  Hir pussy grips you tightly as you plow into hir again and again.  Surprisingly strong for hir size, you find shi[apostrophe]s able to support your weight easily, freeing your hands to play with hir tits and cock while you fuck hir.  Shi turns out to be a wonderful fucktoy, squealing and moaning in delight as you have your way with hir until finally spraying your hot load into hir.  Hir heavy nuts drain their load onto the pavement as you pump hir cock while seeding hir, forming a large puddle of coonseed.";
-		say "     As you withdraw, you[apostrophe]re pulled into the arms of a herm gryphon.  Sitting you in hir lap, shi bounces you on hir hard pole.  Then it's off to mount a lionness before sucking off two different strains of horses at once.  Things grow hazier as you pass from partner to partner.  There is only the lust of so many creatures satisfying one another together.";
+		say "     As you withdraw, you[apostrophe]re pulled into the arms of a herm gryphon.  Sitting you in hir lap, shi bounces you on hir hard pole.  Then it's off to mount a lioness before sucking off two different strains of horses at once.  Things grow hazier as you pass from partner to partner.  There is only the lust of so many creatures satisfying one another together.";
 	otherwise if cunts of player > 0 and cocks of player is 0:		[ FEMALE! ]
 		say "     Deciding you want a taste of the thick coon meat, you bring your lips to it and start to suck it hungrily.  The raccoon moans in pleasure, running hir hands over your head while your tongue slides up and down that tasty cock.  Equipped with a heavy set of balls, you roll the grey-furred sac in your paws until they finally give up their thick load.  You swallow it all down, feeling its warmth flowing into your belly.";
 		say "     As you move back, you[apostrophe]re pulled into the arms of a pair of stallions.  They appear to be from two different strains, one a large draft horse and the other a quarter horse.  Pressing you between them, the pair take you in the pussy and ass at once, stuffing you so deliciously full of horse cock, and later horse cum.  Once satisfied, the pair move on and you[apostrophe]re joined by a herm gryphon to takes your messy pussy while you eat out a sexy lioness.  Things grow hazier as you pass from partner to partner.  There is only the lust of so many creatures satisfying one another together.";

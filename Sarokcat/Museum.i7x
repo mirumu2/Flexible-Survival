@@ -6,7 +6,14 @@ Section 1- Museum environment
 
 Museum Foyer is a room. It is fasttravel. 
 
-The description of Museum Foyer is "You find yourself standing in the foyer of a large museum, apparently one equipped with an emergency generator of some sort as the electric lighting while dim, still appears to be functioning.  The dim lighting casts shadows throughout the large area, evoking a sense of danger and mystery.  Along the walls near you are several paintings and small bits of history that would probably be priceless if you had time to worry about such things right now.  More disturbing perhaps is the empty pedestal in the center of the entryway, its name plaque proudly proclaiming a preserved woolly mammoth cub to be displayed in the empty spot.  Looking further into the area you can see a circular desk marked 'Information'.";
+The description of Museum Foyer is "[museumdesc]";
+
+to say museumdesc:
+	if hp of Solstice is 0, now Adventurer is unresolved;		[Solstice's quest available after visiting the Museum]
+	say "You find yourself standing in the foyer of a large museum, apparently one equipped with an emergency generator of some sort as the electric lighting while dim, still appears to be functioning.  The dim lighting casts shadows throughout the large area, evoking a sense of danger and mystery.  Along the walls near you are several paintings and small bits of history that would probably be priceless if you had time to worry about such things right now.  More disturbing perhaps is the empty pedestal in the center of the entryway, its name plaque proudly proclaiming a preserved woolly mammoth cub to be displayed in the empty spot.  Looking further into the area you can see a circular desk marked 'Information'.";
+
+instead of sniffing Museum Foyer:
+	say "The museum smells of ancient things come to life once more.";
 
 Museum entry is a door. "The museum halls stretch off towards the east.". It is dangerous. 
 
@@ -17,16 +24,21 @@ The marea of Museum entry is "Museum".
 
 Valerie is a woman.
 The description of Valerie is "Lying on part of the information desk is what at first appears to be a large lioness, as you move closer it turns its head towards you revealing the pretty face of a woman with slight feline features atop the long leonine body.  You realize she is actually a sphinx of some sort, with the lower legs of a lioness, the front paws (and breasts) of an anthro lion, the head of a beautiful woman, and soft wings gracing her back tightly tucked up to her sides, and if the name tag on the counter next to her is any indication, her name is Valerie.";
+The conversation of Valerie is { "Riddle me this!" }.
 Valerie is in Museum Foyer.
 
-The conversation of Valerie is { "[valerietalking]"}
+instead of linkactioning Valerie when valtalk > 0:
+	say "Possible Actions: [link]talk[as]talk Valerie[end link], [link]smell[as]smell Valerie[end link], [link]fuck[as]fuck Valerie[end link], [link]riddle[as]riddle Valerie[end link][line break]";
 
-To say valerietalking:
+instead of sniffing valerie:
+	say "She smells like a sphinx, inscrutable and cryptic.";
+
+instead of conversing the Valerie:
 	if valtalk is 0:
-		say "'Oh hey, a visitor,' the sphinx says as she focuses her attention on you, 'Haven[apostrophe]t had many of those since this all started,' she says gesturing out at the chaos outside.  'Well in case you haven[apostrophe]t figured it out by now, my name is Valerie, and I[apostrophe]m one of the few museum workers left.' She pauses for a second, then continues, 'Well one of the few I know about, some of the strange creatures around here might also have been museum workers, but it would be kind of hard to tell at this point, not that I can really comment myself.' Valerie says as she gestures at her long leonine form.  'I was in the Egypt exhibit readying for opening when this all started, and I found myself changing, I find I don[apostrophe]t really mind the changes though.' the sphinx says with a smile, 'You wouldn[apostrophe]t believe how comfortable it is just to relax and be a sphinx, definitely better then most of the creatures i[apostrophe]ve seen wandering the halls.  Course it can be rather lonely sometimes being the only sphinx,' She says as she shoots you a contemplative look, 'And I have the strangest compulsion to ask riddles of people, not that there have been any of those around either.' Valerie comments,  'Hmm I do hope you will be staying around here a bit more, and just let me know if you have any questions about the museum itself.'"; 
+		say "'Oh hey, a visitor,' the sphinx says as she focuses her attention on you, 'Haven[apostrophe]t had many of those since this all started,' she says gesturing out at the chaos outside.  'Well in case you haven[apostrophe]t figured it out by now, my name is Valerie, and I[apostrophe]m one of the few museum workers left.' She pauses for a second, then continues, 'Well one of the few I know about, some of the strange creatures around here might also have been museum workers, but it would be kind of hard to tell at this point, not that I can really comment myself.' Valerie says as she gestures at her long leonine form.  'I was in the Egypt exhibit readying for opening when this all started, and I found myself changing, I find I don[apostrophe]t really mind the changes though.' the sphinx says with a smile, 'You wouldn[apostrophe]t believe how comfortable it is just to relax and be a sphinx.  Definitely better than most of the creatures I've seen wandering the halls.  Course it can be rather lonely sometimes being the only sphinx,' She says as she shoots you a contemplative look, 'And I have the strangest compulsion to ask riddles of people, not that there have been any of those around either.' Valerie comments,  'Hmm I do hope you will be staying around here a bit more, and just let me know if you have any questions about the museum itself.'"; 
 		increase valtalk by 1;
 	otherwise:
-		say "'[one of]There are some satyrs running wild in the halls, I think they are from the greek wing... did you know there were sphinx legends in Greece too?[or] Those damn nymphs get into everything! And they won[apostrophe]t stop giggling![or]Hey if you see the minotaur wandering around while your out there, let him know he left his battleaxe over in the Roman wing will you? Thanks![or]History is a fascinating subject, don[apostrophe]t you agree?[or]What goes on three legs at morning... no no no, that ones already been done.[or]Whats black and white and, no, wait, I don[apostrophe]t think dirty jokes count....[or]Several of the old stuffed displays seem to have wandered off on their own, if you see them would you remind them they are only supposed to do that after visiting hours?[or]I think the sabretooth lion was eying me speculatively the other day, hmm he does have such handsome flanks and tusks, still I DO prefer a bit of intellectual stimulation first...[or]I swear, what kind of museum is it where none of  the exhibits will hold still! I mean it wouldn[apostrophe]t be so bad if they actually took their name plaques with them, but noooo![or] If you think it[apostrophe]s crazy out here, you should see back in the museum archives! You wouldn[apostrophe]t believe how nuts it is back there.[or]Hmm, I wonder whats going to happen to some of the exhibits after all this, some of the art and artwork here is historically priceless![or]When I was leaving the egyptology area, I swear I saw some jackal headed beasts, I was probably seeing things, but then again in this place, who knows?[or]Don[apostrophe]t go near the modern art wing, trust me on this, I locked that area up for a reason' She shudders at some remembered horror[or]I swear I saw one of the robot mockups walking around, Though I don[apostrophe]t know how that could be possible, i[apostrophe]m not really sure how any of the rest of this is possible either.[or] Can I help you with something?[or]Did you want to try a riddle?[or]I wonder whats going on in the dinosaur wing...[at random]'";
+		say "[one of]'There are some satyrs running wild in the halls, I think they are from the greek wing... did you know there were sphinx legends in Greece too?'[or]'Those damn nymphs get into everything! And they won[apostrophe]t stop giggling!'[or]'Hey if you see the minotaur wandering around while your out there, let him know he left his battleaxe over in the Roman wing will you? Thanks!'[or]'History is a fascinating subject, don[apostrophe]t you agree?'[or]'What goes on three legs at morning... no no no, that ones already been done.'[or]'What's black and white and, no, wait, I don[apostrophe]t think dirty jokes count....'[or]'Several of the old stuffed displays seem to have wandered off on their own, if you see them would you remind them they are only supposed to do that after visiting hours?'[or]'I think the sabretooth lion was eying me speculatively the other day, hmm he does have such handsome flanks and tusks, still I DO prefer a bit of intellectual stimulation first...'[or]'I swear, what kind of museum is it where none of the exhibits will hold still! I mean it wouldn[apostrophe]t be so bad if they actually took their name plaques with them, but noooo!'[or]'If you think it[apostrophe]s crazy out here, you should see back in the museum archives! You wouldn[apostrophe]t believe how nuts it is back there.'[or]'Hmm, I wonder what's going to happen to some of the exhibits after all this, some of the artifacts and artwork here is historically priceless!'[or]'When I was leaving the Egyptology area, I swear I saw some jackal-headed beasts.  I was probably seeing things, but then again in this place, who knows?'[or]'Don[apostrophe]t go near the modern art wing, trust me on this.  I locked that area up for a reason.' She shudders at some remembered horror.[or]'I swear I saw one of the robot mockups walking around, though I don[apostrophe]t know how that could be possible.  I[apostrophe]m not really sure how any of the rest of this is possible either.'[or]'Can I help you with something?'[or]'Did you want to try a riddle?'[or]'I wonder what's going on in the dinosaur wing...[at random]";
 
 Valtalk is a number that varies.
 Riddlewin is a number that varies.
@@ -48,15 +60,6 @@ understand "answer valerie" as riddlesphinxing;
 check riddlesphinxing:
 	if Valerie is not visible, say "Who you are looking for is the real riddle here?" instead;
 
-sphinxfucking is an action applying to nothing.
-
-Understand "fuck Valerie" as sphinxfucking;
-Understand "fuck sphinx" as sphinxfucking;
-
-check sphinxfucking:
-	if Valerie is not visible, say "who?" instead;
-
-
 carry out riddlesphinxing:
 	If lastriddlesphinx - turns is less than 6:
 		say "Valerie smiles enigmatically as you try to engage her in another riddle contest. 'I'm sorry, but even I can[apostrophe]t think of a truly challenging new riddle that quickly.  I am still new to this whole sphinx thing after all. Why don[apostrophe]t you come back and try again later.' she says with a dismissive flick of her tail as she goes back to what she was doing.";
@@ -64,6 +67,7 @@ carry out riddlesphinxing:
 	now lastriddlesphinx is turns;
 	say "Ooooh you think you can beat me in a riddle contest? Lets find out shall we? I might even have a prize for you if you win... of course if you lose....";
 	let bonus be (( the Intelligence of the player minus 10 ) divided by 2);
+	if 2 is listed in bookcollection, increase bonus by 2;
 	let diceroll be a random number from 1 to 20;
 	say "You roll 1d20([diceroll])+[bonus]: [diceroll + bonus], ";
 	increase diceroll by bonus;
@@ -85,13 +89,7 @@ carry out riddlesphinxing:
 		decrease humanity of player by 10;
 		infect "sphinx";
 
-
-
-
-
-
-
-Carry out sphinxfucking:
+instead of fucking Valerie:
 	if Riddlewin is greater than 2:
 		if lastsphinxfucked - turns is less than 6:
 			say "'Mmm sorry hun, unlike some people I still need some recovery time, she says with a sly wink, why don[apostrophe]t you come back later and we can play.'.";
@@ -113,12 +111,7 @@ Carry out sphinxfucking:
 			infect "sphinx";
 	otherwise:
 		say "'Sorry dear,' Valerie says with a sigh, 'I prefer my partners, a bit more... intellectually motivated if you know what I mean,' The sphinx says as she shakes her head sadly, 'I simply couldn[apostrophe]t bring myself to submit to someone who hasn[apostrophe]t bested me at riddles several times, maybe you should work on that first and get back to me?' Valerie says with a hopeful look.";
-		stop the action;
-
-
 
 
 
 Museum ends here.
-
-

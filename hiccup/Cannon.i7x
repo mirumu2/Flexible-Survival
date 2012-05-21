@@ -9,9 +9,9 @@ Section 1 - Monster Responses
 to say cannon desc:
 	now cannonprep is 0;
 	if "Female Preferred" is listed in feats of player:		
-		say "A six foot tall, perverted abomination stands before you. The creature has perfectly normal looking human arms and legs, but that is where the similarities end. The creature[apostrophe]s body is shaped like a giant cock! Its head is pale purple, shaped like a mushroom, and has a single slit at the top.[line break][line break]The creature moves its head until the slit on the top is pointed in your direction. You get the feeling that it is examining you. The creature must not like what it sees, because it immediately turns around and leaves. The creature won[apostrophe]t fight you if you have the Female Preferred feat.[combat abort]";
+		say "A six foot tall, perverted abomination stands before you. The creature has perfectly normal looking human arms and legs, but that is where the similarities end. The creature's body is shaped like a giant cock! Its head is pale purple, shaped like a mushroom, and has a single slit at the top.[line break][line break]The creature moves its head until the slit on the top is pointed in your direction. You get the feeling that it is examining you. The creature must not like what it sees, because it immediately turns around and leaves. The creature won't fight you if you have the Female Preferred feat.[combat abort]";
 	otherwise:	
-		say "A six foot tall, perverted abomination stands before you. The creature has perfectly normal looking human arms and legs, but that is where the similarities end. The creature[apostrophe]s body is shaped like a giant cock! Its head is pale purple, shaped like a mushroom, and has a single slit at the top.[line break][line break]The creature moves its head until the slit on the top is pointed in your direction. You get the feeling that it is examining you. The creature must like what it sees, because it immediately starts moving it your direction.";
+		say "A six foot tall, perverted abomination stands before you. The creature has perfectly normal looking human arms and legs, but that is where the similarities end. The creature's body is shaped like a giant cock! Its head is pale purple, shaped like a mushroom, and has a single slit at the top.[line break][line break]The creature moves its head until the slit on the top is pointed in your direction. You get the feeling that it is examining you. The creature must like what it sees, because it immediately starts moving it your direction.";
 
 [The Cock Cannon inflicts no damage, but the player has a limited number of turns to defeat the Cock Cannon before it fires. If it fires, the player automatically loses.]
 cannonprep is a number that varies. cannonprep is usually 0.
@@ -37,7 +37,6 @@ to say cannon fire:
 to say cannon attack:
 	if "Female Preferred" is not listed in feats of player:
 		say " You hear a strange whistling noise in the air, before a huge glob of sticky white cum falls out of the sky and soaks you from head to foot. Its job completed, the Cock Cannon leaves.";
-	infect;
 	
 Section 2 - Monster Insertion
 
@@ -50,18 +49,18 @@ When Play begins:
 	Choose a blank row from Table of random critters;
 	now name entry is "Cock Cannon"; [Name of your new Monster]
 	now attack entry is "[cannon fire]"; [Text used when the monster makes an Attack]
-	now defeated entry is "The Cock Cannon goes flacid and collapses to the ground."; [ Text or say command used when Monster is defeated.]
+	now defeated entry is "The Cock Cannon goes flaccid and collapses to the ground."; [ Text or say command used when Monster is defeated.]
 	now victory entry is  "[cannon attack]"; [ Text used when monster wins, can be directly entered like combat text or description. or if more complex it can be linked to a 'To Say' block as the demonstration text shows.] 
 	now desc entry is "[cannon desc]";[ Description of the creature when you encounter it.]
 	now face entry is "purple colored, mushroom shaped head with no neck. It is devoid of any features except for a large slit at the top. You[apostrophe]re able to see and breathe through the slit despite the lack of a mouth or eyes on your";[ Face description, format as the text "Your have a (your text) face."] 
 	now body entry is "thick with no curves at all. It looks like the shaft of a penis";[ Body Description, format as the text "Your Body is (your text)"] 
 	now skin entry is "vein covered";[ skin Description, format as the text "You have (your text) skin"] 
-	now tail entry is "Your ass has several long and curly hairs on it. The skin on your rear is also very wrinkly. The wrinkles and the hairs make your butt cheaks look like a giant ballsack.";[ Tail description, write a whole Sentence or leave blank. ] 
+	now tail entry is "Your ass has several long and curly hairs on it. The skin on your rear is also very wrinkly. The wrinkles and the hairs make your butt cheeks look like a giant ballsack.";[ Tail description, write a whole Sentence or leave blank. ] 
 	now cock entry is "body length";[ Cock Description, format as you have a 'size' (your text) cock] 
 	now face change entry is "it turns purple. Your head swells out until it is shaped like the head of a mushroom. Your eyes, nose, and mouth disappear, leaving you momentarily blind and unable to breathe. A moment later, a large slit opens up on the top of your head and you[apostrophe]re able to see and breathe through it."; [ face change text. format as "Your face feels funny as (your text)" ]
 	now body change entry is "it thickens and loses all of its curves and features until it looks like the shaft of a penis."; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "it becomes more sensitive to the slightest touch and large veins become visible beneath the skin."; [ skin change text. format as "Your skin feels funny as (your text)" ]
-	now ass change entry is "it plumps up and sags down a little, while long and curly pubic hairs grow over it. It makes your butt cheaks look like a giant ballsack"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
+	now ass change entry is "it plumps up and sags down a little, while long and curly pubic hairs grow over it. It makes your butt cheeks look like a giant ballsack"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
 	now cock change entry is "it gets absorbed into and replaced by your body."; [ cock change text. format as "Your cock feels funny as (your text)" ]
 	now str entry is 14;
 	now dex entry is 10;

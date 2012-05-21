@@ -1,5 +1,5 @@
 Version 2 of Pit Bull For FS by Ilovecock begins here. 
-[ Version 2 - Endings added by Stripes ]
+[ Version 2.1 - Moved to Junkyard ]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 
 "Adds a Pit Bull to Flexible Survivals Wandering Monsters table"
@@ -16,7 +16,7 @@ name	attack	defeated	victory	desc	face	body	skin	tail	cock	face change	body chan
 [ Adds a blank row to the table, this is immediately filled ;) ]
 
 To say pit bull defeat:
-	if libido of player < 50:
+	if libido of player <= 50:
 		Say "Having taken one too many blows the monster signals her submission and begins to back away.";
 	if libido of player > 50 and cocks of player is greater than 0 and cunts of player is 0:
 		Say "As she falls you advance on her, pulling down your pants. She looks at your [cock of player] cock and says 'I will tear that fucking thing off and shove it down your throat if you come any closer.' You enjoy having it and decide to back down, and by back down you run away, pants around your ankles. You have a wank later.";
@@ -27,7 +27,7 @@ To say pit bull defeat:
 
 To say pit bull attack:
 	if cunts of player > 0 and cocks of player is 0:
-		Say "As you get hit one too many times you go to knee and signal your submission. She saunters over to you and strips off your clothes. Looking at your crotch she seems pleased with it and drops down and begins to lick. Her rough tongue feels great, for a moment you forget that she just kicked the shit out of you. After a while she stops and throws you onto your back and begins to remove her clothes. She then begins to grind her crotch into yours starting slowly building up to franticly mashing them together like she was trying to start a fire. After a few minutes of this both you and she climax. Leaving you in a puddle of sex while she looks through your clothes for anything of use.";	
+		Say "As you get hit one too many times you go to knee and signal your submission. She saunters over to you and strips off your clothes. Looking at your crotch she seems pleased with it and drops down and begins to lick. Her rough tongue feels great, for a moment you forget that she just kicked the shit out of you. After a while she stops and throws you onto your back and begins to remove her clothes. She then begins to grind her crotch into yours starting slowly building up to frantically mashing them together like she was trying to start a fire. After a few minutes of this both you and she climax. Leaving you in a puddle of sex while she looks through your clothes for anything of use.";	
 	if cocks of player is greater than 0 and cunts of player is greater than 0:
 		say "As you get hit one too many times you go to knee and signal your submission. She saunters over to you and strips off your clothes. Looking at your crotch she seems to behold it in curiosity. She lies down and begins to lick your [cock size desc of player] [cock of player] cock. Then deep-throats it and begins to bob her head up and down like a boat on stormy waters. After getting a taste for your cock, she pulls her head and pushes you on your back. She gets up on your [cock of player] cock and begins to grind on it. After a few minutes of this she suddenly sticks a few fingers into your pussy and begins to pump back and forth. You try and hold back as much as you can but, after only a short time, cum all over yourself. She gets up and starts to rifle through your clothes.";
 	if cocks of player is greater than 0 and cunts of player is 0:
@@ -64,7 +64,7 @@ When Play begins:
 	now hp entry is 30;			[ How many HP has the monster got? ]
 	now lev entry is 3;			[ Level of the Monster, you get this much hp if you win, or this much hp halved if you lose ] 
 	now wdam entry is 7;			[Amount of Damage monster Does when attacking.]
-	now area entry is "Outside";	[ Current options are 'Outside' and 'Mall'  Case sensitive]
+	now area entry is "Junkyard";	[ Current options are 'Outside' and 'Mall'  Case sensitive]
 	now cocks entry is 0;			[ How many cocks will the infection try and cause if sex is 'Male' or 'Both']
 	now cock length entry is 0;		[ Length infection will make cock grow to if cocks]
 	now cock width entry is 0;		[ Size of balls apparently ;) sneaky Nuku]

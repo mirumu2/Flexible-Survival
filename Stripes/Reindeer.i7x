@@ -23,12 +23,12 @@ to say losetoreindeer:
 		say "     He gives a merry laugh which causes his jingle bells to ring and lines up his cock behind you.  With another spurt of his pre, this time to lube your tailhole, he starts to slide his slender cock into you.  You moan in pleasure as the joyous male starts to rut you with the loud jingle-jangle of bells.  His cock fills you nice and deep, but isn't painful to take at all.";
 		say "     You leak precum onto the cold ground, only feeling the heat of your strong buck atop you.  When he gives a few last shoves into you, you groan loudly and cum hard, spilling your seed moments before his hot cum sprays into you, filling you with his holiday cheer.  This load is quite substantial, a ball-draining, belly-plumping, ass-flooding flow that leaves you panting on the ground, but filled with warmth and happiness.";
 	say "     He gives you a final, minty-sweet kiss under the mistletoe before flying off to spread more holiday cheer with others.  As he leaves, the temperature gradually returns to normal, but his hot special present keeps you warm inside until then.";
-	increase morale of player by a random number from 1 to 3;
+	increase morale of player by a random number from 2 to 4;
 	decrease humanity of player by a random number from 2 to 5;
 	if "Pure" is listed in feats of player, increase humanity of player by a random number between 0 and 2;
 	if "Corrupt" is listed in feats of player, decrease humanity of player by a random number between 0 and 1;
 	if "Corrupt" is listed in feats of player, decrease humanity of player by a random number between 0 and 1;
-	now libido of player is ( libido of player * 67 ) divided by 100;
+	now libido of player is ( libido of player * 3 ) divided by 4;
 	increase hp of player by ( maxhp of player / 5 );
 	if hp of player > maxhp of player, now hp of player is maxhp of player;
 
@@ -45,8 +45,7 @@ to say reindeerattack:
 		choose row monster from the table of random critters;
 		increase lootchance entry by a random number between 3 and 10;
 		if lootchance entry > 80, now lootchance entry is 80;
-		if libido of player > 110:
-			now libido of player is 100;
+		if libido of player >= 110:
 			say "grabs you and rubs his cock against your hip.  You find yourself too aroused to resist the sexy reindeer further and give in to his lustful holiday spirit!";
 			now hp of player is 0;
 			continue the action;
@@ -62,7 +61,7 @@ to say reindeerattack:
 	if T is 4:
 		say "tries to push you to the ground with a loud tinkling of bells!";
 	if T is 5:
-		say "banks sharply, getting behind you.  He grinds firmly against your rear while his hooved paws grope your chest.  You can feel his precum leaking out as he tries to cum on you, but you shake him off.  The scent of his egg-nog flavoured precum hangs in the air, arousing you further!";
+		say "banks sharply, getting behind you.  He grinds firmly against your rear while his hoofed paws grope your chest.  You can feel his precum leaking out as he tries to cum on you, but you shake him off.  The scent of his egg-nog flavoured precum hangs in the air, arousing you further!";
 		increase libido of player by a random number from 2 to 5;
 		if "Horny Bastard" is listed in feats of player, increase libido of player by a random number between 0 and 1;
 		if "Cold Fish" is listed in feats of player, decrease libido of player by 1;
@@ -92,7 +91,7 @@ When Play begins:
 	now victory entry is "[losetoreindeer]";					[ Text when monster wins.  Change 'template' as above. ]
 	now desc entry is "[reindeerdesc]";						[ Description of the creature when you encounter it. ]
 	now face entry is "transformed into that of a reindeer, with a ruminant's muzzle, cute ears and arching antlers";		[ Face Description, format as the text "Your face is (your text)." ]
-	now body entry is "that of an anthropomorphic reindeer with long, slender limbs.  You have hoof-like hands and full-hooved feet";	[ Body Description, format as the text "Your body is (your text)." ]
+	now body entry is "that of an anthropomorphic reindeer with long, slender limbs.  You have hoof-like hands and fully hoofed feet";	[ Body Description, format as the text "Your body is (your text)." ]
 	now skin entry is "warm, brown fur";	[ Skin desc., format as the text "Your body is covered in (your text)." ]
 	now tail entry is "Atop your ass, you have a cute, flagged caribou tail of white and brown fur.";	[ Tail desc., written as a full sentence or left blank for none. ] 
 	now cock entry is "[one of]caribou[or]deer-like[or]reindeer[at random]";						[ Cock desc., format as "You have a 'size' (your text) cock." ]
@@ -134,6 +133,9 @@ name	desc	weight	object
 
 egg nog is a grab object. It is a part of the player. egg nog is infectious.  understand "chicken milk" as egg nog.  The strain of egg nog is "Reindeer".
 
+instead of sniffing egg nog:
+	say "The egg nog smells fresh and strongly of good brandy, making you want to drink it and remember Christmases past.";
+
 The usedesc of egg nog is "[nogging]";
 
 to say nogging:
@@ -166,12 +168,14 @@ to say nogging:
 		now skinname of player is "Reindeer";
 		now bodyname of player is "Reindeer";
 		now cockname of player is "Reindeer";
+		attributeinfect;
 		now tail of player is tail entry;
 		now face of player is face entry;
 		now skin of player is skin entry;
 		now body of player is body entry;
 		now cock of player is cock entry;
 		end the game saying "You gave in to the holiday spirit.";
+		now battleground is "void";
 
 
 Section 4 - Holiday Madness

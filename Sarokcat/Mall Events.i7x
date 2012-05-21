@@ -9,7 +9,7 @@ The sarea of Tight space is "Mall";
 
 
 Instead of resolving Tight space:
-	say "You come across a very narrow opening in the sewers underneath the city, you think you see something gleaming in the back of it, but it would be a really tight squeeze to fit in there, and might leave you vunerable to attack.  Do you try to enter the tight space anyways?";
+	say "You come across a very narrow opening in the sewers underneath the city, you think you see something gleaming in the back of it, but it would be a really tight squeeze to fit in there, and might leave you vulnerable to attack.  Do you try to enter the tight space anyways?";
 	If player consents:
 		let T be a random number between one and five;
 		if T is 1:
@@ -67,17 +67,24 @@ Instead of resolving a totally lost:
 	say "After a while of traveling the sewer passages, you try to head back only to realize that you must have somehow got turned around down here, and have no idea just where you are and how to get out. Beginning to panic, you start to run down different passageways at random - only to stumble out right into the area you entered the sewers. Apparently you have been wandering around in circles for hours.";
 	Now totally lost is resolved;
 
+
 Section 5- Captive rat
 
-Captive rat is a situation.
+Captive rat is a situation.  The level of Captive Rat is 6.
 The sarea of Captive rat is "Mall";
+when play begins:
+	add Captive Rat to badspots of guy;
+	add Captive Rat to badspots of hermaphrodite;
+	add Captive Rat to badspots of furry;
+	add Captive Rat to badspots of hellspawn;
+
 
 Instead of resolving a Captive rat:
 	say "Traveling the sewers, you hear a strange chanting noise in the distance, and you almost think you hear a call for help. Do you want to investigate?";
 	if player consents:
-		say "Carefully heading down a side passageway, you find it opens up into a small room where a Demon Brute seems to have captured a struggling mall rat.  The demon brute is chanting over the bound rat, and the rat is begging and pleading for someone to help free it.  Before you can do anything more, the brutes chant finishes and it shoots its seed all over the trapped rat. The beast then turns to look directly at you, 'Did you like watching?' it asks sarcastically as it charges. 'You can be next!'";
+		say "Carefully heading down a side passageway, you find it opens up into a small room where a Demon Brute seems to have captured a struggling mall rat.  The demon brute is chanting over the bound rat, and the girl is begging and pleading for someone to help free it.  Before you can do anything more, the brutes chant finishes and it shoots its seed all over the trapped rat. The beast then turns to look directly at you, 'Did you like watching?' it asks sarcastically as it charges. 'You can be next!'";
 		challenge "Demon Brute";
-		say "Driving off the foul demon, you turn to free the captive mall rat, only to discover that it has not only managed to free itself, but it seems to have undergone a suprising transformation as well!";
+		say "Driving off the foul demon, you turn to free the captive mall rat, only to discover that it has not only managed to free itself, but it seems to have undergone a surprising transformation as well!";
 		challenge "Slut Rat";
 		say "After that last fight, you definitely have more questions than answers. Maybe you should ask Rod or Ronda back in the mall about the strange demon[apostrophe]s seed.";
 		stop the action;
@@ -90,6 +97,8 @@ Section 6- puddle of goo
 
 puddle of goo is a situation.
 The sarea of puddle of goo is "Mall";
+when play begins:
+	add puddle of goo to badspots of girl;
 
 Instead of resolving a puddle of goo:
 	say "Looking around in the area under the mall, you find a strange puddle of goo just lying there in the middle of the passageway. You think you could take a sample if you wanted to.";
@@ -123,8 +132,11 @@ Instead of resolving a Strange symbol:
 
 Section 8- Goo Gathering
 
-Goo Gathering is a situation.
+Goo Gathering is a situation.  The level of Goo Gathering is 2.
 The sarea of Goo Gathering is "Mall";
+when play begins:
+	add Goo Gathering to badspots of guy;
+	add Goo Gathering to badspots of furry;
 
 Instead of resolving a Goo Gathering:
 	say "Traveling through the dim passages under the city, you come across a large open area where several tunnels come together. Looking out into the area, you are surprised to see a large amount of those gooey girls gathered around talking to each other. Deciding discretion is the better part of valor, you try to slip away down the passageway before you can be noticed.";
@@ -151,7 +163,7 @@ The sarea of Old rail system is "Mall";
 Instead of resolving a Old rail system:
 	say "Moving through the deserted passages under the city, you find an old metal door, half concealed by the darkness and rubble. You curiously try the door only to find that while it is unlocked, it is partially rusted shut, you pull and tug on the door, until with a rusty shriek it finally opens. You pause for a second, the silence seeming deafening after the loud noise, hoping nothing down here heard that.";
 	if a random chance of 1 in 2 succeeds:
-		say "luckily it seems nothing heard the noise and you continue through the now open door.";
+		say "Luckily, it seems nothing heard the noise and you continue through the now open door.";
 	otherwise:
 		say "Unfortunately, the noise seems to have alerted something to your location!";
 		fight;
@@ -166,7 +178,7 @@ B&R is a situation.
 The sarea of B&R is "Mall";
 
 Instead of resolving a B&R:
-	say "     While roaming around through the sewers, you hear the sound of arguing voices coming towards you.  Being cautious, you duck into the shadows and watch the pair approach.  They are an odd pair of big, muscled brutes carrying large weapons.  The first is a warthog wearing shoulderpads and a torn, red vest, with several hand grenades within easy reach on it.  His sharp, white tusks, hoop snoot-ring and bone necklace give him a menacing appearance despite the purple mohawk and sunglasses.  The other is a rhino in a yellow wife-beater and cargo pants with a bandolier of bullets across his chest, as well as a grenade of his own.  While he clearly has a bit of a gut on him, his arms are even more muscled than his companion[apostrophe]s.";
+	say "     While roaming around through the sewers, you hear the sound of arguing voices coming towards you.  Being cautious, you duck into the shadows and watch the pair approach.  They are an odd pair of big, muscled brutes carrying large weapons.  The first is a warthog wearing shoulder pads and a torn, red vest, with several hand grenades within easy reach on it.  His sharp, white tusks, hoop snoot-ring and bone necklace give him a menacing appearance despite the purple mohawk and sunglasses.  The other is a rhino in a yellow wife-beater and cargo pants with a bandolier of bullets across his chest, as well as a grenade of his own.  While he clearly has a bit of a gut on him, his arms are even more muscled than his companion[apostrophe]s.";
 	say "     It[apostrophe]s hard to follow what exactly they[apostrophe]re arguing about as they pause near your hiding place.  Most of the time, it sounds like they[apostrophe]re searching for turtles, intent on violence, but the rest of the time they[apostrophe]re trying to remember an old cartoon they watched as kids.  Eventually, they make a decision on which way to go next and continue on.  Rather than interrupt the well-armed, volatile and clearly crazy duo, you quietly let them pass before moving on.";
 	Now B&R is resolved;
 

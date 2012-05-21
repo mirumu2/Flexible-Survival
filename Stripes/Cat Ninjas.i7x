@@ -1,5 +1,5 @@
 Version 1 of Cat Ninjas by Stripes begins here.
-[Version 1]
+[Version 1.1 - Hard Mode adjustment]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 "Adds cat ninjas as a creature to Flexible Survivals Wandering Monsters table"
 [Description text for this Extension.]
@@ -16,10 +16,10 @@ when play begins:
 to say losetoninja:
 	if cunts of player > 0:
 		say "     The ninja grabs you by the arm as you stop fighting him.  With a purring rumble, he presses you against one of the walls with one paw while the other gropes your rear.  His paw moves the intervening clothes and grinds his stiff rod against your ass.  You moan softly in pleasure as the feline slides his cock into your pussy slowly.  As your excitement starts to build and you find yourself growing ever excited by the prospect of having this mysterious feline fuck you, his paws relax their grip and instead move across your body to tease your ass and breasts.";
-		say "     You press your hands to the wall and push your hips back into each thrust the feline makes.  It seems he's quite adept at the art of lovemaking as well as the art of ninjutsu.  Your pussy quivers around his cock as he moves and thrusts to stimulate you to greater and greater heights while saving your orgasm for the highest point of all.  As you come to the point that you're moaning and mewling beneath him for his seed, he pushes his cock deep inside you and unleashes a hot blast of feline cum.  It is at this point that he stimulates you far past your peak, sending you into multiple orgasms that finally end with you stretched out on the floor with your thighs soaked in your own juices and feline cum leaking from your overfilled pussy.";
+		say "     You press your hands to the wall and push your hips back into each thrust the feline makes.  It seems he's quite adept at the art of lovemaking as well as the art of ninjutsu.  Your pussy quivers around his cock as he moves and thrusts to stimulate you to greater and greater heights while saving your orgasm for the highest point of all.  As you come to the point that you're moaning and mewling beneath him for his seed, he pushes his cock deep inside you and unleashes a hot blast of feline cum.  It is at this point that he stimulates you far past your peak, sending you into multiple orgasms that finally end with you stretched out on the floor with your thighs soaked in your own juices and feline cum leaking from your overfilled pussy[if cocks of player > 0].  In your powerful orgasm, you left a large splatter of cum on the wall.  Your balls ache a little, but wonderfully so, from being so thoroughly drained[end if].";
 		say "     As silently as he came, the feline ninja disappears back into the shadows and is gone.";
 	otherwise if a random chance of 1 in 2 succeeds:
-		say "     The ninja grabs you by the arm as you stop fighting him.  With a purring rumble, he presses you against one of the walls with one paw while the other gropes your rear.  His paw moves the intervening clothes and grinds his stiff rod against your ass.  You groan softly as the feline probes his leaking cock into your tight asshole.  As your sphinter relaxes to accommodate the feline's penis thrusting into you, you find yourself growing ever excited by the prospect of having this mysterious feline fuck you.  His paws relax their grip and instead move across your body to tease across your body and fondle your maleness.";
+		say "     The ninja grabs you by the arm as you stop fighting him.  With a purring rumble, he presses you against one of the walls with one paw while the other gropes your rear.  His paw moves the intervening clothes and grinds his stiff rod against your ass.  You groan softly as the feline probes his leaking cock into your tight asshole.  As your sphincter relaxes to accommodate the feline's penis thrusting into you, you find yourself growing ever excited by the prospect of having this mysterious feline fuck you.  His paws relax their grip and instead move across your body to tease across your body and fondle your maleness.";
 		say "     You press your hands to the wall and push your hips back into each thrust the feline makes.  It seems he's quite adept at the art of lovemaking as well as the art of ninjutsu.  Your back passage quivers around his cock as he moves and thrusts to stimulate you to greater and greater heights while saving your orgasm for the highest point of all.  As you come to the point that you're moaning and mewling beneath him for his seed, he pushes his cock deep inside you and unleashes a hot blast of feline cum.  The press of his glans against your prostate as his semen blasts against it is when he chooses to stimulate you far past your peak, sending you into a powerful orgasm that splatters the wall with your seed.  It finally end with you stretched out on the floor with your balls drained and feline cum leaking from your overfilled ass.";
 		say "     As silently as he came, the feline ninja disappears back into the shadows and is gone.";
 	otherwise:
@@ -31,11 +31,13 @@ to say beattheninja:
 
 
 to say ninjaattack:
+	choose row monster from the table of random critters;
 	if a random chance of 3 in 10 succeeds:
 		say "While making another acrobatic set of leaps and dodges, the ninja slips a shuriken from his robe and tosses it at you.  The bladed star stabs into your [one of]shoulder[or]hip[or]side[or]thigh[or]leg[at random].  There is a stab of pain from the strike, followed from a warm heat that flows into you from the wound, causing a surge of lustful desires in you.  As these thoughts momentarily distract you, the feline ninja moves in to make his attack.";
 		increase libido of player by a random number between 2 and 5;
 		if libido of player > 100, now libido of player is 100;
 		let dammy be a random number between 2 and 3;
+		if hardmode is true, increase dammy by ( square root of lev entry );
 		decrease the hp of player by dammy;
 		say "You take [dammy] damage from the ninja star.";
 	let T be a random number between 1 and 6;
@@ -56,6 +58,7 @@ to say ninjaattack:
 
 
 to say ninjadesc:
+	choose row monster from the table of random critters;
 	let bonus be ( perception of player + dexterity of player - 20 ) divided by 2;
 	let featbonus be 0;
 	if "Experienced Scout" is listed in feats of player, increase featbonus by 1;
@@ -63,13 +66,15 @@ to say ninjadesc:
 	if "Wary Watcher" is listed in feats of player, increase featbonus by 3;
 	let dice be a random number from 1 to 20;
 	say "You roll 1d20: [dice]+[bonus]+[featbonus] = [dice + bonus + featbonus][line break]";
-	if dice + bonus + featbonus is greater than 16:
+	if dice + bonus + featbonus is greater than 12 + ( dex entry - 10 ) / 2:
 		say "     As you move down the halls of the museum, you hear a faint sound from behind you and turn around quickly.  You are narrowly missed by a triad of flying shuriken that embed themselves into the floor beside you.  There is a soft thump as an agile figure in concealing clothes drops to the floor on all fours.  Slitted eyes stare out at you from behind the dark mask and pointed, feline ears are trained on you.  The ninja feline releases a soft growl and charges, pulling out an oriental weapon and attacking you.";
 	otherwise:
-		decrease hp of player by 8;
+		let dammy be 8;
+		if hardmode is true, increase dammy by ( square root of lev entry );
+		decrease hp of player by dammy;
 		increase libido of player by 10;
 		if libido of player > 100, now libido of player is 100;
-		say "     As you move down the halls of the museum, you hear the soft whizz of something flying through the air too late, as a pain fills your back, causing 8 damage.  This is quickly replaced by a warm rush of lustful excitement.  You turn quickly to face your attacker as you reach back to pull the trio of poisoned shuriken from your back.  There is a soft thump as an agile figure in concealing clothes drops to the floor on all fours.  Slitted eyes stare out at you from behind the dark mask and pointed, feline ears are trained on you.  The ninja feline releases a soft growl and charges, pulling out an oriental weapon and attacking you.";
+		say "     As you move down the halls of the museum, you hear the soft whizz of something flying through the air too late, as a pain fills your back, causing [dammy] damage.  This is quickly replaced by a warm rush of lustful excitement.  You turn quickly to face your attacker as you reach back to pull the trio of poisoned shuriken from your back.  There is a soft thump as an agile figure in concealing clothes drops to the floor on all fours.  Slitted eyes stare out at you from behind the dark mask and pointed, feline ears are trained on you.  The ninja feline releases a soft growl and charges, pulling out an oriental weapon and attacking you.";
 
 
 Section 2 - Monster Insertion
@@ -87,12 +92,12 @@ When Play begins:
    now victory entry is "[losetoninja]"; [Text used when monster wins, can be directly entered like combat text or description. or if more complex it can be linked to a 'To Say' block as the demonstration text shows.]
    now desc entry is "[ninjadesc]"; [ Description of the creature when you encounter it.]
    now face entry is "that of a normal cat, with a small muzzle, green eyes and pointed ears"; [ Face description, format as the text "Your face is (your text)."]
-   now body entry is "slender and flexible, with a feline form.  You have sharp, retractible claws on your paw-like hands and footpaws"; [ Body Description, format as the text "Your body is (your text)."]
+   now body entry is "slender and flexible, with a feline form.  You have sharp, retractable claws on your paw-like hands and footpaws"; [ Body Description, format as the text "Your body is (your text)."]
    now skin entry is "orange tabby fur with brown stripes and lighter patches at your muzzle, chest and inner thighs.  The fur is quite soft and feels good against your"; [ skin Description, format as the text "You have (your text) skin"]
    now tail entry is "You have a long, slender cat's tail covered in orange fur with brown stripes."; [ Tail description, write a whole Sentence or leave blank. ] 
    now cock entry is "softly barbed cock"; [ Cock Description, format as you have a 'size' (your text) cock]
    now face change entry is "it shifts into a feline muzzle.  Your ears become pointed and cat-like and your eyes become green with slit pupils for seeing in the dark"; [ face change text. format as "Your face feels funny as (your text)." ]
-   now body change entry is "it becomes flexible and feline in form.  Your arms end in dextrous paws with sharp, retractible claws and your feet are silent cat paws"; [ body change text. format as "Your body feels funny as (your text)." ]
+   now body change entry is "it becomes flexible and feline in form.  Your arms end in dexterous paws with sharp, retractable claws and your feet are silent cat paws"; [ body change text. format as "Your body feels funny as (your text)." ]
    now skin change entry is "it grows a coat of tabby cat fur.  This fur is a orange in colour, with lighter areas at your chest and muzzle with brown stripes all over"; [ skin change text. format as "Your skin feels funny as (your text)." ]
    now ass change entry is "a slender, feline tail with orange tabby markings extends from your spine"; [ ass/tail change text. format as "Your ass feels funny as (your text)." ]
    now cock change entry is "it gains small, soft spines, but is otherwise quite human in form"; [ cock change text. format as "Your cock feels funny as (your text)." ]

@@ -1,5 +1,5 @@
 Version 2 of High Rise Events by Stripes begins here.
-[version 2.1 - added exclusions]
+[version 2.2 - Veterinary Hospital update]
 
 "Adds a series of random events to Flexible Survival located at or focusing on the High Rise District."
 
@@ -21,7 +21,7 @@ Instead of resolving a Rabid Lawyers:
 
 Section 2- Pigging Out
 
-Pigging Out is a situation.
+Pigging Out is a situation.  The level of Pigging Out is 3.
 The sarea of Pigging Out is "High";
 restaurantpig is a number that varies.	[to be used at a later date]
 when play begins:
@@ -115,7 +115,8 @@ name	desc	weight	object
 
 cleaver is an armament. It is part of the player. It has a weapon "[one of]your cleaver[or]your kitchen knife[or]your cleaver, screaming 'Oneida!' as you swing it[or]your large knife[or]the large blade[or]your cleaver with a heavy chop[at random]". The weapon damage of cleaver is 6. The weapon type of cleaver is "Melee". It is not temporary.
 
-
+instead of sniffing the cleaver:
+	say "The heavy blade smells faintly of blood.";
 
 Section 3- Small Park
 
@@ -146,32 +147,32 @@ to say dogparksearch:
 		add "water bottle" to invent of player;
 		increase score by 1;
 	if T is 2:
-		say "2     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  You get lucky searching one pile of clothes, finding a used can of mace near the torn dress.  Quite sure it would be handy, you pick it up and add it to your inventory.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  You get lucky searching one pile of clothes, finding a used can of mace near the torn dress.  Quite sure it would be handy, you pick it up and add it to your inventory.";
 		add "pepperspray" to invent of player;
 		increase score by 5;
 	if T is 3:
-		say "3      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you are inspecting one pile with a stick for added safety, hear the crack of a branch behind you, seeing one of the canine creatures who probably originated here.  Having failed to sneak up on you, the male German Shepherd approached swiftly.";
+		say "      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you are inspecting one pile with a stick for added safety, hear the crack of a branch behind you, seeing one of the canine creatures who probably originated here.  Having failed to sneak up on you, the male German Shepherd approached swiftly.";
 		challenge "German Shepherd";
 	if T is 4:
-		say "4      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  Your search turns up nothing of value, but you are getting ready to leave, you spot a large collie-like creature charging into the park.  It sniffs around eagerly, clearly drawn by the scent of so many canines.  Finding the park empty, it is clearly disappointed.  That is, until it finds you.";
+		say "      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  Your search turns up nothing of value, but you are getting ready to leave, you spot a large collie-like creature charging into the park.  It sniffs around eagerly, clearly drawn by the scent of so many canines.  Finding the park empty, it is clearly disappointed.  That is, until it finds you.";
 		challenge "Shemale Smooth Collie";
 	if T is 5:
-		say "5      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you approach the far corner of the park, you are spotted by a husky female with the last tatters of her expensive dress still on her and a pearl necklace.  As she bounds towards you, you note that the scent of sex is thick around her.  She was likely very recently transformed and is lost in her new animalistic needs.";
+		say "      You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you approach the far corner of the park, you are spotted by a husky female with the last tatters of her expensive dress still on her and a pearl necklace.  As she bounds towards you, you note that the scent of sex is thick around her.  She was likely very recently transformed and is lost in her new animalistic needs.";
 		challenge "Female Husky";
 	if T is 6:
-		say "6     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
 		[random canine infection]
 		say "[doggyinfect]";
 	if T is 7:
-		say "7     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
 		[random canine infection]
 		say "[doggyinfect]";
 	if T is 8:
-		say "8     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While flipping through a pile of clothes and items, you spot a dog collar.  Making the mistake of picking it up, you find it sticky with something that runs down your arm.  You toss down the cum-slick collar, but it is too late.";
 		[random canine infection]
 		say "[doggyinfect]";
 	if T is 9:
-		say "9     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While you walk through the park, you pass near the large tree at the center of the park and the dog smell is the strongest here.  It is very thick in the air around it and you can see the truck discoloured with markings and thick cum splashes.  Despite its origins, the scent is very attractive, drawing you in.  Do you want to examine it more closely? (Y/N)";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While you walk through the park, you pass near the large tree at the center of the park and the dog smell is the strongest here.  It is very thick in the air around it and you can see the truck discoloured with markings and thick cum splashes.  Despite its origins, the scent is very attractive, drawing you in.  Do you want to examine it more closely? (Y/N)";
 		if player consents:
 			say "     You move in closer to the tree and start to sniff around it.  The heady scent of dogs, both males and females, fill your nostrils.  You pant a little, tasting the scent of heat as well from many of them.  Your mind grows hazy and you roll on the ground in front of the tree, through several cum puddles, letting their scent get on you.  Getting up, you shamelessly add your scent to the base of the tree before heading off, leaving the dog park now that you[apostrophe]ve marked that you[apostrophe]ve been there.";
 			[triple random canine infection]
@@ -187,13 +188,13 @@ to say dogparksearch:
 			say "     You resist the urge to give in to those cloying scents and move away.  You try to continue searching, but find yourself drift back to the tree several times and finally decide to abandon the dog park entirely.";
 			increase score by 1;
 	if T is 10:
-		say "10     You start to look around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you approach another section of the park, you hear rough panting and growling coming from the other side of a hedge.  Creeping forward, you see a very large dog, possibly some form of labrador, pounding into an increasingly canine woman.  She[apostrophe]s already largely transformed and seems as lost in her animal lusts as the dog atop her.  Sensing that it[apostrophe]s already too late to save her, you decide not to pick a fight with the big dog (and possibly his new mate as well) and sneak out of the park and put some distance between you and them.";
+		say "     You start to look around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  As you approach another section of the park, you hear rough panting and growling coming from the other side of a hedge.  Creeping forward, you see a very large dog, possibly some form of labrador, pounding into an increasingly canine woman.  She[apostrophe]s already largely transformed and seems as lost in her animal lusts as the dog atop her.  Sensing that it[apostrophe]s already too late to save her, you decide not to pick a fight with the big dog (and possibly his new mate as well) and sneak out of the park and put some distance between you and them.";
 		increase score by 1;
 	if T is 11:
-		say "11     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While searching, you come across what to be a jogger[apostrophe]s gear.  The discarded shorts are torn at the front, either ripped open from massive internal growth or an overeager monster seeking the goods within - it[apostrophe]s hard to be certain.  The jogger[apostrophe]s step counter and wrist bands are also scattered among the clothes, but you[apostrophe]re unable to find anything that could be useful to you.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While searching, you come across what to be a jogger[apostrophe]s gear.  The discarded shorts are torn at the front, either ripped open from massive internal growth or an overeager monster seeking the goods within - it[apostrophe]s hard to be certain.  The jogger[apostrophe]s step counter and wrist bands are also scattered among the clothes, but you[apostrophe]re unable to find anything that could be useful to you.";
 		increase score by 1;
 	if T is 12:
-		say "12     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While searching, you focus on one pile of what appear to have once been rather expensive clothes.  The short skirt and woman[apostrophe]s blazer would be very fashionable if not thoroughly soaked in cum.  The nearby purse and high heels are both designer brand names - expensive French ones.  A broken collar and leash, and a torn remains of a cute dog outfit lead you to suspect that this woman[apostrophe]s little dog become more than she could handle.  Sifting through the items with the help of a stick, you[apostrophe]re unable to find anything that could be useful to you.";
+		say "     You look around the park and are fortunately not spotted by any monsters.  You search around the park, finding many signs of attacked residents.  There are torn and cum-stained clothes in several clusters, along with dog leashes and collars.  The area is thick with the scent of dog.  While searching, you focus on one pile of what appear to have once been rather expensive clothes.  The short skirt and woman[apostrophe]s blazer would be very fashionable if not thoroughly soaked in cum.  The nearby purse and high heels are both designer brand names - expensive French ones.  A broken collar and leash, and a torn remains of a cute dog outfit lead you to suspect that this woman[apostrophe]s little dog become more than she could handle.  Sifting through the items with the help of a stick, you[apostrophe]re unable to find anything that could be useful to you.";
 		increase score by 1;
 
 
@@ -302,7 +303,7 @@ to say vetsearch:
 		say "     As you start to open up the medical cabinet to look for supplies, you feel a cold, sticky splash against your back.  Splatters of thick, cool cum splash past you and onto cabinet[apostrophe]s contents.  You turn around quickly to see one of the large panther taurs in the doorway behind you, wearing the remains of a doctor[apostrophe]s coat over her upper body.  In her paw she has another large, clear balloon filled with what must be her cum.  And that[apostrophe]s when you realize its not a balloon, but an overinflated condom.  As the tingles of transformation run through you, you have to dodge to the side to avoid the second one before closing in to fight her.";
 		infect "Panther Taur";
 		challenge "Panther Taur";
-		say "     Once the panther creature has left, you return to quickly inspect the medical cabinet, but find that the contents have been throroughly soaked in the feline[apostrophe]s cum.  The scent of it and of all the other creatures is quickly getting to be too much.  You barely resist giving in and lapping up the growing puddle of cool cum that[apostrophe]s flowing out of the cabinet before running out into the fresh air to clear your head.";
+		say "     Once the panther creature has left, you return to quickly inspect the medical cabinet, but find that the contents have been thoroughly soaked in the feline[apostrophe]s cum.  The scent of it and of all the other creatures is quickly getting to be too much.  You barely resist giving in and lapping up the growing puddle of cool cum that[apostrophe]s flowing out of the cabinet before running out into the fresh air to clear your head.";
 	if T is 10:
 		say "     You cautiously enter the veterinary hospital and look around.  As you suspected, it was rather hard hit by the outbreak.  You can see the tattered remains of the secretary and the vets[apostrophe] clothes scattered about, as well as many dried pools of cum.  The scent of feline and canine arousal is strong in the air, making the infection inside you tingle.  You end up making your way into the staff break room and find that the animalistic sex spread into here as well.  From the clawmarks on the table and the large cum stain in the middle, some big male or herm got a thorough fucking while bent over it.  You quickly search around the room for usable supplies, but it seems the few lunches that were brought in have already been consumed by the newly transformed creatures.  The scents filling the place start to get to you and you eventually have to leave empty handed to resist giving in to them fully.";
 		increase score by 1;
@@ -435,6 +436,18 @@ to say kittycheck:		[add new felines when they arise]
 		now kittyness is 1;
 	if the facename of player is "Ninja Cat":
 		now kittyness is 1;
+	if the bodyname of player is "Cougar":
+		now kittyness is 1;
+	if the facename of player is "Cougar":
+		now kittyness is 1;
+	if the bodyname of player is "Snow Leopard":
+		now kittyness is 1;
+	if the facename of player is "Snow Leopard":
+		now kittyness is 1;
+	if the bodyname of player is "Margay":
+		now kittyness is 1;
+	if the facename of player is "Margay":
+		now kittyness is 1;
 
 to say randomvetfight:				[more suitable pets can be added]
 	let tempnum be a random number between one and seven;
@@ -474,6 +487,8 @@ name	desc	weight	object
 
 golf club is an armament. It is part of the player. It has a weapon "[one of]your golf club[or]your 9 Iron[or]your golf club, getting a bit of a slice on that swing[or]your golf club, calling out FORE! and making a hard swing[at random]". The weapon damage of golf club is 5. The weapon type of golf club is "Melee". It is not temporary.
 
+instead of sniffing the golf club:
+	say "The golf club smells faintly of grass, bad slices and bashed heads.";
 
 
 Section 7- Electronics Store
@@ -493,7 +508,7 @@ Instead of resolving a Electronics Store:
 
 Section 8 - Cameo
 
-Cameo is a situation.
+Cameo is a situation.  The level of Cameo is 4.
 The sarea of Cameo is "High";
 choclabfight is a number that varies.
 when play begins:
@@ -506,11 +521,11 @@ Instead of resolving a Cameo:
 	now choclabfight is 0;
 	challenge "Chocolate Lab";
 	if choclabfight is 1:
-		say "     After having finished with the lead dog, the others are moving in around the displays to get at you even as you keep moving to try and deal with them one on one.  It is difficult going as you have to avoid those while chocolate cream puddles of what you now know to be chocolate dog cum.  You manage to hop the sales counter and prepare to face the next one.";
+		say "     After having finished with the lead dog, the others are moving in around the displays to get at you even as you keep moving to try and deal with them one on one.  It is difficult going as you have to avoid those white chocolate cream puddles of what you now know to be chocolate dog cum.  You manage to hop the sales counter and prepare to face the next one.";
 		now choclabfight is 0;
 		challenge "Chocolate Lab";
 		if choclabfight is 1:
-			say "     With a second down, you ready yourself to face the last of them.  As you look first to the gap your last opponent took, you catch sight of it out of the corner of your eye.  It quietly flowed up the counter as your last fight ended and makes a leap at you.";
+			say "     With a second down, you ready yourself to face the last of them.  As you look first to the gap your previous opponent took, you catch sight of it out of the corner of your eye.  It quietly flowed up the counter as your last fight ended and makes a leap at you.";
 			let bonus be (( perception of player + dexterity of player minus 20 ) divided by 2 );
 			if "Wary Watcher" is listed in feats of player, increase bonus by 3;
 			if "Bad Luck" is listed in feats of player, decrease bonus by 2;
@@ -526,7 +541,7 @@ Instead of resolving a Cameo:
 			now choclabfight is 0;
 			challenge "Chocolate Lab";
 			if choclabfight is 1:
-				say "     Having defeated the last of them, you pant for breath as the chocolate dogs slink off like beaten curs.  They press themselves to the ground so much that their legs melt away beneath them and flow out as dog-shaped puddles.  With them dispatched, you are free to look around the remains of the store.  It seems that much of the merchandise has already been consumed by the dogs or tainted by them during their lustful gorging.  The boxes of chocolates and cameos on display at the back are thankfully still good, so you snatch them up and exit the store before the strong scent of chocolates and sex arouses you into sampling from the tainted wares.";
+				say "     Having defeated the last of them, you pant for breath as the chocolate dogs slink off like beaten curs.  They press themselves to the ground so much that their legs melt away beneath them and flow out as dog-shaped blobs.  With them dispatched, you are free to look around the remains of the store.  It seems that much of the merchandise has already been consumed by the dogs or tainted by them during their lustful gorging.  The boxes of chocolates and cameos on display at the back are thankfully still good, so you snatch them up and exit the store before the strong scent of chocolates and sex arouses you into sampling from the tainted wares.";
 				if "Junk Food Junky" is listed in feats of player:
 					say "     Outside, you give in and satisfy your craving for chocolate by stuffing yourself with the small cameo pack.  The fine chocolates are quite delicious.  You store the rest for later consumption.  Your junk food fueled metabolism finds the chocolates quite satisfying and you still have enough chocolates and almond bark to be equivalent to roughly two more snacks.";
 					decrease hunger of player by 15;
@@ -553,11 +568,11 @@ Instead of resolving a Cameo:
 		say "     Managing to outmaneuver the chocolate dogs, you push your way out of the store and into the courtyard around the shops.  Looking back, you spot the dogs pressed up against the glass, leaving chocolate streaks on windows before they hop down and return to their lustful consumption of the chocolates.  You are quite certain there will be nothing left in the store except for the white chocolate stains from their sexual play as they celebrate their victory at defending their delicious prize.";
 	otherwise if choclabfight is 2:
 		say "     When the victorious Labrador moves back, you look up to find yourself surrounded by the trio who look at you lustfully.  The other two flow atop you and start humping at your body.  You are buried in flowing chocolate as they cover you completely[if cunts of player > 1].  You can feel their creamy tendrils flow into your every orifice, fucking your mouth, pussies and asshole with a hard chocolate cock for each[otherwise if cunts of player is 1].  You can feel their creamy tendrils flow into your every orifice, fucking your mouth, pussy and asshole with a hard chocolate cock for each[otherwise].  You can feel their creamy tendrils flow into your mouth and asshole, fucking you at both ends with a hard chocolate cock[end if][if cocks of player > 1].  Their flowing bodies form warm, wet cunts around your cocks, sucking and squeezing at them as they pound into you[otherwise if cocks of player is 1].  Their flowing bodies form a warm, wet cunt around your cock, sucking and squeezing at them as they pound into you[end if].";
-		wait for any key;
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		say "     As this goes on, you can feel them flowing over your whole body, sliding off your clothes and backpack.  Completely naked, your can feel their flowing, rippling chocolate flesh sliding all over you, stimulating you so fully you sink further and further into a haze.  You barely notice the added weight of the third Labrador joining in, but you are somehow keenly aware that he's finished off the last of those chocolates as more and more of that creamy, white chocolate seed is pumped into you[if cocks of player > 0] while you pump your own cum out for them to enjoy[end if]";
 		if bodyname of player is "Chocolate Lab" or facename of player is "Chocolate Lab":
 			say ".";
-			wait for any key;
+			if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 			say "     During this rampant, fluidic sex with the dogs, you can feel much of your chocolate being intermingling with that of the other Labradors.  It feels like you are simultaneously filled and drained over and over again as your lovers mate you.  You seem to flow into them as they flow into you in an orgasmic melding of pleasure.  You feel yourself becoming much more canine and craving more and more chocolate, causing you to suck, squeeze and gulp down all you can get from them until finally much of you is gone.";
 			decrease humanity of player by a random number between 25 and 35;
 			increase hunger of player by 12;
@@ -569,7 +584,7 @@ Instead of resolving a Cameo:
 			increase hunger of player by 12;
 			if "Pure" is listed in feats of player, increase humanity of player by a random number between 5 and 10;
 			if "Corrupt" is listed in feats of player, decrease humanity of player by a random number between 0 and 10;
-		[puts Chocolate Lab as lead monster in case of impregnation]
+		[puts Chocolate Lab as lead monster for infection and impregnation]
 		repeat with y running from 1 to number of filled rows in table of random critters:
 			choose row y in table of random critters;
 			if name entry is "Chocolate Lab":
@@ -580,6 +595,7 @@ Instead of resolving a Cameo:
 		now skinname of player is "Chocolate Lab";
 		now bodyname of player is "Chocolate Lab";
 		now cockname of player is "Chocolate Lab";
+		attributeinfect;
 		now tail of player is tail entry;
 		now face of player is face entry;
 		now skin of player is skin entry;
@@ -588,13 +604,14 @@ Instead of resolving a Cameo:
 		if hellHoundLevel is 0:
 			follow the sex change rule;
 			follow the sex change rule;
-		wait for any key;
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		if libido of player < 70, now libido of player is 70;
 		say "     When they are finally sated, they flow away from you, leaving you in a pool of creamy chocolate.  You struggle to sit up as they flow over the last of the scattered chocolates before heading out the door.  One of them, which you somehow sense to be the one who defeated you, turns back and looks at you, as if to see if you will follow before flowing after the others.";
 		say "     Trying again to pull yourself up, you discover that you've fully become flowing, animate chocolate like your assailants.  You try to pull yourself together, taking stock that you've changed and fully become a chocolate Labrador like those sexy, tasty hounds";
 		if humanity of player < 10:
 			say ".  You flow into the shape of a flowing, chocolate dog and head out after them with a wet yip, having lost too much of yourself to them and succumbing to the bizarre, confectionary infection.  When you catch up to them, they grin and give you slobbery, chocolatey licks and nuzzles, welcoming you into the pack.";
 			end the game saying "Your mind melted away into the chocolate dogs, leaving you one of them.";
+			now battleground is "void";
 			wait for any key;
 			follow the turnpass rule;
 			stop the action;

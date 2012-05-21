@@ -1,7 +1,6 @@
 Version 8 of Skunk For FS by Damaged begins here.
-[ Version 8 - Endings added by Stripes ]
+[ Version 8.2 - Hard Mode adjustments by Stripes ]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
-
 
 "Adds male and female Skunks to Flexible Survivals Wandering Monsters table"
 [Description text for this Extension.]
@@ -10,29 +9,30 @@ Section 1 - Monster Responses
 
 skunkready is a number that varies;
 Skunk_type is a number that varies; [if it is 0 it means to pick a new creature type. if it is a 1 it is a skunk girl, if its a 2 its a skunk beast...]
+skunkfight is a number that varies;
 
 to say skunk vict:
 	if skunkready > 2:
 		if cunt length of player > 5:
-			say "The large skunk snuffles at the air for something, deciding you're what he's looking for it seems.  A huge, heavy paw knocks you down onto your hands and knees, and before you can get back up, the heavy weight pins you down. The thick shaft parts your new black-furred slit, and pounds you wildly!";
-			say "The wild beast uses you for his own pleasure, as your body betrays you, a low groan rising in your throat.  You find yourself pushing back, panting, but the thick, messy cum that floods your body comes just before you can release, leaving you almost desperate and begging for more.[impregchance]";
-			infect;
+			say "The large skunk snuffles at the air for something, deciding you're what he's looking for it seems.  A huge, heavy paw knocks you down onto your hands and knees, and before you can get back up, the heavy weight pins you down.  The thick shaft parts your new black-furred slit, and pounds you wildly!";
+			say "The wild beast uses you for his own pleasure.  As your body betrays you, a low groan rising in your throat and you submit to his animalistic mating.  You find yourself pushing back and panting, lusting to be taken by this wild creature.  You wriggle your rear and ride his cock, but the thick, messy cum that floods your body comes just before you can release, leaving you almost desperate and begging for more.  Your womb is plump and warm with his ample load.[impregchance]";
 			increase skunkready by 1;
+		otherwise if cunts of player > 0:
+			say "The large skunk snuffles at the air for something and nuzzles at your crotch.  As if deciding you're not quite ready yet, he lets his black, gooey tongue slide over your pussy, then push into it, making you moan in pleasure.  The powerful beast dives his tongue into you repeatedly, lapping up your juices and sliding his thick, gooey drool into your pussy until you cum hard.  You grip his head and stroke his ears, loving the attention this beast is giving you despite yourself and find yourself longing to be ready for him someday soon.";
+			follow the sex change rule;
 		otherwise:
-			say "The massive skunk sprays thick, oily musk everywhere!";
-			say "Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery textured fur, even as you feel a tingle at your groin.";
-			infect;
-			increase skunkready by 1;
+			say "The massive skunk sprays thick, oily musk everywhere!  Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery-textured fur, even as you feel a tingle at your groin.";
+		increase skunkready by 1;
 	otherwise:
-		say "The massive skunk sprays thick, oily musk everywhere!";
-		say "Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery textured fur, even as you feel a tingle at your groin.";
+		say "The massive skunk sprays thick, oily musk everywhere!  Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery-textured fur, even as you feel a tingle at your groin.";
 		infect;
 		increase skunkready by 1;
 
 to say skunk defeat:
 	if skunkready > 3: [been sprayed or mated a lot]
-		if cunt length of player > 5: [ready to take him]
-			say "With one last feat of strength, the beast grabs you, lifting itself onto your rear, thrusting madly. You whimper as his final rutting brings you to your limit. As your world turns fuzzy, gripped in a rushing orgasm you feel the beasts heated seed spray your inner most parts one last time.[impregchance]"; [rawr final mating]
+		let tempnum be a random number between 1 and 10;
+		if cunt length of player > 5 and skunkready > tempnum: [ready to take him, chance for final fuck]
+			say "With one last feat of strength, the beast grabs you, lifting itself onto your rear, thrusting madly.  You whimper as you find yourself unable to resist as his final rutting brings you to your limit.  As your world turns fuzzy, gripped in a rushing orgasm you feel the beast's heated seed spray your inner most parts one last time.[impregchance]"; [rawr final mating]
 			increase skunkready by 1;
 			infect;
 		otherwise:
@@ -42,24 +42,26 @@ to say skunk defeat:
 
 to say skunk bodyshift:
 	if cunts of player > 1:
-		say "Your body becomes even more feminine, waist slimming, hips widening leaving you with curves that would make anyone, male or female, drool in lust";
+		say "your body becomes even more feminine, waist slimming, hips widening leaving you with curves that would make anyone, male or female, drool in lust";
 	otherwise:
-		say "Your body becomes more feminine, curves building that make it impossible to define you as anything but female despite what equipment you might have";
+		say "your body becomes more feminine, curves building that make it impossible to define you as anything but female despite what equipment you might have";
 
 to say skunkg vict:
-	say "The female skunk turns, spraying thick, oily musk everywhere!";
-	say "Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery textured fur, even as you feel a tingle at your groin.";
-	infect;
+	now skunkfight is 2;
+	if cocks of player > 0 and skunkready > 2:
+		say "Victorious, the female skunk grabs your cock and starts pumping at it vigorously.  With your meat hard in her paw, she sinks her muzzle down overtop of it.  She licks and sucks at your shaft, drooling black goo onto it as you blast your hot load into her muzzle.  She licks her lips and swallows your semen down.  She grins as the stick, black goo doesn't remain on your skin for long as it smooths out in places and starts to sink into you, leaving behind a soft, almost rubbery-textured fur even as you feel a tingle in your groin.";
+		follow the sex change rule;
+	otherwise:
+		say "The female skunk turns, spraying thick, oily musk everywhere!  Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery-textured fur, even as you feel a tingle at your groin.";
 	increase skunkready by 1;
 
 to say skunkg defeat:
+	now skunkfight is 1;
 	if a random number from 1 to 100 is greater than 2:
-		say "The skunk girl looks up at you, smiling even as her body seems to turn to liquid, 'I may be gone, but you can still carry His kittens...' she mutters cryptically as she collapses, disolving completely.";
+		say "The skunk girl looks up at you, smiling even as her body seems to turn to liquid, 'I may be gone, but you can still carry His kittens...' she mutters cryptically as she collapses, dissolving completely.";
 	otherwise:
-		say "The skunk girl turns to run from you and you relax thinking the fight over, suddenly you realise your error as one last gob of oily musk hits you.";
-		say "Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery textured fur, even as you feel a tingle at your groin.";
-		infect;
-		
+		say "The skunk girl turns to run from you and you relax thinking the fight over, suddenly you realise your error as one last gob of oily musk hits you.  Sticky as it is, it doesn't remain on your skin for long as it smooths out in places, leaving behind a soft almost rubbery-textured fur, even as you feel a tingle at your groin.";
+
 to say skunk_defeat:
 	if Skunk_type is 1:
 		say "[skunkg defeat]";
@@ -76,30 +78,28 @@ to say skunk_vict:
 
 to say skunk_attack:
 	if Skunk_type is 1:
-		say "[one of]Runs up, bringing her feet forward in a flying kick.[or]Leaps in and bites at your arm.[or]Claws at you woth her slender paws.[at random]";
+		say "[one of]Runs up, bringing her feet forward in a flying kick.[or]Leaps in and bites at your arm.[or]Claws at you with her slender paws.[at random]";
 	otherwise:
 		say "[one of]Leaps, batting you aside.[or]Leaps in and bites at your arm.[or]Claws at you viciously.[at random]";
 
-		
-		
-	
-		
 to say skunk_desc:
 	choose row monster from the table of random critters;	
-	if a random number from 1 to 10 > 3: [female skunk]
-		say "A very female anthropomorphic skunk with hints of animal, its curves and beasts leave you wanting, without any reservations, to fuck it senseless.";
+	let debit be 0;
+	if hardmode is true and level of player > 5, let debit be level of player - 5;
+	if a random number from 1 to 10 > 3 or skunkfight is 3: [female skunk]
+		say "A very female anthropomorphic skunk with hints of animal, its curves and breasts leave you wanting, without any reservations, to fuck it senseless.";
 		now Skunk_type is 1;
-		now hp entry is 28;            [- How many HP has the monster got? -]
-		now monsterhp is 28;
-		now wdam entry is 6;            [-Amount of Damage monster Does when attacking.-]
+		now hp entry is 28 + ( debit * 4 );			[- How many HP has the monster got? -]
+		now monsterhp is 28 + ( debit * 4 );
+		now wdam entry is 6 + ( debit / 3 );		[-Amount of Damage monster Does when attacking.-]
 	otherwise: [male skunk]
 		say "This Skunk Beast would easily pass for a normal animal, if it weren't for two things.  One, the creature is the size of a small horse, and two, it's sporting the biggest erection you've ever seen as it waddles around on all fours.  Which is a bit less than comforting, with the way it looks into your eyes.";
 		now Skunk_type is 2;
-		now hp entry is 64;            [- How many HP has the monster got? -]
-		now monsterhp is 64;
-		now wdam entry is 10;            [-Amount of Damage monster Does when attacking.-]
-	
-		
+		now hp entry is 64 + ( debit * 5 );			[- How many HP has the monster got? -]
+		now monsterhp is 64 + ( debit * 5 );
+		now wdam entry is 10 + ( ( 4 * debit ) / 11 );		[-Amount of Damage monster Does when attacking.-]
+
+
 Section 2 - Monster Insertion
 
 Table of random critters (continued)
@@ -111,8 +111,8 @@ When Play begins:
 	Choose a blank row from Table of random critters;
 	now name entry is "Skunk"; [Name of your new Monster]
 	now attack entry is "[skunk_attack]";
-	now defeated entry is "[skunk_defeat]"; 
-	now victory entry is  "[skunk_vict]"; 
+	now defeated entry is "[skunk_defeat]";
+	now victory entry is "[skunk_vict]";
 	now desc entry is "[skunk_desc]";[ Description of the creature when you encounter it.]
 	now face entry is "have a large-muzzled female skunk's head";[ Face description, format as the text "Your face is (your text)."]
 	now body entry is "curvaceous and screams 'female and needs IT', men want to fuck you women want to be you... and fuck you";[ Body Description, format as the text "Your Body is (your text)."]
@@ -164,11 +164,11 @@ When Play begins:
 	now heat start entry is "[skunk heat start]";		[this is a to say block that cuasees things to happen when the player enters heat. for example the GSD sex grows wider.  Delete entire line if you wish nothing to happen.]
 	now heat end entry is "[skunk heat end]";		[this is the same as heat start only it"s for ending the cycle. GSSD her sex is reduced back to it"s previous size. Delete entire line if you wish nothing to happen. ]
 	now inheat entry is "[skunk in heat]";			[this final say block is triggered every 3 hours the player is in heat. you can use defaultheat or write your own. defaultheat riaises libido value by 5 every 3 hours. ]
-	
+
 to say skunk heat start:
 	increase cunt width of player by 3;
 	increase cunt length of player by 2;
-	
+
 to say skunk heat end:
 	decrease cunt width of player by 3;
 	decrease cunt length of player by 2;
@@ -187,6 +187,8 @@ Skunk Goo is a grab object.
 
 Skunk Goo is infectious. The strain of skunk goo is "Skunk".
 
+instead of sniffing skunk goo:
+	say "The gooey black gunk smells strongly of skunk.";
 
 
 Section 4 - Endings

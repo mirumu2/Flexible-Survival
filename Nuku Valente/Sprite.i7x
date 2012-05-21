@@ -60,7 +60,7 @@ When Play begins:
 	now tail entry is "";[ Tail description, write a whole Sentence or leave blank. ] 
 	now cock entry is "[one of]human[or]uncut[at random]";[ Cock Description, format as you have a 'size' (your text) cock] 
 	now face change entry is "your ears become long and elfin, pudgy and youthful, you could almost pass for human."; [ face change text. format as "Your face feels funny as (your text)" ]
-	now body change entry is "you shrink dramatically and swiftly. Your form becoms more female looking as curves develop. Behind you, dragonfly like wings extend outwards, buzzing excitedly for a moment before folding neatly against your reduced form."; [ body change text. format as "Your body feels funny as (your text)" ]
+	now body change entry is "you shrink dramatically and swiftly. Your form becomes more female looking as curves develop. Behind you, dragonfly like wings extend outwards, buzzing excitedly for a moment before folding neatly against your reduced form."; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "it becomes soft and supple, perfect human flesh."; [ skin change text. format as "Your skin feels funny as (your text)" ]
 	now ass change entry is "your rump becomes round and grabbable."; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
 	now cock change entry is "it becomes human like, uncut and dangling between your thighs."; [ cock change text. format as "Your cock feels funny as (your text)" ]
@@ -88,20 +88,6 @@ When Play begins:
 	now loot entry is "Fish";			[ Loot monster drops, ]
 	now lootchance entry is 0;		[ Chance of loot dropping 0-100 ]
 
-Table of Game Objects(continued)
-name	desc	weight	object
-"Fish"	"A fish. It could be a big fish or a small fish, but it has scales on it. A sniff of it oddly reminds you of otters."	1	Fish
-
-Fish is a grab object. 
-
-Fish is infectious. The strain of Fish is "sea otter".
-usedesc of Fish is "[Fish]";
-The purified of fish is "food";
-
-To say Fish:
-	decrease the hunger of the player by 15;
-	if the hunger of the player is less than 0, now the hunger of the player is 0;
-
 when play ends:
 	if bodyname of player is "city sprite":
 		if humanity of player is less than 10:
@@ -111,11 +97,9 @@ when play ends:
 				say "Your memories of your old life begin to fade away and you take off in a sudden buzz, flying around the city in search of... something, but you never quite find it. It's quite a surprise when a net falls down on you a few days later and you're hauled out of the city. Your captor proves to be reasonably kind, but never treats you as more than an interesting and delicate looking animal, despite your protests.";
 		otherwise:
 			if Spriteconsent is 1:
-				say "Great glows of bright colors eminate off your body as you begin to shrink down. The sprite cloud arrives moments later, trying to lead you away. Your mind still sharp, you give another idea. They seem confused at your idea, and the leader steps forward to challenge her. Rather than fight her, you grab her up in a fierce kiss, hands wandering over her back and buttocks.[line break] [line break]When the kiss parts, she agrees to your terms, and you guide the sprites to a city, becoming a source of mystery and predating on the people there who need it most. Lonely Friday nights are a thing of the past.";
+				say "Great glows of bright colors emanate off your body as you begin to shrink down. The sprite cloud arrives moments later, trying to lead you away. Your mind still sharp, you give another idea. They seem confused at your idea, and the leader steps forward to challenge her. Rather than fight her, you grab her up in a fierce kiss, hands wandering over her back and buttocks.[line break] [line break]When the kiss parts, she agrees to your terms, and you guide the sprites to a city, becoming a source of mystery and predating on the people there who need it most. Lonely Friday nights are a thing of the past.";
 			otherwise:
 				say "You are picked up by the rescuers just moments before you start to shrink down the rest of the way to Sprite size. You have a hard time getting a job being so small, at least until that advertising firm found you. You did quite well as a model, where scale meant a lot less. Besides, how could Sprite resist using you?";
-
-			
 
 
 [ Edit this to have the correct Name as wall]

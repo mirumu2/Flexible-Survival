@@ -59,6 +59,8 @@ The sarea of Salty taffy is "Midway";
 
 Instead of Resolving a Salty taffy:
 	say "Wandering through the cheerful midway of the fair, you come across a stand selling old fashioned salt water taffy, the fresh sticky stuff set up on the counter with a sign next to them saying 'free samples'.  Deciding to take a chance, you help yourself to one of the pieces of sticky candy, chewing and chewing as you go on your way, you find the salty and sweet treat to be a wonderful accompaniment to the fair itself. Unfortunately though, the sticky stuff gums up your mouth and dries it out as you chew, and the salty part of the taste seems to make you even thirstier then before.";
+	decrease hunger of player by 6;
+	if hunger of player < 0, now hunger of player is 0;
 	increase thirst of player by 20;
 	Now Salty taffy is resolved;
 
@@ -90,7 +92,7 @@ Strange barker is a situation.
 The sarea of Strange barker is "Midway";
 
 Instead of Resolving a Strange barker:
-	say "Wandering through the cheerful midway of the fair, you hear someone shouting out something, and move over to take a look, surprisingly you find a man covered in clown makeup standing in front of a ride shouting out its endorsements, in an attempt to tempt the nonexistant crowd inside, moving closer you try to talk to the man, only to be shouted at directly by the carnival barker.  Regardless of what you do, his spiel doesn[apostrophe]t seem to change any, and moving closer, you note that his feet seem to have become attached to the barkers stand, anchoring him there as he repeats his speech over and over again. Shuddering slightly at the strangeness of it all, you definitely decide not to try that ride.";
+	say "Wandering through the cheerful midway of the fair, you hear someone shouting out something, and move over to take a look, surprisingly you find a man covered in clown makeup standing in front of a ride shouting out its endorsements, in an attempt to tempt the nonexistent crowd inside, moving closer you try to talk to the man, only to be shouted at directly by the carnival barker.  Regardless of what you do, his spiel doesn[apostrophe]t seem to change any, and moving closer, you note that his feet seem to have become attached to the barkers stand, anchoring him there as he repeats his speech over and over again. Shuddering slightly at the strangeness of it all, you definitely decide not to try that ride.";
 	Now Strange barker is resolved;
 
 Section 11- Ferris fun time   
@@ -105,8 +107,11 @@ Instead of Resolving a Ferris fun time:
 
 Section 12-  Rubber tiger chase
 
-Rubber tigerchase is a situation.
+Rubber tigerchase is a situation.  The level of Rubber tigerchase is 6.
 The sarea of Rubber tigerchase is "Midway";
+when play begins:
+	add Rubber tigerchase to badspots of girl;
+	add Rubber tigerchase to badspots of furry;
 
 Instead of Resolving a Rubber tigerchase:
 	say "Wandering through the cheerful midway of the fair, you spot one of those rubber tigresses hanging around doing something at one of the prize booths, unfortunately it seems to spot you at the same time. Somewhat unusually for one of the rubber beasts, it squeaks and flees down towards one of the nearby buildings, do you give chase?";
@@ -125,12 +130,17 @@ Section 13-  Lion modifying
 
 Lion modifying is a situation.
 The sarea of Lion modifying is "Midway";
+[ Quest requires all three ]
+when play begins:
+	add Lion modifying to badspots of guy;
+	add Lion modifying to badspots of girl;
+	add Lion modifying to badspots of furry;
 
 Instead of conversing the Lisa while borisquest is 3:
 	say "'Your looking for a what?' Lisa says in surprise, 'Um I don[apostrophe]t think we have that brand of condom right now, would another brand suffice?' [line break]";
 	say "You explain that you aren[apostrophe]t sure if another brand would work the same way, since you aren[apostrophe]t sure why or how this brand seems to work to begin with.  'Thats a strange comment,' Lisa says, the mousetaur obviously puzzled, 'Work for what? No look why don[apostrophe]t you explain exactly what you need to happen, and I[apostrophe]ll see what I can do to help'[line break]";
 	say "You take time to explain Boris the lions predicament, and when she stops laughing you explain what you saw with the plush lions and the changes that you and Boris hope can be duplicated for him as well. 'That poor... well lion,' Lisa says, still snickering slightly at the situation, 'Well now that I know what the problem is, how could I not try to help out?' Lisa asks you rhetorically, as she moves her long mouselike form out from behind the counter and starts searching through the back of the store. 'I think I might have something here even better then what you were thinking about using, if it is still here anyways... Ah here we go!' she exclaims triumphantly, a large grin crossing her face as she returns carrying something rather large and pointed.  As she sets it down on the counter, you get a closer look at the item, and find yourself grinning in amusement as well.[line break]";
-	say "Looking at the item Lisa set out on the counter, you are amused to find it appears to be a rather large novelty dildo, made of some kind of red substance.  The dildo is both slightly pointed and barbed, and in all ways other then its sheer size appears to resemble the cock of a cat, wondering who would purchase such a thing, you send Lisa a questioning glance.  The mousetaur shrugs, seeming to have anticipated your reaction, 'You would be surprised at the kind of stuff some people buy here,  to be honest you are just lucky we still had that one around, that and the canine variety were hard to keep on the shelves.'  Lisa says, causing you both to chuckle slightly as you stare at the barbed dildo. Shaking your head sadly, you start to ask her how much this is going to cost, but she waves her paw and cuts you off before you can finish asking. 'Just take it, it[apostrophe]s the least I can do to help this poor lion friend of yours out,' She says with a buck toothed grin at the situation, 'Besides,' she continues, 'It isn[apostrophe]t like accounting for all the stock is going to be a major priority for me anytime soon, if the store owner is even around afterwards he can bitch at me about it then, possibly literally if he ran into one of those shepards out there,' she says with a smile as she hands you the feline dildo. 'Better you find a use for it with your friend out there, hopefully it will work as well or better then those condos. If it doesn[apostrophe]t though come on back and see me and we will find something else for the poor lion, and if it does work... well you and the lion can come on back and see me and maybe we can stress test it for him,' Lisa says with a smile and a wink.";
+	say "Looking at the item Lisa set out on the counter, you are amused to find it appears to be a rather large novelty dildo, made of some kind of red substance.  The dildo is both slightly pointed and barbed, and in all ways other then its sheer size appears to resemble the cock of a cat, wondering who would purchase such a thing, you send Lisa a questioning glance.  The mousetaur shrugs, seeming to have anticipated your reaction, 'You would be surprised at the kind of stuff some people buy here,  to be honest you are just lucky we still had that one around, that and the canine variety were hard to keep on the shelves.'  Lisa says, causing you both to chuckle slightly as you stare at the barbed dildo. Shaking your head sadly, you start to ask her how much this is going to cost, but she waves her paw and cuts you off before you can finish asking. 'Just take it, it[apostrophe]s the least I can do to help this poor lion friend of yours out,' She says with a buck toothed grin at the situation, 'Besides,' she continues, 'It isn[apostrophe]t like accounting for all the stock is going to be a major priority for me anytime soon.  If the store owner is even around afterwards, he can bitch at me about it then, possibly literally if he ran into one of those German Shepherds out there,' she says with a smile as she hands you the feline dildo. 'Better you find a use for it with your friend out there, hopefully it will work as well or better then those condos. If it doesn[apostrophe]t though come on back and see me and we will find something else for the poor lion, and if it does work... well you and the lion can come on back and see me and maybe we can stress test it for him,' Lisa says with a smile and a wink.";
 	increase borisquest by 1;
 	stop the action;
 
@@ -145,13 +155,18 @@ Instead of Resolving a Lion modifying:
 		increase borisquest by 1;
 		Now Lion modifying is resolved;
 	otherwise:
-		say "Passing by the area where you saw the lion modifiying itself, you shudder for a minute as you recall the strange sight, although for some reason thinking of lion cocks reminds you of Boris, who is unfortunately missing his.";
+		say "Passing by the area where you saw the lion modifying itself, you shudder for a minute as you recall the strange sight, although for some reason thinking of lion cocks reminds you of Boris, who is unfortunately missing his.";
 
 
 Section 14- Locked lockers
 
-Locked lockers is a situation.
+Locked lockers is a situation.  The level of Locked lockers is 6.
 The sarea of Locked lockers is "Midway";
+[ Quest requires all three ]
+when play begins:
+	add Lion modifying to badspots of guy;
+	add Lion modifying to badspots of girl;
+	add Lion modifying to badspots of furry;
 
 Instead of Resolving a Locked lockers:
 	if christyquest is 0:

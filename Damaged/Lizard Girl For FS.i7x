@@ -1,4 +1,5 @@
-Version 7 of Lizard Girl For FS by Damaged begins here.
+Version 8 of Lizard Girl For FS by Damaged begins here.
+[ Version 8 - Victory Sex by Shadowwolf94 ]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 
 
@@ -70,12 +71,32 @@ to say lizgirl defeat:
 		if lizgirlangry is 0:
 			say "She looks up at you mournfully, 'Oh what I could have done with you...' she says softly before collapsing.";
 		otherwise:
-			say "Looking at you one last time, she sheds a tear. 'Such a wonderful fighter. How can such a flawed being be so grand?' before dieing.";
+			say "Looking at you one last time, she sheds a tear. 'Such a wonderful fighter. How can such a flawed being be so grand?' before collapsing on the ground.";
 	otherwise:
 		if lizgirlmarked is 1:
-			say "'Why did you not want this? Was the canvas too flawed?' she murmurs before losing consciousness.";
+			say "'Why did you not want this? Was the canvas too flawed?' she murmurs before collapsing on the ground.";
 		otherwise:
 			say "With a whine she says, 'I only wanted what was best for you, now another artist must finish my work' before collapsing.";
+	if hp of ronda is 4:
+		say "     Remembering that the lizard girl has part of the cure for Ronda, you run your hands over her body and slip a finger into her wet pussy.  You start to rub and finger her cunt, making her moan and squirm in pleasure.  She grips your shoulders firmly and bucks her hips as you pump a pair of fingers into her again and again.  As her excitement builds and her vaginal walls quiver around your digits, she moans and bucks her hips almost as if thrusting before finally climaxing loudly.  She sags against you, panting for breath after her orgasm.  Still holding her up with one arm, you place a small vial under her pussy to gather the leaking juices, a little surprised to find them a thick and creamy white instead of clear juices.  Sealing up the unusual sample, you resist the urge to lick your fingers clean and instead wipe them off after taking a moment to enjoy her thick, musky scent.";
+		add "lizard juice" to invent of player;
+		now hp of ronda is 5;
+	if libido of player > 33:
+		if cocks of player > 0:
+			say "[lizdefmale]";
+		otherwise if cunts of player > 0:
+			say "[lizdeffemale]";
+		otherwise:
+			say "[lizdefnone]";
+
+to say lizdefmale:
+	say "You look down upon the defeated lizard girl[']s body, you arousal growing as you decide to sate your lusts on this creature.[line break]You stride over to her and undress, you cock growing erect with thoughts of what you[']re about to do to her. You kneel down beside her and push her onto her stomach, causing her to groan. You position yourself behind her, taking hold of her hips with one hand while the other lifts up her reptilian tail to reveal her wet folds. You grin and lick your lips pulling her hips up to meet yours as you press the tip of your length against her sex and slide it in.[line break]You moan out in pleasure, her reptilian cunt instinctively gripping and pulling on your shaft, urging you to fuck her. Not wasting any time, you begin to buck into her tight depths, both arms rapped around her tail for support.[line break]The lizard girl beneath your gasps and groans at this treatment, her tail wrapping around you as much as it can, trying to pull you closer to her. You grit your teeth and buck into her harder, trying your best to hold of the impending orgasm you feel coming. You can barely hold on any longer when the girl beneath you cries out as she climaxes, her cunt spasming along your length and sending you over the edge. You[']re cries of joy mix with hers as you empty your balls into her depths, her cunt milking your shaft for your cum.[line break]You pant and groan as you come down from your climax, slipping your length out of her cunt, your cum leaking out from her hole. You stand up and give the lizard girl[']s ass a soft slap, making her shiver and groan, before you grab your gear and head out.";
+
+to say lizdeffemale:
+	say "You look down upon the defeated lizard girl[']s body, you arousal growing as you decide to sate your lusts on this creature.[line break]You stride over to her and undress, your pussy getting nice and wet thinking about what you[']re going to do to her. You kneel down beside her and roll her onto her back, taking hold of her legs and spreading them open to show her sexy cunt. You grin, licking your lips and moving yourself between her legs, sliding your folds up against hers.[line break]She moan, involuntarily pressing back against you as you begin to grind your pussy against hers. Holding one leg of hers up with a hand, you take hold of one of your breasts with the other and gently begging stoking it and playing with the nipple. You look down at the female beneath you and notice that she's begun fondling her own breasts too, tweaking her nipples, and rubbing them together. You smile and laugh, getting even more turned on by her wanton display of need.[line break]You gasp, eyes going wide as you feel a long scaly shape sliding between your cunt and hers. You glance down and moan as you see her tail pressing and grinding against both of her sexes, the end pressing up against yours and slipping in. You arch your back and groan in pleasure as she stimulates your insides with her tail, pressing up against the walls of your pussy and flicking the tip of her tail up and down your depths. Your body shakes and shivers at this, quickly bringing you to orgasm as your cunt clamps down on her tail, your fem juices squirting out around the sides.[line break]You collapse in a heap, panting hard and groaning in the aftermath. Not one to be ungrateful though, you roll yourself onto your stomach and move to press your mouth against her folds, gently kissing and licking at them. Taking hold of the end of her tail, still slick with your juices, you press it against her sex and slide it in, using it like a living dildo. She gasps and squirms in response as you pump the end of her tail in and out of her while you lick and nibble at her clitoris. Soon enough she is crying out in orgasm, spraying your face with her juices. You eagerly lap them up and slip her tail out of her cunt. Once she lets out one last shiver or orgasmic pleasure, she collapses in an exhausted heap.[line break]Smiling all the while, you get up and grab your equipment and quietly sneak away, the taste of the lizard girl still on your lips.";
+
+to say lizdefnone:
+	say "You look down upon the defeated lizard girl[']s body, you arousal growing as you decide to sate your lusts on this creature. However, you stop and look down at yourself, realizing that you lack the proper equipment. Growling at yourself, you turn around and storm off in a huff.";
 
 to say lizgirl desc:
 	if "Male Preferred" is listed in feats of player:	
@@ -108,7 +129,7 @@ When Play begins:
 	now name entry is "lizard girl"; [Name of your new Monster]
 	now attack entry is "[one of]She rakes you with her sharp claws.[or]A spinning scaled form precludes the tail that smacks into your face, knocking you down.[or]Laughing the reptile lances her head forward to bite you on the arm[at random][line break][lizgirl check angry]"; [Text used when the monster makes an Attack]
 	now defeated entry is "[lizgirl defeat]"; [ Text or say command used when Monster is defeated.]
-	now victory entry is  "[lizgirl attack]"; 
+	now victory entry is "[lizgirl attack]"; 
 	now desc entry is "[lizgirl desc]";	[ Description of the creature when you encounter it.]
 	now face entry is "longer and thinner as soft dark colored scales cover your short muzzle, lending your ear less features a very reptilian air";	[ Face description, format as the text "Your face is (your text)."]
 	now body entry is "compact and solid, yet showing off every curve to perfection, heavy compact muscles belay strength despite their small representation";[ Body Description, format as the text "Your Body is (your text)."]
@@ -118,7 +139,7 @@ When Play begins:
 	now face change entry is "it draws forward a little, a reptilian muzzle forming as your teeth reshape into delicate sharp points"; [ face change text. format as "Your face feels funny as (your text)." ]
 	now body change entry is "you can feel the tingling radiate outwards, muscles, bones and organs shifting and rearranging"; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "a wave of scales of seemingly random colors pours over you. Yet as they thicken and interlock, you notice a strangely beautiful pattern emerge"; [ skin change text. format as "Your skin feels funny as (your text)." ]
-	now ass change entry is "your cheeks are pulled in and tight"; [ ass/tail change text. format as "Your ass feels funny as (your text)." ]
+	now ass change entry is "your cheeks are pulled in and tight.  A lizard tail grows out, strong and muscled, but shaped to nicely cover your tight bottom"; [ ass/tail change text. format as "Your ass feels funny as (your text)." ]
 	now cock change entry is "it feels wrong, as though She had meant it just as a means to an end"; [ cock change text. format as "Your cock feels funny as (your text)." ]
 	now str entry is 14;
 	now dex entry is 16;
@@ -174,7 +195,8 @@ When Play begins:
 	now trigger text entry is "";
 	now description text entry is "";	
 	now inheat entry is "[liz impreg]";			[The lizard girls seed effectively internalised the male organs, leaving the poor character impregnating themselves every heat cycle. This will be much more 'fun' once repeated births are in :3 ]
-	
+
+
 	
 [ Edit this to have the correct Name as wall]
 Lizard Girl For FS ends here.

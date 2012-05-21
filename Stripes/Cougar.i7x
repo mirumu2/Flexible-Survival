@@ -3,11 +3,14 @@ Version 1 of Cougar by Stripes begins here.
 
 Section 1 - Monster Responses
 
+cougarfight is a number that varies.
+
 when play begins:
 	add { "Cougar" } to infections of hermaphrodite;
 	add { "Cougar" } to infections of furry;
 
 to say losetocougar:
+	now cougarfight is 2;
 	say "     Falling to your knees in front of the cougar herm, she growls triumphantly and climbs atop you.  Her strong body holds you down as she rubs herself against you.  Her soft fur and lovely breasts slide against your chest, and you can feel the firm press of her throbbing cock against you";
 	if cocks of player > 0 and cunts of player is 0:
 		say "[cougarride]";
@@ -27,6 +30,7 @@ to say cougartop:
 		say "[impregchance]";
 
 to say beatthecougar:
+	now cougarfight is 1;
 	say "     Managing to beat the cougar herm, you stand over her slumped, panting form.  The fight has gone out of her, but she still looks quite aroused";
 	if a random number between 30 and 125 > libido of player:
 		say ".  You ponder having a little fun with the aroused feline, now that she's calmed down a little.  Shall you sex up the poor, aroused puma?";
@@ -67,7 +71,7 @@ When Play begins:
 	now tail entry is "Attached at your rear is a cougar's tail, golden brown and darkening towards the tip.";	[ Tail desc., written as a full sentence or left blank for none. ] 
 	now cock entry is "deep brown with soft, feline barbs";						[ Cock desc., format as "You have a 'size' (your text) cock." ]
 	now face change entry is "it reshapes into a feline muzzle and head";	[ Face TF text, format as "Your face feels funny as (your text)." ]
-	now body change entry is "it becomes more feline in form and more athletically built.  You feel comfortable switching between walking upright and on all fours.  Your hands become feline paws with retractible claws";	[ Body TF text, format as "Your body feels funny as (your text)." ]
+	now body change entry is "it becomes more feline in form and more athletically built.  You feel comfortable switching between walking upright and on all fours.  Your hands become feline paws with retractable claws";	[ Body TF text, format as "Your body feels funny as (your text)." ]
 	now skin change entry is "golden brown fur spreads all over your body.  Your colouration is uniform over most of your body, lacking elaborate markings or patterns and only a shift to a creamy colour at your belly and groin";	[ Skin TF text, format as "Your skin feels funny as (your text)." ]
 	now ass change entry is "a feline tail grows into place, swishing as it becomes more distinctly puma-like in form and pattern";	[ Ass/Tail TF text, format as "Your ass feels funny as (your text)." ]
 	now cock change entry is "your balls churn and your cock reshapes itself into a vaguely human form, but with the stimulating spines of a feline penis.  Your shaft changes colour, becoming a deep brown as these changes complete themselves";		[ Cock TF text, format as "Your cock feels funny as (your text)." ]

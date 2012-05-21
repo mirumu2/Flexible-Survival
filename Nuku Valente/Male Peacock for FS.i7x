@@ -43,11 +43,11 @@ to say peacockvictory:
 	if cunts of player > 0:
 		say "You feel a bit better now...you can think more clearly, as if the leash in your brain has been loosened.You don't think you would be able to actually oppose what is about to happen, though...";
 		say "He motions towards the bed in the middle of the room. You obediently lie on the mattress, while he looks at your body with unmistakable lust, his cock already poking out of his slit. He slides over your body... it feels like a light, warm blanket. You think that maybe this won't be SO bad after all...";
-		wait for any key;
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		say "After you don't know how much pleasant time, you find yourself back in the city, no idea how or when. You quickly realize that finding him will be practically impossible by now...then you realize just now that your body may have changed...";
 	otherwise:
 		say "He orders you to sit on the bed. You have no choice but to obey, your body out of your control. He examines you and, to your surprise, he sighs, mildly irritated. 'Look - he says - it will be better for both of us if you won[apostrophe]t remember this...'. Before you can reply, he fans his tail again...";
-		wait for any key;
+		if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		say "...then you find yourself back in the city? You don't remember how did you come here, or what happened in the apartment, or even where that was... and then it occurs to you that you should check what happened to your body.";
 			
 Section 2 - Monster Insertion
@@ -72,7 +72,7 @@ When Play begins:
 	now tail entry is "[peacocktail]";[ Tail description, write a whole Sentence or leave blank. ] 
 	now cock entry is "[one of]thin red[or]ondulated[or]avian-like[at random]";
 	now face change entry is "your entire head gets reshaped in the shape of a bird head."; [ face change text. format as "Your face feels funny as (your text)" ]
-	now body change entry is "your legs became bird-like, including a painful double joint, and your arms trasforms into wings. You feel really light... you can[apostrophe]t fly, though. "; [ body change text. format as "Your body feels funny as (your text)" ]
+	now body change entry is "your legs became bird-like, including a painful double joint, and your arms transform into wings. You feel really light... you can[apostrophe]t fly, though. "; [ body change text. format as "Your body feels funny as (your text)" ]
 	now skin change entry is "lots of feather sprouts, until you are completely covered."; [ skin change text. format as "Your skin feels funny as (your text)" ]
 	now ass change entry is "[peacockasschange]"; [ ass/tail change text. format as "Your ass feels funny as (your text)" ]
 	now cock change entry is "it becomes slim and ondulated. It retracts into a new, just formed, slit; your balls are permanently absorbed in your body, instead."; [ cock change text. format as "Your cock feels funny as (your text)" ]
@@ -127,6 +127,8 @@ to say Peacock feather use:
 
 Peacock feather is infectious. The strain of Peacock feather is "peacock".
 
+instead of sniffing Peacock feather:
+	say "The long feather smells of an avian male and makes your mind foggy momentarily.";
 
 
 Male Peacock For FS ends here.

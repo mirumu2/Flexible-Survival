@@ -6,6 +6,10 @@ Section 1 - Guard Gryphon Event
 	
 Guard Gryphon is a situation.
 findablestairs is a number that varies.
+when play begins:
+	add Guard Gryphon to badspots of hermaphrodite;
+	add Guard Gryphon to badspots of furry;
+
 
 Instead of resolving a Guard Gryphon:
 	say "     You come across a hermaphrodite gryphon, this one with a red banner with an 8-pointed silver star in the center.  Shi is watching the sky from a rooftop, as if watching for others of hir kind in the air.";
@@ -29,6 +33,7 @@ Red Apartment is a room. "     This tall, red building has a fire escape on this
 to say redflight:
 	if staircaselocation is 1:
 		say "There appears to be a ghostly staircase on top of the building, almost unnoticeable unless you were searching for it.  Maybe you could go up?";
+		now Red Apartment is known;
 	otherwise:
 		say "There is nothing else interesting about it at the moment.";
 
@@ -38,6 +43,7 @@ Green Apartment is a room. "     A green building, almost identical to your apar
 to say greenflight:
 	if staircaselocation is 2:
 		say "There appears to be a ghostly staircase on top of the building, which you would have missed if you weren't looking for it.  Maybe you could go up?";
+		now Green Apartment is known;
 	otherwise:
 		say "There is nothing else interesting about it at the moment.";
 
@@ -47,9 +53,19 @@ Bright Alley is a room. "     A dark alley, with a silvery blue glow coming from
 to say brightflight:
 	if staircaselocation is 3:
 		say "There appears to be a ghostly staircase at the top of the hill past the alley.  You would not have spotted it if you didn't know to look.  Maybe you could go check it out?";
+		now Bright Alley is known;
 	otherwise:
 		say "There is nothing else interesting about it at the moment.";
 
+instead of sniffing Red Apartment:
+	say "The area is smells faintly of those herm gryphons.";
+	
+instead of sniffing Green Apartment:
+	say "The area is smells faintly of those herm gryphons.";
+	
+instead of sniffing Bright Alley:
+	say "The area is smells faintly of those herm gryphons.";
+	
 
 Section 3 - The Moving Entrance
 
@@ -101,11 +117,14 @@ Section 4 - Qytat a'th Lundrues - The City of the Flying
 
 Staircase Entry is a room. "     Now that you stand upon the staircase, you can see it much more clearly and it becomes solid to your eyes.  The staircase stands before you, the legendary path to Qytat a'th Lundrues, the city of the flying.  It is a blue silver of some higher element, and the stairs are floating, sliding a little with the slight breeze, but maintaining their orderly position. The stairs glow, and the warmth radiating from them makes you comforted and happy.  You can feel a faint, unseen wall around them which grows a translucent blue as the steps spiral up into the sky.  You have a feeling that this strange material is completely invisible from the outside.".
 
-Stairs is a room. "     The glowing steps extend above and behind you, spiralling upwards.  The faint blue material forming the concealling walls provides something to rest your hand against as you travers the long staircase to the heavens.  Looking through it, everything has a faint, bluish glow that makes everything below seem misty and unfocused, as if it is not quite real.".
+Stairs is a room. "     The glowing steps extend above and behind you, spiralling upwards.  The faint blue material forming the concealing walls provides something to rest your hand against as you traverse the long staircase to the heavens.  Looking through it, everything has a faint, bluish glow that makes everything below seem misty and unfocused, as if it is not quite real.".
 
 Up from Staircase Entry is Stairs.
 
-City Plaza is a room. "     The ground here is the same blue as the stairs, and warm underfoot. There is a great spiral pattern on the blocks and it seems to change when you aren't looking.  There are no buildings here, instead ropes hang down from tents, glowing like the rest, and seemingly usupported.  These ropes are all out of reach and there is nobody here that you can see.".
+City Plaza is a room. "     The ground here is the same blue as the stairs, and warm underfoot. There is a great spiral pattern on the blocks and it seems to change when you aren't looking.  There are no buildings here, instead ropes hang down from tents, glowing like the rest, and seemingly unsupported.  These ropes are all out of reach and there is nobody here that you can see.".
+
+instead of sniffing City Plaza:
+	say "This area is strong with the scent of those herm gryphons.  It seems you have indeed found their home.";
 
 Up from Stairs is City Plaza.
 

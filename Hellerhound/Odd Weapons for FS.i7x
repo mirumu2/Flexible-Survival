@@ -8,26 +8,37 @@ name	desc	weight	object
 "garbage can lid"	"The lid of a garbage can, usable as a weapon."	4	garbage can lid
 "infected sword"	"A sword with cloudy metal found in a sea of slime. It is infectious, and keeps changing you."	10	infected sword
 "dirty whip"	"A whip covered with dripping horse cum. It is infectious, and was found abandoned by its owner."	3	dirty whip
-"whip"	"A whip you found and cleaned up.  It has metal studs on the lash."	2	clean whip
+"horse whip"	"A whip you found and cleaned up.  It has metal studs on the lash."	2	horse whip
 
-understand "whip" as clean whip.
+[understand "whip" as clean whip.
 Does the player mean using the dirty whip when the dirty whip is owned: it is likely.
 Does the player mean littering the dirty whip when the dirty whip is owned: it is likely.
 Does the player mean littering the clean whip when the clean whip is owned: it is very likely.
 Does the player mean grabbing the dirty whip when the dirty whip is visible: it is likely.
-Does the player mean grabbing the clean whip when the clean whip is visible: it is very likely.
+Does the player mean grabbing the clean whip when the clean whip is visible: it is very likely.]
 
 [When Play begins:
 	now the printed name of clean whip is "whip";]
 
-dirty whip is an armament. it is part of the player. It has a weapon "[one of]your whip[or]your cum-soaked whip[or]your horsy whip[or]white streak[at random]". The weapon damage of dirty whip is 11. The weapon type of dirty whip is "Melee". It is not temporary.
+dirty whip is an armament. it is part of the player. It has a weapon "[one of]your whip[or]your cum-soaked whip[or]your messy whip[or]white streak[at random]". The weapon damage of dirty whip is 11. The weapon type of dirty whip is "Melee". It is not temporary.
 
-clean whip is an armament. It is part of the player. It has a weapon "[one of]your whip[or]your studded whip[or]your metallic whip[or]brown streak[at random]". the weapon damage of clean whip is 6. The weapon type of clean whip is "Melee". It is not temporary.
+instead of sniffing dirty whip:
+	say "The sticky whip smells of equine cum.";
 
+horse whip is an armament. It is part of the player. It has a weapon "[one of]your whip[or]your studded whip[or]your metallic whip[or]brown streak[at random]". the weapon damage of horse whip is 6. The weapon type of horse whip is "Melee". It is not temporary.
+
+instead of sniffing horse whip:
+	say "The horse whip smells of leather and oils.";
 
 garbage can lid is a armament. It is a part of the player. It has a weapon "[one of]your large shield[or]your lid[or]your trusty lid[or]flashing grey circle[at random]". The weapon damage of garbage can lid is 5. The weapon type of garbage can lid is "Melee". It is not temporary.
 
+instead of sniffing garbage can lid:
+	say "A heavy scent of garbage fills your nose as you sniff your makeshift shield.";
+
 infected sword is a armament. It is a part of the player. It has a weapon "[one of]your cloudy sword[or]your sword[or]your infected sword[or]your glowing sword[at random]". The weapon damage of infected sword is 16. The weapon type of infected sword is "Melee". It is not temporary. the purified of infected sword is "Nothing".
+
+instead of sniffing infected sword:
+	say "The infected sword smells of a myriad of musky scents, all shifting and changing.  You can never seem to identify a scent before a new one appears.";
 
 instead of purifying an infected sword:
 	say "The sword sets the sides of the microwave on fire, and Matt rushes over and sprays it with the fire extinguisher. 'What are you doing?' he exclaims, 'Don't you know what happens when you put metal in the microwave?";
@@ -68,9 +79,11 @@ fellforward is a number that varies.
 
 
 to say randominfect:
+	now researchbypass is 1;
 	sort table of random critters in random order;
 	now monster is 1;
 	infect;
+	now researchbypass is 0;
 
 
 instead of resolving sword nest:
@@ -79,7 +92,7 @@ instead of resolving sword nest:
 	if the humanity of the player is less than 60: [falling to the nanites]
 		say "Your mind feels fuzzy, and you have a strange desire to roll in the muck. Do you submit?";
 		if the player consents:
-			say "You run and jump into the slimy muck, a sick splot sounding and echoeing between the nearby buildings. The slime coats you as you roll with enthusiasm, losing your mind to the infection faster by the minute.";
+			say "You run and jump into the slimy muck, a sick splot sounding and echoing between the nearby buildings. The slime coats you as you roll with enthusiasm, losing your mind to the infection faster by the minute.";
 			decrease the humanity of the player by 15;
 			say "[randominfect]";
 			say "[randominfect]";
@@ -91,7 +104,7 @@ instead of resolving sword nest:
 			say "[randominfect]";
 			say "[line break]";
 			say "...";
-			wait for any key;
+			if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 			say "The sludge covering you releases that desire, as you orgasm intensely in the muck.";
 			say "You feel another desire rear its head, to drink from the giant puddle.";
 			say "Do you submit?";
@@ -117,7 +130,7 @@ instead of resolving sword nest:
 					say "You grab the slime in your hands and pour it over your head, and then grab some more, and think about what to do with it next.";
 					if the cunts of the player is 1:
 						say "You take your slime-filled hands and shove them up your waiting cunt, filling it with the sludge.";
-						say "You feel a palpatable wave of contentment from your lower belly.";
+						say "You feel a palpable wave of contentment from your lower belly.";
 						say "You then shove them up your rear, filling it as well.";
 					otherwise:
 						say "You decide to try and drink all of the slime you can, tasting its deliciously dirty flavor.";
@@ -174,7 +187,7 @@ numwater is a number that varies;
 gotwhip is a number that varies.
 
 instead of resolving Destroyed bushes:
-	say "You come across a circle of bushes crushed flat against the ground, large pools of cum and  juices in the revealed space. Horse hoof prints over the ground as well, and the imprint of a human body in one spot testifies to the fact that soemone was overtaken by one of the equines.";
+	say "You come across a circle of bushes crushed flat against the ground, large pools of cum and  juices in the revealed space. Horse hoof prints over the ground as well, and the imprint of a human body in one spot testifies to the fact that someone was overtaken by one of the equines.";
 	if the humanity of the player is less than 50:
 		say "Do you want to drink from the puddles?";
 		if the player consents:
@@ -206,7 +219,7 @@ instead of resolving Destroyed bushes:
 				if found is three:
 					say "You dump the water bottles on the whip, washing off the cum.";	
 					say "You pick up the now clean whip, and place it in your backpack. It looks like a good weapon.";
-					add "whip" to the invent of the player;
+					add "horse whip" to the invent of the player;
 					now destroyed bushes is resolved;
 					now gotwhip is 1;
 				otherwise:
@@ -227,15 +240,14 @@ instead of resolving Destroyed bushes:
 					say "You leave the whip where it is.";
 	otherwise:
 		say "You leave the scene, avoiding the puddles.";
-	
+		now destroyed bushes is resolved;
+
 An everyturn rule:
 	if the dirty whip is wielded:
+		now researchbypass is 1;
 		say "The cum on the dirty whip slips down onto your hand.";
 		infect "black equinoid";
-
-
-
-	
+		now researchbypass is 0;
 
 
 Odd Weapons for FS ends here.

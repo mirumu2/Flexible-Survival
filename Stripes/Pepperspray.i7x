@@ -1,14 +1,17 @@
-Version 1 of Pepperspray by Stripes begins here.
-[version 1]
+Version 3 of Pepperspray by Stripes begins here.
+[version 3.1 - More varied combat messages]
 
 
 battleitem is a number that varies.
 
 Table of Game Objects (continued)
 name	desc	weight	object
-"pepperspray"	"A small cannister of pepperspray."	1	pepperspray
+"pepperspray"	"A small canister of pepperspray."	1	pepperspray
 
 pepperspray is a grab object. It is a part of the player. It is fast. It is not temporary.
+
+instead of sniffing the pepperspray:
+	say "Smelling the pepperspray canister makes your eyes water.";
 
 to say pepperspraydrain:
 	if a random chance of 3 in 10 succeeds:		[average 3-4 uses]
@@ -17,8 +20,7 @@ to say pepperspraydrain:
 
 
 to say usepepperspray:
-	change the current menu to table of pepperspraychoice;
-	carry out the displaying activity;
+	select an option from the table of pepperspraychoice;
 
 this is the peppersprayflee rule:
 	[Perform an attempt to flee at +4 from the weakened enemy]
@@ -35,16 +37,14 @@ this is the peppersprayflee rule:
 	if the roll plus the attack bonus minus the defense bonus is greater than 8:
 		say "Using the pepperspray to briefly disable the [name entry], you manage to make your escape.";
 		say "[pepperspraydrain]";
-		wait for any key;
-		decrease the menu depth by 1;
+		now combat abort is 1;
 	otherwise:
 		say "You try to escape using the pepperspray, but fail.";
 		say "[pepperspraydrain]";
 		say "[weakretaliate]";
-		wait for any key;
 		if the hp of the player is less than 1:
-			decrease the menu depth by 1;
-	decrease the menu depth by 1;		[move an extra level back up to the overworld]
+			lose;
+	rule succeeds;
 
 
 this is the peppersprayattack rule:
@@ -58,53 +58,15 @@ this is the peppersprayattack rule:
 		say "[enhancedattack]";
 		if gascloud > 0:
 			decrease gascloud by 1;
-	wait for any key;
 	if monsterhp is greater than 0:
 		say "[line break]Having partially recovered, your enemy attempts to retaliate.[line break]";
 		say "[weakretaliate]";
-		wait for any key;
-		decrease the menu depth by 1;
-		change the current menu to table of Basic Combat;
-		if the hp of the player is less than 1 or combat abort is 1:
-			now combat abort is 0;
-			decrease the menu depth by 1;
+		if the hp of the player is less than 1:
+			lose;
 	otherwise:
-		follow the cock descr rule;
-		follow the breast descr rule;
-		let ok be 1;
-		if "Control Freak" is listed in feats of player:
-			say "Do you want to perform after combat scene?";
-			if the player consents:
-				now ok is 1;
-			otherwise:
-				now ok is 0;
-		if ok is 1, say "[defeated entry] ";
-		increase the XP of the player by lev entry times two;
-		if "Know Thyself" is listed in feats of player and (bodyname of player is name entry or facename of player is name entry), increase the XP of the player by (lev entry divided by 2);
-		if the player is not lonely:
-			increase the xp of the companion of the player by lev entry times two;
-			if "Ringmaster" is not listed in feats of player:
-				decrease the xp of the player by ( lev entry times 2 ) divided by 3;
-		increase the morale of the player by 1;
-		let z be 0;
-		if "Magpie Eyes" is listed in feats of player and lootchance entry is greater than 50:
-			now z is ( 100 - lootchance entry ) divided by 3;		[scaled increase above 50, prevents numbers over 100]
-			increase lootchance entry by z;
-		otherwise if "Magpie Eyes" is listed in feats of player and lootchance entry is greater than 0:
-			now z is lootchance entry divided by 3;
-			increase lootchance entry by z;
-		if a random chance of lootchance entry in 100 succeeds:
-			say "You gain 1 x [loot entry]!";
-			add loot entry to invent of player;
-		if "Magpie Eyes" is listed in feats of player and lootchance entry is greater than 0:
-			decrease lootchance entry by z;
-		decrease the menu depth by 1;
-		decrease the menu depth by 1;		[move up an extra menu level back to overworld]
-		if ok is 1, wait for any key;
-	clear the screen;
-	[if the menu depth is greater than 0, carry out the displaying activity;]
-	[if the menu depth is 0, try looking;]
+		win;
 	rule succeeds;
+
 
 to say enhancedattack:
 	choose row monster from the table of random critters;
@@ -127,26 +89,32 @@ to say enhancedattack:
 	let the roll be a random number from 1 to 20;
 	say "You roll 1d20([roll])+[combat bonus] -- [roll plus combat bonus]: ";
 	if the roll plus the combat bonus is greater than 8:
+		let wmstrike be 0;
+		let z be 0;
 		let dam be ( weapon damage of the player times ( a random number from 80 to ( 120 + level of player ) ) ) divided by 100;
 		if weapon object of player is journal:
 			if "Martial Artist" is listed in feats of player:
 				increase dam by 1;
 			if "Black Belt" is listed in feats of player:
 				now dam is ( dam times a random number from 105 to 125 ) divided by 100;
-			if "Natural Armaments" is listed in feats of player and bodyname is not "human":
-				let z be 0;
+			if "Natural Armaments" is listed in feats of player and bodyname of player is not "human":
 				repeat with y running from 1 to number of filled rows in table of random critters:
 					choose row y in table of random critters;
 					if name entry is bodyname of player:
 						now z is y;
 						break;
 				choose row z in table of random critters;
-				let dammy be 2;
-				if wdam entry > 3:					[nerfed for very high damage critters]
-					now dammy is ( square root of ( wdam entry - 1 ) ) + 2;
-				increase dam by a random number between 1 and dammy;
+				if z is 0:		[creature not listed - give a low default boost]
+					increase dam by a random number between 0 and 2;
+				otherwise:
+					choose row z in table of random critters;
+					let dammy be 2;
+					if wdam entry > 3:					[nerfed for very high damage critters]
+						now dammy is ( square root of ( wdam entry - 1 ) ) + 2;
+					increase dam by a random number between 1 and dammy;
 				choose row monster from table of random critters;
 		if "Weaponsmaster" is listed in feats of player and weapon object of player is not journal:	[Weaponsmaster and armed]
+			now wmstrike is 1;
 			let numnum be level of player + ( (intelligence of player - 10 ) / 2 ) + 105;
 			now dam is ( ( dam times a random number from 105 to numnum ) divided by 100 );
 		if "Powerful" is listed in feats of player:
@@ -157,9 +125,19 @@ to say enhancedattack:
 		if weapon type of player is "Melee":
 			increase dam by (( the strength of the player minus 10 ) divided by 2);
 		if a random chance of the morale of the player in 200 succeeds:
-			say "Filled with sudden motivation, your attack scores particularly well!";
+			say "Filled with sudden motivation, your attack scores particularly well!  ";
 			increase dam by dam;
-		say "You [one of]strike with[or]attack with[or]use your[or]abuse with[at random] [weapon of player], hitting [name entry] for [dam] damage!";
+		if wmstrike is 1:			[Weaponsmaster used]
+			say "[one of]You skillfully use[or]You attack precisely with[or]Using your weapon's knowledge, you attack with[or]Like the veteran fighter you are, you strike with[at random] [weapon of player], hitting [name entry] for [dam] damage!";
+		otherwise if weapon object of player is journal:
+			if z is not 0:	[Natural Armaments used]
+				say "[one of]You strike using your unnatural form[or]You instinctively attack using your [bodyname of player][or]Drawing strength from your [bodyname of player], you attack[or]You attack using your [bodyname of player] might[or]You ferociously resist your foe with your tainted body's power[or]You attack using your [bodyname of player][']s natural defences[at random], hitting [name entry] for [dam] damage!";
+			otherwise if "Black Belt" is listed in feats of player or "Martial Artist" is listed in feats of player:
+				say "[one of]You strike your foe using your trained unarmed combat, [or]You land an open-palmed strike on your foe, [or]You land a close-fisted blow on your enemy, [or]You attack using your martial arts skill, [or]You land a series of quick blows, [or]You grapple and toss your foe using your training, [or]Your kung-fu is the best, [or]Whoa!  You know kung-fu! [at random]hitting [name entry] for [dam] damage!";
+			otherwise:
+				say "You [one of]strike with[or]attack with[or]use[or]abuse with[at random] [weapon of player], hitting [name entry] for [dam] damage!";
+		otherwise:
+			say "You [one of]strike with[or]attack with[or]use[or]abuse with[at random] [weapon of player], hitting [name entry] for [dam] damage!";
 		if a random chance of 5 in 20 succeeds and "Tail Strike" is listed in feats of player:		[+5% of tail attack w/pepperspray]
 			if tailname of player is listed in infections of Tailweapon:
 				let z be 0;
@@ -172,9 +150,35 @@ to say enhancedattack:
 				let dammy be 2;
 				if wdam entry > 3:					[nerfed for very high damage critters]
 					now dammy is ( square root of ( wdam entry - 1 ) ) + 2;
-				say "[line break]You make an additional attack using your tail's natural abilities for [dammy] damage!";
+				say "[line break]You make an additional attack using your [tailname of player] tail's natural abilities for [dammy] damage!";
 				increase dam by dammy;
 				choose row monster from table of random critters;
+		if a random chance of 5 in 20 succeeds and "Cock Slap" is listed in feats of player and cock length of player >= 12:
+			follow the cock descr rule;
+			let dammy be 0;
+			let z be cock length of player + ( 2 * cocks of player ) - 12;
+			now dammy is ( square root of ( 2 * z ) ) + 1;
+			if dammy > 8, now dammy is 8;
+			increase dammy by a random number between 0 and 1;
+			if cocks of player >= 3, increase dammy by a random number between 0 and 1;
+			say "[line break]You give your opponent a hard swat with your [cock size desc of player] wang for [dammy] additional damage!";
+			increase dam by dammy;
+		if a random chance of 5 in 20 succeeds and "Ball Crush" is listed in feats of player and cock width of player >= 16:
+			let dammy be 0;
+			now dammy is ( square root of ( 2 * ( cock width of player - 13 ) ) ) + 1;
+			if dammy > 8, now dammy is 8;
+			increase dammy by a random number between 0 and 1;
+			say "[line break]You tackle your opponent, slamming your [ball size] orbs onto their [one of]head[or]body[or]face[or]crotch[in random order] for [dammy] additional damage!";
+			increase dam by dammy;
+		if a random chance of 5 in 20 succeeds and "Boob Smother" is listed in feats of player and breast size of player > 2 and ( breast size of player + ( breasts of player / 2 ) ) >= 7:
+			let dammy be 0;
+			let z be breast size of player + breasts of player;
+			now dammy is square root of ( z - 1 ) + 1;
+			if dammy > 7, now dammy is 7;
+			increase dammy by a random number between 0 and 1;
+			if breasts of player > 4, increase dammy by a random number between 0 and 1;
+			say "[line break]Grabbing your opponent, you smoosh them into your ample bosom, smothering and crushing them with your tits for [dammy] additional damage!";
+			increase dam by dammy;
 		if a random chance of 3 in 10 succeeds and "Spirited Youth" is listed in feats of player:		[+5% chance of Spirited Youth attack]
 			let y be a random number from 4 to 6;
 			say "Your child [one of]lashes out[or]assists with a sudden strike[or]takes advantage of a distraction[or]launches a surprise attack[or]descends from out of nowhere[at random] at [name entry] for [y] damage!";
@@ -190,7 +194,23 @@ to say enhancedattack:
 		say "[Name entry] is [descr].";
 	otherwise:
 		say "You miss!";
-	if player is not lonely and a random chance of 1 in 5 succeeds:
+	if player is not lonely and a random chance of 2 in 25 succeeds and "The Horde" is listed in feats of player:
+		say "[line break]";
+		say "Your many pets, always close by, come pouring out en masse and swarm your enemy, battering the [name entry] from all sides!";
+		say "[line break]";
+		repeat with z running through tamed pets:
+			now attack bonus is ( ( dexterity of z minus 4 ) divided by 2 ) plus level of z;	[+3 to hit for each pet]
+			let the combat bonus be attack bonus minus defense bonus;
+			if hardmode is true and combat bonus is greater than 12:	[pepperspray increases hardmode bonus limit to +12]
+				now combat bonus is 12;
+			now roll is a random number from 1 to 20;
+			if roll plus the combat bonus is greater than 8:
+				let dam be ( weapon damage of z times a random number from 80 to 120 ) divided by 100;
+				say "[z]: [assault of z] [dam] damage inflicted!";
+				decrease monsterhp by dam;
+			otherwise:
+				say "Your [z] misses!";
+	otherwise if player is not lonely and a random chance of 3 in 10 succeeds:
 		now attack bonus is ( ( dexterity of companion of player minus 4 ) divided by 2 ) plus level of companion of player;	[+3 to hit for pet]
 		let the combat bonus be attack bonus minus defense bonus;
 		if hardmode is true and combat bonus is greater than 12:		[pepperspray increases hardmode bonus limit to +12]
@@ -239,12 +259,7 @@ to say weakretaliate:
 			say "You are [descr].";
 		otherwise:
 			say "[Name Entry] misses!";
-	if hp of the player is greater than 0:
-		say "";
-		[wait for any key;]
-		[carry out the displaying activity;]
-	otherwise:
-		Lose;
+	wait for any key;
 	rule succeeds;
 
 to say enhancedavoidance:
@@ -273,6 +288,5 @@ Table of pepperspraychoice
 title	subtable	description	toggle
 "Spray and Attack"	--	"Spicy Eyes!!!"	peppersprayattack rule
 "Spray and Flee"	--	"Run Away!"	peppersprayflee rule
-"Your HP: [hp of player]/[maxhp of player]      [name in row monster of table of random critters] HP: [monsterhp]/[hp in row monster of table of random critters]"	--	"I am fit as a fiddle"	--
 
 Pepperspray ends here.

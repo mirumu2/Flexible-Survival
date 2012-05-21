@@ -33,10 +33,11 @@ instead of resolving a loaded catapult:
 		if the player consents:
 			say "Overcoming your disgust, you dip your [face of player] head into the mess, slurping it up.";
 			decrease the thirst of the player by 25;
-			sort table of random critters in random order;
-			now monster is 1;
-			if "Iron Stomach" is not listed in feats of player, infect;
-			wait for any key;
+			decrease humanity of player by 10;
+			if "Iron Stomach" is not listed in feats of player:
+				say "[randominfect]";
+				say "[randominfect]";
+			if waiterhater is 0, wait for any key; [skips waiting if it's not wanted]
 		otherwise:
 			say "You leave the bag where it is.";
 	otherwise:
@@ -53,7 +54,7 @@ instead of resolving a loaded catapult:
 		if the player consents:
 			say "You begin to wriggle into the tangle of ropes.";
 			if a random number between one and catadiff is greater than the dexterity of the player:[the catapult fires]
-				say "You accidentaly bump a trigger rope, and the contraption begins to swing. You get out of there fast. [catapult fire]";
+				say "You accidentally bump a trigger rope, and the contraption begins to swing. You get out of there fast. [catapult fire]";
 			otherwise:
 				say "You manage to get the resources without touching the ropes.";
 				repeat with T running from one to three:

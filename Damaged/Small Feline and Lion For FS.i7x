@@ -1,4 +1,5 @@
-Version 7 of Small Feline and Lion For FS by Damaged begins here. 
+Version 8 of Small Feline and Lion For FS by Damaged begins here.
+[ Version 8.1 - Hard Mode adjustments ]
 [ Edit the above line, replace monster name with your monster's name, and your name with the name you'd like credited for the mod. ]
 
 "Adds a Small Feline and Lion to Flexible Survivals Wandering Monsters table, With Impreg chance"
@@ -17,79 +18,78 @@ to say cat att:
 	say "[one of]The Small Felinoid launches an attack, claws and teeth flying![or]The diminutive lioness attacks you, tripping you down and raking at your groin with her razor sharp claws.[at random]";
 
 to say lion att:
-	say "[one of]The big cat-man roars and lashes out with talon like retractable claws![or]In a show of viscousness the lion man leaps at your neck, clamping down his jaw. Only by poking at his eyes do you force him to let go.[at random]";
+	say "[one of]The big cat-man roars and lashes out with talon like retractable claws![or]In a show of viciousness the lion man leaps at your neck, clamping down his jaw. Only by poking at his eyes do you force him to let go.[at random]";
 
 to say cat def:
-	say "You deliver a killing blow to the Small Felinoid!";
+	if libido of player > 33:
+		if cocks of player > 0:
+			say "     Deciding to make use of the pesky catgirl, you push the small, curvy feline to the ground and pounce her.  She mewls softly, but doesn't pull away as you line up your cock and drive it into her[if cock length of player > 16].  Your massive cock makes a huge bulge in the little feline and she moans and mewls uncontrollably, rubbing her paws over her swollen tummy[otherwise if cock length of player > 10].  Your big cock makes an appreciable bump in the little feline's belly and she rubs it, moaning and mewling happily[otherwise].  Your cock stuffs the little feline, cramming her full of throbbing meat, making her moan and mewl happily[end if].  Her pussy quivers around your shaft and her B-cup breasts sway as you pound into her curvy body.  When finally you cum, you pump your thick seed into her, leaving her [if cock width of player > 10]hugely bloated as your ample cum stuffs her small body, flowing out her overstuffed pussy[otherwise if cock width of player > 5]tummy a little plump and her pussy leaking your seed[otherwise]her pussy stuffed full of your semen and slowly leaking cum[end if].  She purrs softly, passed out after getting fucked good and hard.";
+		otherwise:
+			say "     Deciding to make use of this pesky catgirl, you grab the small, curvy feline and press her face between your legs, grinding your pussy into her softly furred muzzle.  She mewls softly and starts timidly licking at your slit, running her raspy little tongue over it.  You moan softly and scritch her ears, telling her she's a good kitty.  As you encourage her, her enthusiasm for her task increases, as does your pleasure.  Her rough tongue is quick stimulating and soon enough you're soaking the little kitty's face in your juices as you cum hard.  Once you're finished with her, you push her to the ground, leaving her to lick and groom herself clean.";
+	otherwise:
+		say "You deliver a final strike to the small feline, knocking her out!";
 
 to say lion def:
 	say "The big cat tries to rake you with his monstrous claws one more time but you jump back nimbly even as you see it slump down, completely motionless.";
 
 to say cat vict:
 	increase Feline_meow by 1;
-	say "The small curvy feline approaches and looks up at you imploringly. Against your better judgment, you reach down and pick her up. She leans in and begins to eagerly suckle at your chest.";
+	say "     The small curvy feline approaches and looks up at you imploringly. Against your better judgment, you reach down and pick her up. She leans in and begins to eagerly suckle at your chest";
 	if breasts of player > 0:
-		say "The small cat's teeth chew at your own thick black teats and she begins to drink eagerly. You were not aware you were able to lactate, but she proves it in debilitating waves of delight.";
+		say ".  The small cat's teeth chew at your own thick black teats and she begins to drink eagerly. You were not aware you were able to lactate, but she proves it in debilitating waves of delight";
 	otherwise:
-		say "Tawny fur explodes over your chest, spreading rapidly across your front  and back, slightly lighter on the front. Pleasure builds in your front as two breasts swell into existence, nipples firm and visible through the fur.";
+		say ".  Tawny fur explodes over your chest, spreading rapidly across your front and back, slightly lighter on the front. Pleasure builds in your front as two breasts swell into existence, nipples firm and visible through the fur.";
 	infect;
 	if libido of player < 10:
 		say "You manage to force yourself to set the feline down. She pouts at you and puts her hands on her hips, looking quite annoyed at you.";
 	otherwise:
 		say "The bundle in your arms remains firmly attached, drinking hungrily from you and making it hard to concentrate.[line break]It seems no amount of your milk sates the busty feline as she snuggles against you.";
 		now Feline_attached is 1;
-		
+
 to say lion vict:
 	say "The alpha lion approaches and sets a paw on your shoulder. You consider turning him away with your human mind, but the feline one wins out and you lean against him. He bites at your shoulder and neck, moving around you and lifting you. He is soon plunging his hungry shaft deep into your small curvy body, filling you in a way you have never been filled before as a human. You roar in pleasure as his seed fills your new womb, which swells outwards with the volume of it. [line break]As you recover from the pleasure of it, the lion man snuggles, caressing your chest with his broad paws and rocking against you a few moments longer before he rises and releases you to your feet, wobbly though they may be.[impregchance][impregchance]";
 	infect;
 	decrease Feline_meow by 3;
-		
+
 to say feline att:
 	if Feline_type is 1:
 		say "[cat att]";
 	otherwise:
 		say "[lion att]";
-		
+
 to say feline def:
 	if Feline_type is 1:
 		say "[cat def]";
 	otherwise:
 		say "[lion def]";
-		
+
 to say feline vict:
 	if Feline_type is 1:
 		say "[cat vict]";
 	otherwise:
 		say "[lion vict]";
-		
+
 to say feline desc:
 	choose row monster from the table of random critters;
-	if Feline_meow < 5:
+	let debit be 0;
+	if Feline_meow < 5 or cunts of player is 0:
 		say "A small cute girl, about four feet in height, covered in fur with round lion ears and a bright smile. She is quite developed for her size, sporting B cups and wide hips and seems to be eying you rather provocatively.";
+		if hardmode is true and level of player > 3, let debit be level of player - 3;
 		now Feline_type is 1;
-		now hp entry is 20;	
-		now monsterhp is 20;
-		now wdam entry is 7;
-		now lev entry is 3;
-		now libido entry is 25;	
+		now hp entry is 20 + ( debit * 3 );
+		now monsterhp is 20 + ( debit * 3 );
+		now wdam entry is 7 + ( debit / 3 );
+		now lev entry is 3 + debit;
+		now libido entry is 25;
 	otherwise:
-		if cunts of player > 0:
-			say "A large, strongly muscled and powerful lion/human hybrid. He has a dark brown mane and slightly lighter fur everywhere else with round ears and sharp looking teeth. He is entirely naked, allowing you to see his thickly furred sheath and the jutting pink lion shaft. It is oozing with precum as he walks and seeks out a mate.";
-			now Feline_type is 2;
-			now hp entry is 65;	
-			now monsterhp is 65;
-			now wdam entry is 35;
-			now lev entry is 14;
-			now libido entry is 5;	
-		otherwise:
-			say "A small cute girl, about four feet in height, covered in fur with round lion ears and a bright smile. She is quite developed for her size, sporting B cups and wide hips and seems to be eying you rather provocatively.";
-			now Feline_type is 1;
-			now hp entry is 20;	
-			now monsterhp is 20;
-			now wdam entry is 7;
-			now lev entry is 3;
-			now libido entry is 25;		
-
+		say "A large, strongly muscled and powerful lion/human hybrid. He has a dark brown mane and slightly lighter fur everywhere else with round ears and sharp looking teeth. He is entirely naked, allowing you to see his thickly furred sheath and the jutting pink lion shaft. It is oozing with precum as he walks and seeks out a mate.";
+		if hardmode is true and level of player > 14, let debit be level of player - 14;
+		now Feline_type is 2;
+		now hp entry is 65 + ( debit * 5 );
+		now monsterhp is 65 + ( debit * 5 );
+		now wdam entry is 35 + ( ( 4 * debit ) / 11 );
+		now lev entry is 14 + debit;
+		now libido entry is 5;
 
 
 Section 2 - Monster Insertion
