@@ -5,6 +5,10 @@ Section 1 - Monster Insertion
 Table of random critters (continued)
 with 1 blank row
 
+Table of Critter Combat (continued)
+name	combat (rule)	preattack (rule)	postattack (rule)	altattack1 (rule)	alt1chance (number)	altattack2 (rule)	alt2chance (number)	monmiss (rule)	continuous (rule)
+"rq_critical"	retaliation rule	rq_pre_critical rule	--	rq_critical rule	100	--	--	rq_critical_miss rule	--
+
 Section 2 - Variables, constants and commands
 
 A person can be able to fly. A person is usually not able to fly;
@@ -19,6 +23,7 @@ Raven queen victories is a number that varies. Raven queen victories is usually 
 Raven queen eggs laid is a truth state that varies. Raven queen eggs laid is usually false;
 Raven queen eggs is a list of people that varies.
 Raven chick is a person. 
+Raven queen powered up is a truth state that varies. Raven queen powered up is usually false;
 
 shiny things is a list of text that varies.
 raven descr is a text that varies.
@@ -57,7 +62,18 @@ When Play begins:
 	add { "pocketknife","Chipped tooth","lucky horseshoe","Awesomest Fruit","Awesomer Fruit","Awesome Fruit","Strange ankh","motel key","Fresh Apple","crowbar","iron pipe","Jackal totem" } to shiny things;
 	
 When Play ends:
-	say "4.";	 
+	say "4.";
+	if bodyname of player is "Template":
+		if humanity of player is less than 10:
+			say "     You succumb to your template infection.";
+		otherwise:
+			say "     You survive, but were infected by the template.";
+			if cocks of player > 0:							[MALE/HERM]
+				say "     Additional text for a male/herm survivor.";
+			otherwise if "Sterile" is not listed in feats of player:					[F-BREEDABLE]
+				say "     Additional text for a female survivor who can become preggers.";
+			otherwise:									[F-STERILE]
+				say "     Additional text for a female survivor who cannot become preggers.";
 
 This is the raven descr rule:
 	[Upon inspection you notice they have human-like faces with red eyes and a long curved black beak. ]
@@ -130,6 +146,14 @@ To enable ravens:
 		now libido entry is 10;		[ Amount player Libido will go up if defeated ]
 		now loot entry is "raspberry";		[ Loot monster drops, ]
 		now lootchance entry is 10;		[ Chance of loot dropping 0-100 ]
+		now scale entry is 3;			[ Number 1-5, approx size/height of infected PC body:  1=tiny, 3=avg, 5=huge ]
+		now body descriptor entry is "muscular";	[ Ex: "plump" "fat" "muscled" "strong" "slimy" "gelatinous" "slender"   Use [one of] to vary ]
+		now type entry is "avian";		[ one-word creature type. Ex: feline, canine, lupine, robotic, human... Use [one of] to vary ]
+		now magic entry is false;		[ Is this a magic creature? true/false (normally false) ]
+		now resbypass entry is false;		[ Bypasses Researcher bonus? true/false (almost invariably false) ]
+		now non-infectious entry is false;	[ Is this a non-infectious, non-shiftable creature? True/False (usually false) ]
+		blank out the nocturnal entry;		[ True=Nocturnal (night encounters only), False=Diurnal (day encounters only), blank for both. ]
+		now altcombat entry is "default";	[ Row used to designate any special combat features, "default" for standard combat. ]
 
 
 To say raven queen desc entry:
@@ -137,6 +161,58 @@ To say raven queen desc entry:
 		say "A giant black bird descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Clearly female in appearance her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs for a better view of you, you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything.[line break]'So you[apostrophe]re the one who[apostrophe]s been causing trouble for my flock' she says with a deep husky voice, and a heavy flap of her wings allowing you to see the extent of her vast wingspan. 'That will not be allowed.' ";
 	otherwise:
 		say "The raven queen descends from the sky and lands on her black scale-coated legs that end in a large set of claws. Her body is covered in thick black feathers posessing two large black wings, and a long tail formed from long knife-shaped black feathers. You notice the feathers blend to skin the edge of her chin, and her head is mostly human with long and shaggy black hair. Her face sports a pair of sentient red eyes that glow with a fire. As she rears up on her legs you can see her underside coated entirely in a layer of soft black down. Two full D-cup breasts bulge out prominently and you can[apostrophe]t help but think her underside from her breasts down to her crotch could almost pass for the body of a human were it not for the fine black downy feathers coating everything. ";
+
+This is the rq_pre_critical rule:
+	let player hp percent be (hp of the player times 100) divided by maxhp of the player;
+	let raven hp percent be ( monsterhp times 100 ) divided by 120;
+	if raven queen powered up is false:
+		if raven hp percent is less than 30 and player hp percent is greater than 60 and a random chance of 1 in 3 succeeds:
+			say "With a loud caw the enemy summons her raven servants who suddenly attack you pecking and clawing at your body. ";
+			choose row monster from table of random critters;
+			[let wdam be a random number from 8 to 12;
+			decrease dex of the player by 2;
+			decrease wdam of the player by 2; 
+			now raven queen powered up is true;]
+
+This is the rq_critical rule:
+	[let critical hit be false;]
+	choose row monster from table of random critters;
+	if raven queen powered up is false:
+		standardhit;
+	if hardmode is true and a random chance of 1 in 5 succeeds:
+		choose row monster from table of random critters;
+		let dam be ( wdam entry times a random number from 80 to 120 ) divided by 100;
+		if hardmode is true and a random chance of 1 in 10 succeeds:
+			now dam is (dam * 150) divided by 100;
+			say "As you[apostrophe]re busy fighting off her minions the raven queen darts into the air rapidly building speed, and then swoops down slamming into you with her full body weight! - Critical Hit![line break]";
+		otherwise:
+			if hardmode is true and a random chance of 1 in 3 succeeds:
+				say "The raven queen recovers slightly as she watches her swarm of ravens assaults you from multiple directions.[line break]";
+				increase monsterhp by 10;
+			otherwise:
+				say "The swarm of ravens assaults you from multiple directions.[line break]";
+		say "[Attack entry] You take [dam] damage!";
+		let absorb be 0;
+		if "Toughened" is listed in feats of player:
+			increase absorb by dam divided by 5;
+		repeat with x running through equipped equipment:
+			increase absorb by ac of x;
+		if absorb is greater than dam:
+			now absorb is dam;
+		if absorb is greater than 0:
+			say "You prevent [absorb] damage!";
+		decrease hp of the player by dam;
+		increase hp of player by absorb;
+		follow the player injury rule;
+		say "You are [descr].";
+
+This is the rq_critical_miss rule:
+	choose row monster from table of random critters;
+	if raven queen powered up is true and a random chance of 1 in 3 succeeds:
+		say "You manage to fight your way out of the swarm of ravens causing them to fly off and regroup. ";
+[		increase dex of the player by 2;
+		increase wdam of the player by 2; 
+		now raven queen powered up is false;]
 
 To say raven queen attack entry:
 	let player hp percent be (hp of the player times 100) divided by maxhp of the player;
@@ -184,6 +260,12 @@ To enable raven queen:
 				now lev entry is 13;
 				[now area entry is "Outside";]
 				now area entry is "[raven area entry]";
+		Choose a blank row from Table of Critter Combat;
+		now name entry is "rqueen"
+		
+			
+	
+
 
 To fertilize raven queen eggs:
 	let infection be "";
@@ -262,7 +344,7 @@ to say lose to raven:
 				add x to the invent of Raven Nest;
 				increase items stolen by 1;
 				break;
-		if items stolen is equal to 0:
+		if items stolen is 0:
 			say "Finding nothing of interest they quickly leave.";
 		otherwise:
 			say "Something in your backpack catches their eye, and before you can react it's a small sparkle rapidly disappearing in the distance.";
